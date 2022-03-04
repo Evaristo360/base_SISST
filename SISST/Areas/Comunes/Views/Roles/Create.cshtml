@@ -1,0 +1,116 @@
+﻿@model SISST.ViewModels.Comunes.Roles.VMRol
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Roles de usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+}
+@using SISST.ViewModels.Privilegios
+
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">@ViewData["Title"]</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Index", "Roles",  new { Area = "Comunes" })">Lista de roles</a>
+                    </li>
+                    <li class="breadcrumb-item active">Crear rol</li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Lista de roles", "Index", "Roles", null, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-default">
+    <h4 class="card-header">
+        Datos del rol
+    </h4>
+    <div class="card-body">
+        @using (Html.BeginForm("Create", "Roles", FormMethod.Post, new { @class = "form-horizontal", role = "form", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @maxlength = "100" })
+                    <small style="color:cadetblue"> </small>
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label  required-data" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.descripcion, new { @class = "form-control", @maxlength = "250", id = "RolDescripcion" })
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.prioridad, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label  required-data" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.prioridad, new { @class = "form-control", @maxlength = "200" })
+                    @Html.ValidationMessageFor(model => model.prioridad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.IdNivelJerarquico, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IdNivelJerarquico, (IEnumerable<SelectListItem>
+                  )Model.listaNivelJerarquico, "Seleccione...", new { @class = "form-control chosen-select select2" })
+                    @Html.ValidationMessageFor(model => model.IdNivelJerarquico, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<div class="form-group row">
+                @Html.LabelFor(model => model.activo, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label  required-data" })
+                <div class="col-md-10">
+                    <label class="switch">
+                        @Html.CheckBoxFor(m => m.activo)
+                        <span class="slider round"></span>
+                    </label>
+                    @Html.ValidationMessageFor(model => model.activo, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+            @Html.HiddenFor(model => model.activo, new { value = 1 })
+            <div class="form-group row">
+                <label class="col-md-4 pl-5 col-form-label">(*) Dato requerido.</label>
+            </div>
+            <div class="card card-default">
+                <h4 class="card-header">
+                    Lista de privilegios
+                </h4>
+                <div class="card-body">
+                    @await Html.PartialAsync("_Privilegios", (List<VMPrivilegio>)Model.listaPrivilegios, new ViewDataDictionary(ViewData) { { "accion", "crear" } })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-10 offset-2">
+                    <button type="button" class="@claseBotonCancelar mr-1" onclick="location.href='@Url.Action("Index", "Roles", new {})'"><i class="fa fa-times pr-2"></i>Cancelar</button>
+                    <button type="submit" id="btnAceptar" class="@claseBotonGuardar mr-1"><i class="fas fa-save pr-2"></i> Guardar</button>
+                </div>
+            </div>
+            <div id="divPrivilegioSeleccionado"></div>
+
+        }
+    </div>
+</div>
+
+@section Styles {
+        <link rel="stylesheet" href="~/css/datatable.css" />
+}
+
+@section Scripts {
+        <script src="~/js/datatable.js"></script>
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+        <script type="text/javascript">
+        </script>
+        <script src="~/js/Roles.js"></script>
+}
+

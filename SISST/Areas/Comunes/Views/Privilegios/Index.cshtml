@@ -1,0 +1,120 @@
+﻿@model IEnumerable<SISST.ViewModels.Privilegios.VMPrivilegio>
+@{ ViewData["Title"] = "Privilegios de usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<div class="card card-default ">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">@ViewData["Title"]</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item active">
+                        Lista de privilegios
+                    </li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Nuevo privilegio", "Create", "Privilegios", new { Area = "Comunes" }, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-default ">
+    <h4 class="card-header">
+        Lista de privilegios
+    </h4>
+    <div class="card-body">
+        <table class="table table-striped my-4 w-100 border-gray border dataTables-example">
+            <thead>
+                <tr>
+                    <th>
+                        Privilegio
+                    </th>
+                    <th>
+                        Patrón URL
+                    </th>
+                    <th>
+                        Módulo
+                    </th>
+                    <th>
+                        Sección
+                    </th>
+                    <th>
+                        @Html.DisplayName("Estatus")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Usar en menú")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Details", "Privilegios", new { Area = "Comunes", id= @item.id } )">@item.nombrePrivilegio</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.url)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.modulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.seccion)
+                        </td>
+                        <td>
+                            @if (item.activo)
+                            {
+                                @Html.Label("Activo")
+                            }
+                            else
+                            {
+                                @Html.Label("Inactivo")
+                            }
+                        </td>
+                        <td>
+                            @if (item.porOmision)
+                            {
+                                @Html.Label("X")
+                            }
+                            else
+                            {
+                                @Html.Label("")
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    @section Styles {
+            <link rel="stylesheet" href="~/css/datatable.css" />
+    }
+
+    @section Scripts {
+            <script src="~/js/datatable.js"></script>
+
+            <script>
+            $(document).ready(function () {
+                if ('@TempData["tipoMensaje"]' != "") {
+                    toastr.options.positionClass = 'toast-bottom-right';
+                    toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+                }
+            });
+            </script>
+    }
+
+
+
+
+
+
+
+
+
+

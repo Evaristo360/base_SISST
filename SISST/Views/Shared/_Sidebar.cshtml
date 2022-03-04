@@ -1,0 +1,149 @@
+<!-- START Sidebar (left)-->
+<div class="aside-inner">
+    <nav class="sidebar" data-sidebar-anyclick-close="" 
+            style="border-top-color: orange; border-top-style: solid; margin-top: -1px; border-top-width: 3px;">
+        <!-- START sidebar nav-->
+        <ul class="sidebar-nav">            
+            <li class="has-user-block">
+                <div id="user-block" class="collapse">
+                    <div class="item user-block">
+                        <!-- User picture-->
+                        <div class="user-block-picture">
+                            <div class="user-block-status">
+                                <img src="~/images/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail rounded-circle" />
+                                <div class="circle bg-success circle-lg"></div>
+                            </div>
+                        </div>
+                        <!-- Name and Job-->
+                        <div class="user-block-info">
+                            <span class="user-block-name">Hello, Mike</span>
+                            <span class="user-block-role">Designer</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- END user info-->
+            <!-- Iterates over all sidebar items-->
+            <li class="nav-heading">
+                <span>Administraci&oacute;n</span>
+            </li>
+            <li class="@Html.isActive(controller: "Usuarios")">
+                <a href="#Usuarios" title="Usuarios" data-toggle="collapse">
+                    <span data-localize="sidebar.nav.Usuarios">Usuarios</span>
+                </a>
+                <ul id="Usuarios" class="sidebar-nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Ingreso</li>
+                    <li class="@Html.isActive("Usuarios", "Edit")">
+                        <a href="@Url.Action("Edit", "Usuarios", new { Area = "Comunes" } )" title="Ingreso">
+                            <span>Ingreso</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Usuarios", "Index")">
+                        <a href="@Url.Action("Index", "Usuarios", new { Area = "Comunes" })" title="Consulta">
+                            <span>Consulta</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Usuarios", "Administradas")">
+                        <a href="@Url.Action("Administradas", "Usuarios")" title="Áreas administradas">
+                            <span>&Aacute;reas administradas</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@Html.isActive(controller: "Catalogos")">
+                <a href="#Catalogos" title="Catálogos" data-toggle="collapse">
+                    <span data-localize="sidebar.nav.Catalogos">Cat&aacute;logos</span>
+                </a>
+                <ul id="Catalogos" class="sidebar-nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Ingreso</li>
+                    <li class="@Html.isActive("Catalogos", "Edit")">
+                        <a href="@Url.Action("Edit", "Catalogos", new { Area = "Comunes" } )" title="Ingreso">
+                            <span>Ingreso</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Catalogos", "Index")">
+                        <a href="@Url.Action("Index", "Catalogos", new { Area = "Comunes" })" title="Consulta">
+                            <span>Consulta</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@Html.isActive(controller: "Privilegios")">
+                <a href="#Privilegios" title="Privilegios" data-toggle="collapse">
+                    <span data-localize="sidebar.nav.Privilegios">Privilegios</span>
+                </a>
+                <ul id="Privilegios" class="sidebar-nav sidebar-subnav collapse">
+                    <li class="@Html.isActive("Privilegios", "Index")">
+                        <a href="@Url.Action("Index", "Privilegios", new { Area = "Comunes" })" title="Consulta">
+                            <span>Consulta</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@Html.isActive(controller: "Roles")">
+                <a href="#Roles" title="Roles" data-toggle="collapse">
+                    <span data-localize="sidebar.nav.Roles">Roles</span>
+                </a>
+                <ul id="Roles" class="sidebar-nav sidebar-subnav collapse">
+                    <li class="@Html.isActive("Roles", "Index")">
+                        <a href="@Url.Action("Index", "Roles", new { Area = "Comunes" })" title="Consulta">
+                            <span>Consulta</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-heading">
+                <span>Incidentes</span>
+            </li>
+            <li class="@Html.isActive(controller: "Incidentes")">
+                <a href="#Incidentes" title="Incidentes" data-toggle="collapse">
+                    <span data-localize="sidebar.nav.element.Incidentes">Incidentes</span>
+                </a>
+                <ul id="Incidentes" class="sidebar-nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Incidentes en persona</li>
+                    <li class="@Html.isActive("Incidentes", "Index")">
+                        <a href="@Url.Action("Index", "Incidentes", new { Area = "Incidentes" })" title="Asistente">
+                            <span data-localize="sidebar.nav.element.IncidentesconLesion">Asistente de Incidentes</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Incidentes", "EditConLesion")">
+                        <a href="@Url.Action("EditConLesion", "Incidentes", new { Area = "Incidentes" })" title="Incidentes con lesión">
+                            <span data-localize="sidebar.nav.element.IncidentesconLesion">Incidentes con lesi&oacute;n</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Incidentes", "EditSinLesion")">
+                        <a href="@Url.Action("EditSinLesion", "Incidentes", new { Area = "Incidentes" })" title="Incidentes sin lesión">
+                            <span data-localize="sidebar.nav.element.IncidentessinLesion">Incidentes sin lesi&oacute;n</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Incidentes", "EditConDeterioro")">
+                        <a href="@Url.Action("EditConDeterioro", "Incidentes", new { Area = "Incidentes" })" title="Incidentes con deterioro de la Salud">
+                            <span data-localize="sidebar.nav.element.EditConDeterioro">Incidentes con deterioro de la Salud</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Incidentes", "EditDanoEquipo")">
+                        <a href="@Url.Action("EditDanoEquipo", "Incidentes", new { Area = "Incidentes" })" title="Daños en equipo, material o medio ambiente">
+                            <span data-localize="sidebar.nav.element.DanoEquipo">Da&ntilde;os en equipo, material o medio ambiente</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Incidentes", "EditContratista")">
+                        <a href="@Url.Action("EditContratista", "Incidentes", new { Area = "Incidentes" })" title="Incidentes con lesión a contratistas">
+                            <span data-localize="sidebar.nav.element.IncidentesContratista">Incidentes con lesi&oacute;n a contratistas</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-heading">
+                <span>Gesti&oacute;n</span>
+            </li>
+            <li class="nav-heading">
+                <span>Infraestructura</span>
+            </li>
+        </ul>
+        <!-- END sidebar nav-->
+    </nav>
+</div>
+<!-- END Sidebar (left)-->
+
+

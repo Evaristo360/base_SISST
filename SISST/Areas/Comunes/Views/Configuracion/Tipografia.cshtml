@@ -1,0 +1,549 @@
+﻿@{ ViewData["Title"] = "Tipografía";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card card-default ">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">Tipografía usadas en el sistema</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item active">
+                        Lista iconos y formas
+                    </li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-default ">
+    <h4 class="card-header">Acciones flujo de proceso</h4>
+    <div class="card-body">
+
+        <!-- Standard button with label-->
+        <button class="btn btn-labeled btn-outline-secondary mb-2" type="button">
+            <span class="btn-label">
+                <i class="fa fa-arrow-left"></i>
+            </span>Enviar a elaboración
+        </button>
+        <!-- Standard button with label on the right side-->
+        <button class="btn btn-labeled btn-outline-secondary mb-2" type="button">
+            Aprobar
+            <span class="btn-label btn-label-right">
+                <i class="fa fa-arrow-right"></i>
+            </span>
+        </button>
+        <button class="btn btn-labeled btn-outline-secondary mb-2" type="button">
+            Cancelar
+            <span class="btn-label btn-label-right">
+                <i class="fa fa-arrow-right"></i>
+            </span>
+        </button>
+        <br />
+    </div>
+</div>
+
+<div class="card card-default ">
+    <h4 class="card-header">Acciones expandir contraer</h4>
+    <div class="card-body">
+        <!-- Standard button with label-->
+        <button class="btn btn-labeled btn-outline-secondary" type="button">
+            <span class="btn-label">
+                <em class="fas fa-angle-double-down"></em>@*fa-2x mr-2*@
+            </span>Expandir
+        </button>
+        <!-- Standard button with label on the right side-->
+        <button class="btn btn-labeled btn-outline-secondary mr-5" type="button">
+            Contraer
+            <span class="btn-label btn-label-right">
+                <em class="fas fa-angle-double-up"></em>@*fa-2x mr-2*@
+            </span>
+        </button>
+
+
+        <!-- Standard button with label-->
+        <button class="btn btn-labeled btn-outline-secondary" type="button">
+            <span class="btn-label">
+                <em class="fas fa-angle-double-down"></em>@*fa-2x mr-2*@
+            </span>
+        </button>
+        <!-- Standard button with label on the right side-->
+        <button class="btn btn-labeled btn-outline-secondary mr-5" type="button">
+            <span class="btn-label btn-label-right">
+                <em class="fas fa-angle-double-up"></em>@*fa-2x mr-2*@
+            </span>
+        </button>
+
+
+        <!-- Standard button with label-->
+        <span class="btn-label">
+            <em class="fas fa-angle-double-down"></em>@*fa-2x mr-2*@
+        </span>
+
+        @*<button class="btn btn-labeled btn-outline-secondary mr-5" type="button"> </button>*@
+        <!-- Standard button with label on the right side-->
+        <span class="btn-label btn-label-right">
+            <em class="fas fa-angle-double-up"></em>@*fa-2x mr-2*@
+        </span>
+        @*<button class="btn btn-labeled btn-outline-secondary" type="button">
+
+            </button>*@
+    </div>
+</div>
+
+
+<div class="card card-default ">
+    <h4 class="card-header">Estados Flujo de registros</h4>
+    <div class="card-body">
+        <button class="btn btn-labeled btn-outline-info mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-file-signature fa-2x"></i>
+            </span>En elaboración - Borrador
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-file-alt fa-2x"></i>
+            </span>Elaborada - Pendiente revisión
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-file-contract fa-2x"></i>
+            </span>Revisada - Pendiente de aprobación
+        </button>
+        <br />
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button"  style="color:#43D967">
+            <span class="btn-label" style="color:#43D967">
+                <i class="fas fa-file-archive fa-2x"></i>
+            </span>Vigente
+        </button>
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button"  style="color:#131E26">
+            <span class="btn-label">
+                <i class="fas fa-copy fa-2x"></i>
+            </span>Susitituido
+        </button>
+        
+        
+    </div>
+</div>
+
+<div class="card card-default ">
+    <h4 class="card-header">Iconos varios en botones</h4>
+    <div class="card-body">
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-external-link-alt"></i>
+            </span>External link
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-external-link-square-alt"></i>
+            </span>External link square
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-level-up-alt"></i>
+            </span>Level-up-alt
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-level-down-alt"></i>
+            </span>Level-down-alt
+        </button>
+
+        <br /> @*Pen*@
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-pen-alt"></i>
+            </span>pen
+        </button>
+
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-pen-square"></i>
+            </span>pen-square
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-pencil-alt"></i>
+            </span>pen
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-pencil-ruler"></i>
+            </span>pencil-ruler
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-pencil-alt"></i>
+            </span>pencil-alt
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-pencil"></i>
+            </span>pencil-ruler
+        </button>
+        <br /> @*Minus, plus*@
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-minus"></i>
+            </span>minus
+        </button>
+
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-minus-square"></i>
+            </span>Minus-square
+        </button>
+
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-plus"></i>
+            </span>plus
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-plus-circle"></i>
+            </span>plus-circle
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="far fa-plus-circle"></i>
+            </span>plus-circle
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-plus-square"></i>
+            </span>plus-square
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="far fa-plus-square"></i>
+            </span>plus-square
+        </button>
+        <br />
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-times"></i>
+            </span>times
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-times-circle"></i>
+            </span>times circle fas
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="far fa-times-circle"></i>
+            </span>times circle far
+        </button>
+        <br />
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-search"></i>
+            </span>search
+        </button>
+
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-searchengin"></i>
+            </span>search engin
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-search-minus"></i>
+            </span>search minus
+        </button>
+
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-search-plus "></i>
+            </span>search plus
+        </button>
+
+
+        <br />
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-share"></i>
+            </span>share
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-share-square "></i>
+            </span>share-square
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-share-alt"></i>
+            </span>share alt
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-share-alt-square"></i>
+            </span>share alt square
+        </button>
+
+        <br />
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-mail-bulk"></i>
+            </span>Mail-bulk
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-mailchimp"></i>
+            </span>Mailchimp
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-receipt"></i>
+            </span>share alt
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-share-alt-square"></i>
+            </span>share alt square
+        </button>
+
+        <br />
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-sync"></i>
+            </span>Sync
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-sync-alt"></i>
+            </span>Sync alt
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-edit"></i>
+            </span>Edit
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="far fa-edit"></i>
+            </span>Edit
+        </button>
+
+    </div>
+</div>
+
+<div class="card card-default ">
+    <h4 class="card-header">Estados</h4>
+    <div class="card-body">
+        <button class="btn btn-labeled btn-outline-info mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="far fa-edit fa-2x"></i>
+            </span>En elaboración
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-cogs fa-2x"></i>
+            </span>En proceso
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-file-signature fa-2x"></i>
+            </span>En aprobación
+        </button>
+        <br />
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-archive fa-2x"></i>
+            </span>Sustituido
+        </button>
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-archive fa-2x"></i>
+            </span>Cerrado
+        </button>
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-check-double fa-2x"></i>
+            </span>Ejeccutado
+        </button>
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-file-contract fa-2x"></i>
+            </span>Elaborado
+        </button>
+        <button class="btn btn-labeled btn-outline-success mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-file-contract fa-2x"></i>
+            </span>Vigente
+        </button>
+        <br />
+        <button class="btn btn-labeled btn-outline-danger mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-cogs fa-2x"></i>
+            </span>Vencido
+        </button>
+        <button class="btn btn-labeled btn-outline-danger mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fa fa-exclamation fa-2x"></i>
+            </span>Cancelado
+        </button>
+    </div>
+</div>
+
+
+<div class="card card-default ">
+    <h4 class="card-header">Estados</h4>
+    <div class="card-body">
+        <button class="btn btn-labeled btn-outline-info mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="far fa-edit"></i>
+            </span>En elaboración
+        </button>
+        <button class="btn btn-labeled btn-outline-info mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-cogs"></i>
+            </span>En proceso
+        </button>
+
+        <button class="btn btn-labeled btn-outline-info mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-file-signature"></i>
+            </span>En aprobación
+        </button>
+        <br />
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-file-contract"></i>
+            </span>Sustituido
+        </button>
+
+
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-file-archive"></i>
+            </span>Cerrada
+        </button>
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="far fa-file-archive"></i>
+            </span>Cerrada
+        </button>
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-check-double"></i>
+            </span>Ejeccutada
+        </button>
+        <button class="btn btn-labeled btn-outline-warning mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-exclamation-triangle"></i>
+            </span>Elaborada
+        </button>
+        <button class="btn btn-labeled btn-outline-success mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-file-contract"></i>
+            </span>Vigente
+        </button>
+        <br />
+        <button class="btn btn-labeled btn-outline-danger mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fas fa-cogs"></i>
+            </span>Vencida
+        </button>
+        <button class="btn btn-labeled btn-outline-danger mb-2 btn-lg" type="button">
+            <span class="btn-label">
+                <i class="fa fa-exclamation"></i>
+            </span>Cancelado
+        </button>
+    </div>
+</div>
+
+<div class="card card-default ">
+    <h4 class="card-header">Iconos en botones (outline)</h4>
+    <div class="card-body">
+        <!-- Success button with label-->
+        <button class="btn btn-labeled btn-outline-success mb-2" type="button">
+            <span class="btn-label">
+                <i class="fa fa-check"></i>
+            </span>Success
+        </button>
+        <!-- Danger button with label-->
+        <button class="btn btn-labeled btn-outline-danger mb-2" type="button">
+            <span class="btn-label">
+                <i class="fa fa-times"></i>
+            </span>Danger
+        </button>
+        <!-- Info button with label-->
+        <button class="btn btn-labeled btn-outline-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fa fa-exclamation"></i>
+            </span>Info
+        </button>
+        <!-- Warning button with label-->
+        <button class="btn btn-labeled btn-outline-warning mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-exclamation-triangle"></i>
+            </span>Warning
+        </button>
+        <br />
+        <!-- Standard button with label-->
+        <button class="btn btn-labeled btn-outline-secondary" type="button">
+            <span class="btn-label">
+                <i class="fa fa-arrow-left"></i>
+            </span>Enviar a elaboración
+        </button>
+        <!-- Standard button with label on the right side-->
+        <button class="btn btn-labeled btn-outline-secondary" type="button">
+            Aprobar
+            <span class="btn-label btn-label-right">
+                <i class="fa fa-arrow-right"></i>
+            </span>
+        </button>
+    </div>
+</div>
+
+<div class="card card-default">
+    <div class="card-header">
+        <h3 class="card-title">Button Labeled (original)</h3>
+    </div>
+    <div class="card-body">
+        <!-- Success button with label-->
+        <button class="btn btn-labeled btn-success mb-2" type="button">
+            <span class="btn-label">
+                <i class="fa fa-check"></i>
+            </span>Success
+        </button>
+        <!-- Danger button with label-->
+        <button class="btn btn-labeled btn-danger mb-2" type="button">
+            <span class="btn-label">
+                <i class="fa fa-times"></i>
+            </span>Danger
+        </button>
+        <!-- Info button with label-->
+        <button class="btn btn-labeled btn-info mb-2" type="button">
+            <span class="btn-label">
+                <i class="fa fa-exclamation"></i>
+            </span>Info
+        </button>
+        <!-- Warning button with label-->
+        <button class="btn btn-labeled btn-warning mb-2" type="button">
+            <span class="btn-label">
+                <i class="fas fa-exclamation-triangle"></i>
+            </span>Warning
+        </button>
+        <br />
+        <!-- Standard button with label-->
+        <button class="btn btn-labeled btn-secondary" type="button">
+            <span class="btn-label">
+                <i class="fa fa-arrow-left"></i>
+            </span>Left
+        </button>
+        <!-- Standard button with label on the right side-->
+        <button class="btn btn-labeled btn-secondary" type="button">
+            Right
+            <span class="btn-label btn-label-right">
+                <i class="fa fa-arrow-right"></i>
+            </span>
+        </button>
+    </div>
+</div>

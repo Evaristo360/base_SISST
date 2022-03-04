@@ -1,0 +1,136 @@
+﻿@model SISST.ViewModels.Comunes.Catalogos.VMCatalogoOpciones
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{ ViewData["Title"] = "Consulta de catálogo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+}
+
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">Catálogo @Model.Catalogo.Nombre</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item">
+                        <a href="~/Comunes/Catalogos/Index">Lista de catálogos</a>
+                    </li>
+                    <li class="breadcrumb-item active">Consulta de catálogo</li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Lista de catálogos", "Index", "Catalogos", null, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-default">
+    <h4 class="card-header">Consulta del catálogo</h4>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @*@Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.IdCatalogo)*@
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Catalogo.Nombre, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label" })
+                <div class="col-md-10">
+                    <input class="form-control" type="text" placeholder="" value="@Model.Catalogo.Nombre" readonly="readonly" />
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Catalogo.Descripcion, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label" })
+                <div class="col-md-10">
+                    <textarea class="form-control autoResize" type="text" placeholder="" readonly="readonly">@Model.Catalogo.Descripcion</textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Catalogo.Estado, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label" })
+                <div class="col-md-10">
+                    <input class="form-control" type="text" placeholder="" value="@Model.Catalogo.EtiquetaEstado" readonly="readonly" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-10 offset-2 ">
+                    <button type="button" class="@claseBotonCancelar deleteConfirmation mr-1"><i class="fas fa-trash-alt pr-2"></i>Eliminar</button>
+                    <button type="button" class="@claseBotonGuardar mr-1" onclick="location.href='@Url.Action("Edit", "Catalogos", new { Area = "Comunes", id = Model.IdCatalogo })'"> <i class="fa fa-edit pr-2"></i> Editar</button>
+                </div>
+            </div>
+       
+        @*Sobre las opciones del catálogo*@
+        <div class="card card-default">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Opciones del catálogo  @Model.Catalogo.Nombre </h4>
+                    </div>
+                    <div class="col-4 text-right">
+                        <button type="button" class="@claseBotonGuardar mr-1" onclick="location.href='@Url.Action("CreateOpcion", "Catalogos", new { Area = "Comunes", id = Model.IdCatalogo })'"> <i class="fa fa-plus-circle pr-2"></i> Nueva opción</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped my-4 w-100 border-gray border dataTables-example">
+                    <thead>
+                        <tr>
+                            <th>Orden</th>
+                            <th>Nombre</th>
+                            <th>Clave</th>
+                            <th>Proceso</th>
+                            <th class="sort-alpha">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Opciones)
+                        {
+                            <tr class="@item.Opcion.EsSeleccionableClase">
+                                <td>@item.Opcion.Orden.0</td>
+                                <td><a href="~/Comunes/Catalogos/DetailsOpcion?id=@item.Opcion.IdCatalogo&IdCatalogo=@Model.IdCatalogo">@item.Opcion.Nombre</a></td>
+                                <td>@item.Opcion.Clave</td>
+                                <td>@item.Opcion.Proceso</td>
+                                <td>@item.Opcion.EtiquetaEstado</td>
+                            </tr>
+                            @foreach (var subitem in item.Subopciones)
+                            {
+                                <tr>
+                                    <td>@item.Opcion.Orden.@subitem.Orden</td>
+                                    <td><span class="ml-3"><a href="~/Comunes/Catalogos/DetailsOpcion?id=@subitem.IdCatalogo&IdCatalogo=@Model.IdCatalogo">@subitem.Nombre</a></span></td>
+                                    <td>@subitem.Clave</td>
+                                    <td>@subitem.Proceso</td>
+                                    <td>@subitem.EtiquetaEstado</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+@using (Html.BeginForm("Delete", "Catalogos", FormMethod.Post, new { @id = "frmDelete" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.IdCatalogo)
+}
+
+@section Styles {
+
+    <link rel="stylesheet" href="~/css/datatable.css" />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+            $(document).ready(function () {
+                if ('@TempData["tipoMensaje"]' != "") {
+                    toastr.options.positionClass = 'toast-bottom-right';
+                    toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+            }
+            });
+    </script>
+
+    <script src="~/js/datatable.js"></script>
+}

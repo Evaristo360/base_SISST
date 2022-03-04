@@ -1,0 +1,214 @@
+﻿@model SISST.ViewModels.Comunes.Areas.VMAreaDetalle
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Catálogo de centros de trabajo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+    string claseBotonEliminar = Context.Session.GetString("claseBotonEliminar");
+
+}
+
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">@ViewData["Title"]</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Index", "Centros",  new { Area = "Comunes" })">Lista de centros de trabajo</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Detalle del centro de trabajo
+                    </li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Lista de centros de trabajo", "Index", "Centros", new { Area = "Comunes" }, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-default">
+    <h4 class="card-header">
+        Datos del centro de trabajo
+    </h4>
+    <div class="card-body">
+        <form id="formDetails">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Clave, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Clave, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Nombre, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.AreaSuperior, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.AreaSuperior, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.AreaVerificacion, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.AreaVerificacion, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Proceso, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Proceso, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.CentroGestor, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CentroGestor, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ClaveControlGestion, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ClaveControlGestion, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Prioridad, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.LeyendaPrioridad, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.NivelJerarquico, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.NivelJerarquico, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.GeneraDatosBasicos, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })<br />
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        @Html.RadioButtonFor(m => m.GeneraDatosBasicos, true, new { @class = "form-check-input", @id = "btnGDBSi", @disabled = "true" })
+                        @Html.LabelFor(m => m.GeneraDatosBasicos, "Sí")
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        @Html.RadioButtonFor(m => m.GeneraDatosBasicos, false, new { @class = "form-check-input", @id = "btnGDBNo", @disabled = "true" })
+                        @Html.LabelFor(m => m.GeneraDatosBasicos, "No")
+                    </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Direccion, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.EntidadFederativa, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.EntidadFederativa, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Municipio, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Municipio, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Telefono, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-10 offset-2 ">
+                    @if (Model.Activo == true)
+                    {
+                        <button type="button" class="@claseBotonCancelar mr-1" onclick="desactivateConfirmation()"><i class="fas fa-user-slash pr-2"></i>Desactivar</button>
+                    }
+                    else
+                    {
+                        <button type="button" class="@claseBotonCancelar mr-1" onclick="activateConfirmation()"><i class="fas fa-user pr-2"></i>Activar</button>
+                    }
+                    <button type="button" class="@claseBotonGuardar mr-1" onclick="location.href='@Url.Action("Edit", "Centros", new { Area = "Comunes", id = Model.Id })'"> <i class="fa fa-edit pr-2"></i> Editar</button>
+                    @*<button type="button" class="@claseBotonCancelar deleteConfirmation mr-1"><i class="fas fa-trash-alt pr-2"></i>Eliminar</button>*@
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@using (Html.BeginForm("Delete", "Centros", new { Area = "Comunes" }, FormMethod.Post, true, new { @id = "frmDelete" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+}
+@using (Html.BeginForm("Delete", "Centros", FormMethod.Post, new { @id = "frmDeactivate" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+}
+
+@section Scripts
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    // Modal for deactivateConfirmation
+    function desactivateConfirmation() {
+        $.LoadingOverlay("hide");//$.unblockUI();
+
+        swal({
+            title: "¿Está seguro de desactivar el centro de trabajo?",
+            text: "Se desactivará el centro de trabajo. No estará visible en el sistema. \n ",
+            icon: "warning",
+            buttons: { cancel: { text: "Cancelar", value: null, visible: !0, className: "", closeModal: true }, confirm: { text: "¡Sí, desactivarlo!", value: !0, visible: !0, className: "bg-danger", closeModal: true } }
+
+        }).then(function (e) {
+            if (e) {
+                $.LoadingOverlay("show");//$('.sweet-alert').block({ message: "Por favor espere..." });
+                $('#frmDeactivate').submit();
+            }
+            else {
+                swal.close();
+            }
+        });
+
+        $.LoadingOverlay("hide");//$.unblockUI();
+    }
+
+    // Modal for activateConfirmation
+    function activateConfirmation() {
+        $.LoadingOverlay("hide");//$.unblockUI();
+
+        swal({
+            title: "¿Está seguro de activar el centro de trabajo?",
+            text: "Se activará el centro de trabajo. Estará visible en el sistema. \n ",
+            icon: "warning",
+            buttons: { cancel: { text: "Cancelar", value: null, visible: !0, className: "", closeModal: true }, confirm: { text: "¡Sí, activarlo!", value: !0, visible: !0, className: "bg-danger", closeModal: true } }
+
+        }).then(function (e) {
+            if (e) {
+                $.LoadingOverlay("show");//$('.sweet-alert').block({ message: "Por favor espere..." });
+                $('#frmDeactivate').submit();
+            }
+            else {
+                swal.close();
+            }
+        });
+
+        $.LoadingOverlay("hide");//$.unblockUI();
+    }
+</script>
+}
+
+
+
+

@@ -1,0 +1,22 @@
+.MultiFile-list {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.MultiFile-label {
+    background-color: #DADADA;
+    border: 1px solid #EEEEEE;
+    font-size: 16px;
+    padding: 10px;
+    width: 300px;
+}
+
+.MultiFile-list a {
+    color: red;
+    text-decoration: none;
+}
+
+.MultiFile-list span {
+}
+    

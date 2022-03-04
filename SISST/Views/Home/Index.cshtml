@@ -1,0 +1,86 @@
+﻿@model SISST.ViewModels.Comunes.UsuarioLogin
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+
+    ViewData["Title"] = "Inicio";
+}
+<br />
+<br />
+<center><img class="block-center rounded" src="~/images/Login_v1.png" alt="Image" /></center>
+<div class="block-center mt-4 wd-xl">
+    <!-- START card-->
+
+    <div class="card card-flat">
+        <div class="card-header text-center" style="background-color:#888; color:#fff">
+            Iniciar sesi&oacute;n
+        </div>
+        <div class="card-body">
+            <p class="text-center py-2"></p>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+
+                <form class="mb-3" id="loginForm" novalidate="novalidate">
+                    <div class="form-group">
+                        <div class="input-group with-focus">
+                            @Html.EditorFor(model => model.RPE, new { htmlAttributes = new { @class = "form-control  border-right-0", @placeholder = "RPE" } })
+
+                            <!--<input class="form-control border-right-0" id="exampleInputEmail1" placeholder="Usuario" autocomplete="off" required="required" />-->
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0">
+                                    <em class="fas fa-user"></em>
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.RPE, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group with-focus">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control  border-right-0", @placeholder = "Contraseña", @type = "password" } })
+
+                            <!--<input class="form-control border-right-0" id="exampleInputPassword1" type="password" placeholder="Contraseña" required="required" />-->
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0">
+                                    <em class="fa fa-lock"></em>
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <!--<div class="clearfix">
+                        <div class="checkbox c-checkbox float-left mt-0">
+                            <label>
+                                <input type="checkbox" value="" name="remember" />
+                                <span class="fa fa-check"></span>Recordarme
+                            </label>
+                        </div>
+                        <div class="float-right">
+                            <a class="text-muted" href="@Url.Action("Recover", "Pages")">Olvidaste tu contraseña?</a>
+                        </div>
+                    </div>-->
+                    <br />
+                    <button class="btn btn-block  mt-3 espereGuardar" style="background-color:#A4B82D; color:#fff;" type="submit">Ingresar</button>
+                </form>
+            }
+            <!--<p class="pt-3 text-center">Need to Signup?</p><a class="btn btn-block btn-secondary" href="@Url.Action("Register", "Pages")">Register Now</a>-->
+        </div>
+    </div>
+    <!-- END card-->
+
+</div>
+
+
+@section Scripts {
+
+    <environment names="Development,Staging,Production">      
+        <script>
+            $(document).ready(function () {
+            if ('@TempData["tipoMensaje"]' != "") {
+                toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+            }
+            });
+        </script>
+    </environment>
+}

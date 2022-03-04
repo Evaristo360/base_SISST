@@ -1,0 +1,174 @@
+﻿@model IEnumerable<SISST.ViewModels.Comunes.AreasAdministradas.VMAreaAdministrada>
+@using SISST.ViewModels.Comunes.Roles
+@using Microsoft.AspNetCore.Http
+@{ ViewData["Title"] = "Centros de trabajo administrados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string IdArea = User.FindFirst("IdArea").Value;
+    string lastUrl = Context.Request.Path;
+
+    List<SelectListItem> listaAreas = new List<SelectListItem>();
+    listaAreas.Add(new SelectListItem("Escriba el nombre o clave del centro de trabajo a buscar", ""));
+
+    var roles = User.FindFirst("roles").Value;
+    var prioridad = User.FindFirst("Prioridad").Value;
+    //se obtienen los roles que se almacenan en el claim
+    var role = Newtonsoft.Json.JsonConvert.DeserializeObject<List<VMRolPrivilegioClaim>>(roles);
+    //Se obtienen los privilegios del rol activo
+    var rolData = role.FirstOrDefault(x => x.Activo == true);
+    int idJerarquico = rolData.IdNivelJerarquico;
+}
+
+
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">@ViewData["Title"]</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item active">
+                        Lista de centros de trabajo administrados
+                    </li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                <button class="btn btn_sistema" type="button" data-toggle="modal" data-target="#mdlAreas">Nuevo centro de trabajo administrado</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card card-default">
+    <div class="card-body">
+        <table class="table table-striped my-4 w-100 border-gray border">
+            <thead>
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(r => r.ClaveArea)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(r => r.NombreArea)
+                    </th>
+                    <th class="text-center">
+                        Adscripción
+                    </th>
+                    <th class="text-center">
+                        Administrar
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => @item.ClaveArea)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreArea)
+                        </td>
+                        <td class="text-center">
+                            @if (item.EsPropietaria)
+                            {
+                                <i class="fas fa-star" style="color:darkorange" title="Centro de Adscripción"></i>
+                            }
+                        </td>
+                        <td class="text-center">
+                            @if (item.IdArea != int.Parse(IdArea))
+                            {
+                                @if (idJerarquico == item.IdJerarquico || prioridad == "5")
+                                {
+                                    <a href="@Url.Action("cambiaAreaActivo", "Home", new { Area = "", idArea = @item.IdArea, lastUrl = lastUrl, rol = rolData.Id.ToString()})" title="Administrar Centro" class="espereGuardar"><i class="fas fa-sync-alt"></i></a>
+                                }
+                            }
+                            else
+                            {
+                                <i class="fas fa-check-circle" style="color:#4cff00;" title="Centro Administrado"></i>
+                            }
+                        </td>
+                        <td>
+                            @if (!item.EsPropietaria)
+                            {
+                                <a style="color:#656565" href="javascript:Eliminar(@item.IdArea)" title="Eliminar"><i class="far fa-trash-alt"></i> </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@using (Html.BeginForm("Delete", "AreasAdministradas", FormMethod.Post, new { @id = "frmDelete" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("idAreaDelete", null, new { @id = "idAreaDelete" })
+}
+
+@using (Html.BeginForm("Create", "AreasAdministradas", FormMethod.Post, new { @id = "frmCreate" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("idAreaCreate", null, new { @id = "idAreaCreate" })
+}
+
+@section BodyArea {
+    <div class="modal inmodal" id="mdlAreas" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog  modal-xl">
+            <div class="modal-content animated fadeIn">
+                <div class="modal-header">
+                    <h4 class="modal-title">Agregar centros de trabajo administrados</h4>
+                </div>
+                <div id="AreasParcial" class="modal-body modalArea">
+                    <div class="form-group row">
+                        @Html.Label("CentroTrabajoLbl", "Centro de trabajo", htmlAttributes: new { @class = "col-md-2 offset-1 col-form-label " })
+                        <div class="col-xl-9">
+                            @Html.DropDownList("lstAreas", (IEnumerable<SelectListItem>
+                            )listaAreas, "Seleccione...", new { @class = "form-control chosen-select", @id = "area" })
+
+                            <button class="btn  btn-info" type="button" onclick="AgregarArea();">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white desbloquearFormulario" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/select2.css" />
+    <link rel="stylesheet" href="~/css/datatable.css" />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/datatable.js"></script>
+    <script src="~/js/select2.js"></script>
+    <script>
+            var urlAreaSearch = '@Url.Action("SearchByRolLvl", "Centros", new { Area = "Comunes" })';
+            $(document).ready(function () {
+                if ('@TempData["tipoMensaje"]' != "") {
+                    toastr.options.positionClass = 'toast-bottom-right';
+                toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+            }
+            });
+    </script>
+    <script src="~/js/select2.js"></script>
+    <script src="~/js/AreasAdministradas.js"></script>
+}
+
+
+
+
+
+
+
+
+
+

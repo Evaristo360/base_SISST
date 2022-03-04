@@ -1,0 +1,233 @@
+﻿@model SISST.ViewModels.Comunes.Areas.VMArea
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Catálogo de centros de trabajo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+}
+@using SISST.ViewModels.Comunes.Areas
+<div class="card  card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">@ViewData["Title"]</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Index", "Centros",  new { Area = "Comunes" })">Lista de centros de trabajo</a>
+                    </li>
+                    <li class="breadcrumb-item active">Crear centros de trabajo</li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Lista de centros de trabajo", "Index", "Centros", new { Area = "Comunes" }, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-default">
+    <h4 class="card-header">
+        Datos del centro de trabajo
+    </h4>
+    <div class="card-body">
+        @using (Html.BeginForm("Create", "Centros", new { Area = "Comunes" }, FormMethod.Post, true, new { @class = "form-horizontal", role = "form", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Clave, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Clave, new { @class = "form-control", @maxlength = "5", id = "ClaveCentroTrabajo" })
+                    <small style="color:cadetblue"> </small>
+                    @Html.ValidationMessageFor(model => model.Clave, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @maxlength = "100" })
+                    <small style="color:cadetblue"> </small>
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.IdAreaSuperior, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IdAreaSuperior, (IEnumerable<SelectListItem>
+              )Model.listaAreas, "Seleccione...", new { @class = "form-control chosen-select areaSearch required", @id = "areaSuperior" })
+                    @Html.ValidationMessageFor(model => model.IdAreaSuperior, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.IdAreaVerificacion, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IdAreaVerificacion, (IEnumerable<SelectListItem>
+             )Model.listaAreas, "Seleccione...", new { @class = "form-control chosen-select areaSearch", @id = "areaVerificacion" })
+                    @Html.ValidationMessageFor(model => model.IdAreaVerificacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.IdProceso, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IdProceso, (IEnumerable<SelectListItem>
+                  )Model.listaProcesos, "Seleccione...", new { @class = "form-control chosen-select select2" })
+                    @Html.ValidationMessageFor(model => model.IdProceso, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.CentroGestor, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CentroGestor, new { @class = "form-control", @maxlength = "100" })
+                    <small style="color:cadetblue"> </small>
+                    @Html.ValidationMessageFor(model => model.CentroGestor, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ClaveControlGestion, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ClaveControlGestion, new { @class = "form-control", @maxlength = "7", id = "ClaveControlGestion" })
+                    <small style="color:cadetblue"> </small>
+                    @Html.ValidationMessageFor(model => model.ClaveControlGestion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Prioridad, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Prioridad, (IEnumerable<SelectListItem>
+                  )Model.listaPrioridad, "Seleccione...", new { @class = "form-control chosen-select select2" })
+                    @Html.ValidationMessageFor(model => model.Prioridad, "", new { @class = "text-danger" })
+                </div>
+            </div> 
+            <div class="form-group row">
+                @Html.LabelFor(model => model.IdNivelJerarquico, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IdNivelJerarquico, (IEnumerable<SelectListItem>
+                  )Model.listaNivelJerarquico, "Seleccione...", new { @class = "form-control chosen-select select2" })
+                    @Html.ValidationMessageFor(model => model.IdNivelJerarquico, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(m => m.GeneraDatosBasicos, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })<br />
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        @Html.RadioButtonFor(m => m.GeneraDatosBasicos, true, new { @class = "form-check-input", @id = "btnGDBSi" })
+                        @Html.LabelFor(m => m.GeneraDatosBasicos, "Sí")
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        @Html.RadioButtonFor(m => m.GeneraDatosBasicos, false, new { @class = "form-check-input", @id = "btnGDBNo" })
+                        @Html.LabelFor(m => m.GeneraDatosBasicos, "No")
+                    </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control", @maxlength = "100" })
+                    <small style="color:cadetblue"> </small>
+                    @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.IdEntidadFederativa, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IdEntidadFederativa, (IEnumerable<SelectListItem>
+                  )Model.listaEntidadFederativa, "Seleccione...", new { @class = "form-control chosen-select select2", id = "entidadFederativa" })
+                    @Html.ValidationMessageFor(model => model.IdEntidadFederativa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.IdMunicipio, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IdMunicipio, (IEnumerable<SelectListItem>
+                    )Model.listaMunicipio, "Seleccione...", new { @class = "form-control chosen-select select2", id = "municipios" })
+                    @Html.ValidationMessageFor(model => model.IdMunicipio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @maxlength = "100" })
+                    <small style="color:cadetblue"> </small>
+                    @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.Activo, new { value = true })
+            <div class="form-group row">
+                <label class="col-md-4 pl-5 col-form-label">(*) Dato requerido.</label>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-10 offset-2">
+                    <button type="button" class="@claseBotonCancelar mr-1" onclick="location.href='@Url.Action("Index", "Centros", new {})'"><i class="fa fa-times pr-2"></i>Cancelar</button>
+                    <button type="submit" class="@claseBotonGuardar mr-1"><i class="fas fa-save pr-2"></i> Guardar</button>
+                </div>
+            </div>
+
+        }
+        <input type="hidden" value="" id="hdfSeleccionado" />
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/select2.css" />
+    <link rel="stylesheet" href="~/css/datatable.css" />
+}
+@section Scripts {
+    <script src="~/js/select2.js"></script>
+    <script src="~/js/datatable.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+    var urlAreasSearch = '@Url.Action("SearchAll", "Centros", new { Area = "Comunes" })';
+    var getOpcionesCatalogoUrl = '@Url.Action("GetOpciones", "Centros", new { Area = "Comunes" })';
+    console.log(getOpcionesCatalogoUrl);
+
+            $(document).ready(function () {
+                if ('@TempData["tipoMensaje"]' != "") {
+                    toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+                }
+
+                $("#entidadFederativa").on('change', function (e) {
+                    var optionSelected = $(this).find("option:selected");
+                    var idSelected = optionSelected.val();
+                    $("#municipios").empty();
+
+                    json_mvc(getOpcionesCatalogoUrl + '/' + idSelected,
+                        "", "GET", function (municipios) {
+                            
+                            $.each(municipios, function (i, municipio) {
+                                console.log("=>", municipio.nombre);
+                                $("#municipios").append('<option value="'
+                                    + municipio.idCatalogo + '">'
+                                    + municipio.nombre + '</option>');
+                            });
+                        });                    
+                });
+
+                $("#tipoInstalacion").on('change', function (e) {
+                    var optionSelected = $(this).find("option:selected");
+                    var idSelected = optionSelected.val();
+                    $("#subTipoInstalacion").empty();
+
+                    $.ajax({
+                        type: 'GET',
+                        url: getOpcionesCatalogoUrl + '/' + idSelected,
+                        dataType: 'json',
+                        success: function (municipios) {
+                            $.each(municipios, function (i, municipio) {
+                                console.log("=>", municipio.nombre);
+                                $("#subTipoInstalacion").append('<option value="'
+                                    + municipio.idCatalogo + '">'
+                                    + municipio.nombre + '</option>');
+                            });
+                        }
+                    });
+                });
+            });
+</script>
+
+    <script src="~/js/Centros.js"></script>
+}

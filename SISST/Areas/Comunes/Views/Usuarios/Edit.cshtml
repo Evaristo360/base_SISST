@@ -1,0 +1,255 @@
+﻿@model SISST.ViewModels.Comunes.Usuarios.VMUsuario
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{ ViewData["Title"] = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+
+}
+@using SISST.ViewModels.Comunes.Usuarios
+@using SISST.ViewModels.Privilegios
+@using SISST.ViewModels.Comunes.Trabajadores
+@inject IJsonHelper Json;
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">@ViewData["Title"]</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Index", "Usuarios",  new { Area = "Comunes" })">Lista de usuarios</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="@Url.Action("Details", "Usuarios",  new { Area = "Comunes", id= Model.Id })">Detalle usuario</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Editar usuario
+                    </li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Consulta de usuario", "Details", "Usuarios", new { Area = "Comunes", id = Model.Id }, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-default">
+    <h4 class="card-header">
+        Datos del usuario
+    </h4>
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "Usuarios", FormMethod.Post, new { @class = "form-horizontal", role = "form", autocomplete = "off", @id = "userData" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <div role="tabpanel" class="ie-fix-flex">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" href="#usuario" role="tab" data-toggle="tab">
+                            <span class="number">1.</span>
+                            Usuario
+                            <span id="usuarioError"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="#roles" role="tab" data-toggle="tab">
+                            <span class="number">2.</span>
+                            Roles
+                            <span id="rolesError"></span>
+                        </a>
+                    </li>
+                    @{
+                        var StylePrivilegios = "";
+                        if (!Model.IsAdmin)
+                        {
+                            StylePrivilegios = "display:none;";
+                        }
+                        ViewBag.StylePrivilegios = StylePrivilegios;
+                    }
+                    <li class="nav-item" role="presentation" style="@StylePrivilegios">
+                        <a class="nav-link" href="#privilegios" aria-controls="picture" role="tab" data-toggle="tab">
+                            <span class="number">3.</span>
+                            Privilegios
+                        </a>
+                    </li>
+
+                    @*<li class="nav-item" role="presentation">
+                            <a class="nav-link" href="#centros" aria-controls="picture" role="tab" data-toggle="tab">
+                                <span class="number">4.</span>
+                                Centros de trabajo
+                            </a>
+                        </li>*@
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="usuario" role="tabpanel">
+                        <br />
+                        <fieldset>
+                            <legend>Datos del usuario</legend>
+
+                            <div class="col-lg-12">
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.RPE, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.RPE, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                                        @Html.HiddenFor(model => model.RPE, new { @id = "hdfRPE" })
+                                        @Html.HiddenFor(model => model.IdTrabajador, new { @id = "IdTrabajador" })
+                                        <small style="color:cadetblue"> </small><br />
+                                        @Html.ValidationMessageFor(model => model.RPE, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.Nombre, new { @readonly = "readonly", @class = "form-control", @disabled = "true", @id = "txtNombre" })
+                                        <small style="color:cadetblue"> </small><br />
+                                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.Apellidos, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.Apellidos, new { @readonly = "readonly", @class = "form-control", @disabled = "true", @id = "txtApellidos" })
+                                        <small style="color:cadetblue"> </small><br />
+                                        @Html.ValidationMessageFor(model => model.Apellidos, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.Email, new { @readonly = "readonly", @class = "form-control", @disabled = "true", @id = "txtCorreo" })
+                                        <small style="color:cadetblue"> </small><br />
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.claveAreaNombre, new { @readonly = "readonly", @class = "form-control", @disabled = "true", @id = "txtArea" })
+                                        <small style="color:cadetblue"> </small><br />
+                                        @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                @*<div class="form-group row">
+                                        @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.IsActive, new { @readonly = "readonly", @class = "form-control", @disabled = "true", @id = "txtArea" })
+
+                                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>*@
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 pl-5 col-form-label">(*) Dato requerido.</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="tab-pane" id="roles" role="tabpanel">
+                        <br />
+                        <fieldset>
+                            <legend>Asignación de roles</legend>
+                            @await Html.PartialAsync("_Roles", (List<VMAplicationRol>)Model.listaRoles, new ViewDataDictionary(ViewData) { { "accion", "crear" } })
+                        </fieldset>
+                    </div>
+
+                    <div class="tab-pane" id="privilegios" role="tabpanel" style="@StylePrivilegios">
+                        <br />
+                        <fieldset style="@StylePrivilegios">
+                            <legend>Asignación de privilegios</legend>
+                            @await Html.PartialAsync("_Privilegios", (List<VMPrivilegio>)Model.listaPrivilegios, new ViewDataDictionary(ViewData) { { "accion", "crear" }, { "listaUsuarioPrivilegios", Model.listaUsuarioPrivilegios } })
+                        </fieldset>
+                    </div>
+
+                    <!--<div class="tab-pane" id="centros" role="tabpanel">
+                    <br />
+                    <fieldset>
+                        <legend>Asignación de centrales</legend>-->
+                    @*@Html.Partial("_Centrales", (List<Central>)Model.listaCentral, new ViewDataDictionary() { { "accion", "create" } })*@
+                    <!--</fieldset>
+                    </div>-->
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="col-md-10 offset-2">
+                        <button type="button" class="@claseBotonCancelar mr-1" onclick="location.href='@Url.Action("Index", "Usuarios", new {})'"><i class="fa fa-times pr-2"></i>Cancelar</button>
+                        <button type="button" onclick="sendForm()" class="@claseBotonGuardar mr-1" id="btnAceptar"><i class="fas fa-save pr-2"></i> Guardar</button>
+                    </div>
+                </div>
+                <div id="divPrivilegioSeleccionado"><input type="hidden" name="listaPrivilegios" id="listaPrivilegios" value="" /></div>
+                <div id="divRolSeleccionado"><input type="hidden" name="listaRol" id="listaRol" value="" /></div>
+                <div id="divCentralSeleccionada"></div>
+            </div>
+        }
+    </div>
+</div>
+@section BodyArea {
+    @foreach (var rol in (List<VMAplicationRol>)Model.listaRoles)
+    {
+        string idModalM = "modalPrivilegio" + rol.Id;
+        <div class="modal inmodal" id="@idModalM" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content animated fadeIn">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Privilegios del rol @Html.Raw(rol.Name)</h4>
+                    </div>
+                    <div id="PrivilegioParcial" class="modal-body modalPrivilegios">
+                        @await Html.PartialAsync("_Privilegios", (List<VMPrivilegio>)rol.rolPrivilegio, new ViewDataDictionary(ViewData) { { "accion2", "detalle" } })
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn_sistema desbloquearFormulario" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @*<div class="modal inmodal" id="trabajadoresModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content animated fadeIn">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Trabajadores</h4>
+                    </div>
+                    <div id="TrabajadoresParcial" class="modal-body modalPrivilegios">
+                        <div id="target">
+                            @await Html.PartialAsync("_Trabajadores", (List<VMTrabajadorDetalle>)Model.listatrabajadoresModal)
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn_sistema desbloquearFormulario" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/viewer.part.bundle.css" />
+    <link rel="stylesheet" href="~/css/select2.css" />
+    <link rel="stylesheet" href="~/css/datatable.css" />
+}
+@section Scripts {
+    <script src="~/js/select2.js"></script>
+    <script src="~/js/datatable.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-ajax-unobtrusive@3.2.6/dist/jquery.unobtrusive-ajax.min.js"></script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+            var urlTrabajadoresSearch = '@Url.Action("GetAllPagination", "Trabajadores", new { Area = "Comunes" })';
+            var urlTrabajadorSearch = '@Url.Action("BusquedaRest", "Trabajadores", new { Area = "Comunes" })';
+
+            $(document).ready(function () {
+                if ('@TempData["tipoMensaje"]' != "") {
+                    toastr.options.positionClass = 'toast-bottom-right';
+                    toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+                }
+
+            });
+    </script>
+    <script src="~/js/Usuarios.js"></script>
+    <script src="~/js/Utilities.js"></script>
+
+}

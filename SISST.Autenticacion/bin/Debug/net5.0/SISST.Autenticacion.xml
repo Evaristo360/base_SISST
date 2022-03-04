@@ -1,0 +1,1102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SISST.Autenticacion</name>
+    </assembly>
+    <members>
+        <member name="M:SISST.Autenticacion.Controllers.AreasAdministradasController.#ctor(SISST.Autenticacion.Services.IAreaAdministradaService,SISST.Autenticacion.Services.IUserService,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{SISST.Autenticacion.Controllers.AreasAdministradasController})">
+            <summary>
+            
+            </summary>
+            <param name="areaAdministradaService"></param>
+            <param name="mapper"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasAdministradasController.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Obtener todas los centro de trabajo administrado por usuario y rol
+            </summary>
+            <param name="idUser">id del usuario</param>
+            <param name="idRol">id del rol</param>
+            <returns>Lista de los centros de trabajo administrados registrados </returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasAdministradasController.CreateAsync(SISST.Autenticacion.DataTransferObjects.AreaAdministrada.ResponseCreateAreaAdministrada)">
+            <summary>
+            Registra un nuevo centro de trabajo administrado
+            </summary>
+            <param name="model">Objeto con los datos del nuevo centro de trabajo administrado</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasAdministradasController.DeleteAsync(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Eliminar un centro de trabajo administrado
+            </summary>
+            <param name="idUser">ID del usuario </param>
+            <param name="idRol">ID del rol</param>
+            <param name="idArea">ID del Centro</param>
+            <returns>La respuesta HTTP con el resultado de la operación</returns>       
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.#ctor(SISST.Autenticacion.Services.IAreaService,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{SISST.Autenticacion.Controllers.AreasController})">
+            <summary>
+            
+            </summary>
+            <param name="areaService"></param>
+            <param name="mapper"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.getAll">
+            <summary>
+            Obtener todos los centros de trabajo registrados
+            </summary>
+            <returns>Lista de centros de trabajo registrados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.getAllPagination(SISST.Autenticacion.DataTransferObjects.Pagination.PaginationAuth)">
+            <summary>
+            Obtener los Centros de trabajo registrados en bloques
+            <param name="pagination"></param>        
+            </summary>
+            <returns>JSON  de N trabajadores</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.getAllByIdProceso(System.Nullable{System.Int32})">
+            <summary>
+            Obtener todos los centros de trabajo registrados por idproceso
+            </summary>
+            <returns>Lista de centros de trabajo registrados por idproceso</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.getAllExcept(System.Nullable{System.Int32})">
+            <summary>
+            Obtener todos los centros de trabajo registrados activos excepto el mandado en el parametro
+            /// <param name="id">ID del centros de trabajo que no se consultaran</param>
+            </summary>
+            <returns>Lista de centros de trabajo registrados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.GetAllAreasBySearch(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Obtener todos los centros de trabajo registrados activos encontrados por una cadena de busqueda
+            /// <param name="busqueda">cadena de busqueda</param>
+            <param name="idProceso">id del proceso que se usa para buscar</param>
+            </summary>
+            <returns>Lista de centros de trabajo registrados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.getAllAreasBySearchOnlyCT(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Obtener unicamente los centros de trabajo registrados activos encontrados por una cadena de busqueda
+            /// <param name="busqueda">cadena de busqueda</param>
+            <param name="idProceso">id del proceso que se usa para buscar</param>
+            </summary>
+            <returns>Lista de centros de trabajo registrados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.CreateAsync(SISST.Autenticacion.DataTransferObjects.Area.ResponseQueryAllArea)">
+            <summary>
+            Registra un nuevo centros de trabajo
+            </summary>
+            <param name="model">Objeto con los datos del nuevo centros de trabajo a registrar</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.UpdateAsync(System.Int32,SISST.Autenticacion.DataTransferObjects.Area.RequestUpdateArea)">
+            <summary>
+            Actualiza los datos de un centros de trabajo
+            </summary>
+            <param name="id">ID del centros de trabajo</param>
+            <param name="dto">Objeto con los datos a actualizar</param>
+            <returns>Respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.GetAreaById(System.Int32)">
+            <summary>
+            Consulta de un centros de trabajo
+            </summary>
+            <param name="id">ID del centros de trabajo a consultar</param>
+            <returns>Regresa la respuesta HTTP con los datos del centros de trabajo consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.GetAreaByClave(System.String)">
+            <summary>
+            Consulta de un centros de trabajo
+            </summary>
+            <param name="clave">Clave del centro de trabajo a consultar</param>
+            <returns>Regresa la respuesta HTTP con los datos del centros de trabajo consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.GetAreaByIdDetalle(System.Int32)">
+            <summary>
+            Consulta de un centros de trabajo
+            </summary>
+            <param name="id">ID del centro de trabajo a consultar</param>
+            <returns>Regresa la respuesta HTTP con los datos del centros de trabajo solo los detalles consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.DeleteAsync(System.Int32)">
+            <summary>
+            Eliminar un centros de trabajo especificado
+            </summary>
+            <param name="id">ID del centros de trabajo a eliminar</param>
+            <returns>La respuesta HTTP con el resultado de la operación</returns>       
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.GetAllAreasSearchByRolLvl(System.String,System.Int32,System.Int32)">
+            <summary>
+            Obtener todos los centros de trabajo registrados activos encontrados por una cadena de busqueda
+            /// <param name="busqueda">cadena de busqueda</param>
+            /// <param name="idJerarquico">id del nivel jerárquico que tiene el usuario</param>
+            </summary>
+            <param name="idProceso">id del proceso que se usa para buscar</param>
+            <returns>Lista de centros de trabajo registrados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.GetAllDeptosByCveAreaAsync(System.Int32)">
+            <summary>
+            Obtener todos los departamentos registrados encontrados por clave del area
+            </summary>
+            <param name="cveArea">campo de busqueda</param>        
+            <returns>Lista de departamentos registrados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.GetDeptoDetByIdAsync(System.Int32)">
+            <summary>
+            Consulta de un departamento Det
+            </summary>
+            <param name="id">ID del departamentoDet a consultar</param>
+            <returns>Regresa la respuesta HTTP con los datos del departamento det solo los detalles consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.GetCTxDivisionGerencia(System.Int32,System.Int32)">
+            <summary>
+            Regresa los CT de una DivisiónGerencia ( los CT que tiene el RSL)
+            </summary>
+            <param name="idDivisionGerencia">Identificador de la división gerencia</param>
+            <param name="idProceso">Identificador del proceso de la división - gerencia</param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.GetAllAreasByIdListSearch(System.String)">
+            <summary>
+            Obtener todos los centros de trabajo registrados activos encontrados por una cadena de busqueda que contiene los ids de las areas a buscar
+            /// <param name="busqueda">cadena de busqueda con los IDS Ej. "11,15,16"</param>
+            </summary>
+            <returns>Lista de centros de trabajo registrados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreasController.getAllIdsPagination(SISST.Autenticacion.DataTransferObjects.Pagination.PaginationAuth)">
+            <summary>
+            Obtener los Centros de trabajo registrados en bloques, en base a a un listado
+            <param name="pagination"></param>        
+            </summary>
+            <returns>JSON  de N CTs </returns>
+        </member>
+        <member name="T:SISST.Autenticacion.Controllers.AreaTrabajadorNAController">
+            <summary>
+            Este controlador no usa token autenticación porque es consumido por un servicio en segundo plano
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreaTrabajadorNAController.#ctor(SISST.Autenticacion.Services.IAreaService,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{SISST.Autenticacion.Controllers.AreaTrabajadorNAController})">
+            <summary>
+            
+            </summary>
+            <param name="areaService"></param>
+            <param name="mapper"></param>
+            <param name="log"></param>
+            <param name="trabajadorService"></param>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreaTrabajadorNAController.GetAreaByIdAsync(System.Int32)">
+            <summary>
+            Consulta de un centros de trabajo
+            </summary>
+            <param name="id">ID del centros de trabajo a consultar</param>
+            <returns>Regresa la respuesta HTTP con los datos del centros de trabajo consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.AreaTrabajadorNAController.GetTrabajadorByIdAsync(System.Int32)">
+            <summary>
+            Consulta de un trabajador
+            </summary>
+            <param name="id">ID del trabajador a consultar</param>
+            <returns>Regresa la respuesta HTTP con los datos del trabajador consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.DefaultController.Index">
+            <summary>
+            Indica que el servicio está en línea
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.DepartamentoController.GetByCT(System.Int32)">
+            <summary>
+            Obtener todos los Departamento registrados
+            </summary>
+            <returns>Lista de Departamento registrados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.DepartamentoController.GetById(System.Int32)">
+            <summary>
+            Consulta de un departamento
+            </summary>
+            <param name="id">ID del departamento a consultar</param>
+            <returns>Regresa la respuesta HTTP con los datos del departamento consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.DepartamentoController.Create(SISST.Autenticacion.DataTransferObjects.Departamento.RequestCreateDepartamento)">
+            <summary>
+            Registra un nuevo departamento
+            </summary>
+            <param name="depto">Objeto con los datos del nuevo departamento a registrar</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.DepartamentoController.Update(System.Int32,SISST.Autenticacion.DataTransferObjects.Departamento.RequestUpdateDepartamento)">
+            <summary>
+            Actualiza los datos de un departamento
+            </summary>
+            <param name="id">id del departamento a actualizar</param>
+            <param name="depto">Objeto con los datos a actualizar</param>
+            <returns>Respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.DepartamentoController.Delete(System.Int32)">
+            <summary>
+            Eliminar un departamento especificado
+            </summary>
+            <param name="id">ID del departamento a eliminar</param>
+            <returns>La repsuesta HTTP con el resultado de la operación</returns>       
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.IdentityController.#ctor(SISST.Autenticacion.Services.IUserService,SISST.Autenticacion.Services.Interfaces.IPrivilegioService,Microsoft.Extensions.Logging.ILogger{SISST.Autenticacion.Controllers.IdentityController},SISST.Autenticacion.Services.IAreaAdministradaService)">
+            <summary>
+            Controlador para usuarios API
+            </summary>
+            <param name="userService"></param>
+            <param name="privilegioService"></param>
+            <param name="log"></param>      
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.IdentityController.AuthenticateAsync(SISST.Autenticacion.DataTransferObjects.User.AuthenticateAsync.RequestDtoLogin)">
+            <summary>
+            Autentica el usuario.
+            </summary>
+            <param name="dto">Datos de la solicitud.</param>
+            <returns>El resultado conteniendo los datos del usuario y el token de autorización, si la autenticación fue exitosa.
+            </returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.IdentityController.CreateAsync(SISST.Autenticacion.DataTransferObjects.User.RegisterAsync.RequestDto)">
+            <summary>
+            Crea un nuevo usuario.
+            </summary>
+            <param name="dto">Los datos de la petición.</param>
+            <returns>La respuesta HTTP.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.IdentityController.GetPrivByRol(System.Int32)">
+            <summary>
+            Consulta de privilegios por rol
+            </summary>
+            <param name="idRol">ID del rol a consultar los privilegios</param>
+            <returns>Regresa la respuesta HTTP con la lista de privilegios del rol consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.IdentityController.GetPrivByUser(System.Int32)">
+            <summary>
+            Consulta de privilegios por usuario
+            </summary>
+            <param name="idUser">ID del usuario a consultar los privilegios</param>
+            <returns>Regresa la respuesta HTTP con la lista de privilegios del usuario consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.IdentityController.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Obtener todas los centro de trabajo administrado por usuario y rol
+            </summary>
+            <param name="idUser">id del usuario</param>
+            <param name="idRol">id del rol</param>
+            <returns>Lista de los centros de trabajo administrados registrados </returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.PrivilegiosController.#ctor(SISST.Autenticacion.Services.Interfaces.IPrivilegioService,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{SISST.Autenticacion.Controllers.PrivilegiosController})">
+            <summary>
+            
+            </summary>
+            <param name="privilegioService"></param>
+            <param name="mapper"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.PrivilegiosController.getAll">
+            <summary>
+            Obtener todos los privilegios registrados
+            </summary>
+            <returns>Lista de privilegios registrados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.PrivilegiosController.CreateAsync(SISST.Autenticacion.DataTransferObjects.Privilegio.Create.RequestCreatePrivilegio)">
+            <summary>
+            Registra un nuevo privilegio
+            </summary>
+            <param name="model">Objeto con los datos del nuevo privilegio a registrar</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.PrivilegiosController.UpdateAsync(System.Int32,SISST.Autenticacion.DataTransferObjects.Privilegio.Update.RequestUpdatePrivilegio)">
+            <summary>
+            Actualiza los datos de un privilegio
+            </summary>
+            <param name="id">ID del privilegio actualizar</param>
+            <param name="dto">Objeto con los datos a actualizar</param>
+            <returns>Respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.PrivilegiosController.GetByIdPriv(System.Int32)">
+            <summary>
+            Consulta de un privilegio
+            </summary>
+            <param name="id">ID del privilegio a consultar</param>
+            <returns>Regresa la respuesta HTTP con los datos del privilegio consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.PrivilegiosController.DeleteAsync(System.Int32)">
+            <summary>
+            Eliminar un privilegio especificado
+            </summary>
+            <param name="id">ID del privilegio a eliminar</param>
+            <returns>La respuesta HTTP con el resultado de la operación</returns>       
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.PrivilegiosController.GetPrivByRol(System.Int32)">
+            <summary>
+            Consulta de privilegios por rol
+            </summary>
+            <param name="idRol">ID del rol a consultar los privilegios</param>
+            <returns>Regresa la respuesta HTTP con la lista de privilegios del rol consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.PrivilegiosController.GetPrivByUser(System.Int32)">
+            <summary>
+            Consulta de privilegios por usuario
+            </summary>
+            <param name="idUser">ID del usuario a consultar los privilegios</param>
+            <returns>Regresa la respuesta HTTP con la lista de privilegios del usuario consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.RolesController.getAll">
+            <summary>
+            Obtener todos los roles registrados
+            </summary>
+            <returns>Lista de roles registrados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.RolesController.CreateAsync(SISST.Autenticacion.DataTransferObjects.Role.Create.RequestCreateRol)">
+            <summary>
+            Registra un nuevo rol
+            </summary>
+            <param name="model">Objeto con los datos del nuevo rol a registrar</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.RolesController.UpdateAsync(System.Int32,SISST.Autenticacion.DataTransferObjects.Role.Update.RequestUpdateRol)">
+            <summary>
+            Actualiza los datos de un rol
+            </summary>
+            <param name="id">id del rol a actualizar</param>
+            <param name="dto">Objeto con los datos a actualizar</param>
+            <returns>Respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.RolesController.GetByIdPriv(System.Int32)">
+            <summary>
+            Consulta de un rol
+            </summary>
+            <param name="id">ID del rol a consultar</param>
+            <returns>Regresa la respuesta HTTP con los datos del rol consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.RolesController.DeleteAsync(System.Int32)">
+            <summary>
+            Eliminar un rol especificado
+            </summary>
+            <param name="id">ID del rol a eliminar</param>
+            <returns>La repsuesta HTTP con el resultado de la operación</returns>       
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.RolesController.AddPrivilegiosToRol(System.Int32,SISST.Autenticacion.DataTransferObjects.Role.AddPrivilegios.RequestAddRemovePrivilegios)">
+            <summary>
+            Agrega los privilegios especificados de un rol
+            </summary>
+            <param name="idRol">Id del rol</param>
+            <param name="model">Objeto con los Ids de los privilegios registrar</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.RolesController.RemovePrivilegiosToRol(System.Int32,SISST.Autenticacion.DataTransferObjects.Role.AddPrivilegios.RequestAddRemovePrivilegios)">
+            <summary>
+            Elimina los privilegios especificados de un rol
+            </summary>
+            <param name="idRol">Id del rol</param>
+            <param name="model">Objeto con los Ids de los privilegios registrar</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="T:SISST.Autenticacion.Controllers.UsuariosController">
+            <summary>
+            Servicios relacionados a Usuarios.    
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.ControllerBase" />
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.#ctor(SISST.Autenticacion.Services.IUserService,SISST.Autenticacion.Services.Interfaces.IRolService,Microsoft.Extensions.Logging.ILogger{SISST.Autenticacion.Controllers.UsuariosController})">
+            <summary>
+            Controlador para usuarios API
+            </summary>
+            <param name="userService"></param>
+            <param name="rolService"></param>
+            <param name="log"></param>      
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.GetAllAsync(System.Boolean)">
+            <summary>
+            Obtenter todos los usuarios.
+            </summary>        
+            <returns>La respuesta HTTP con la lista de usuarios.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.getAllPagination(SISST.Autenticacion.DataTransferObjects.Pagination.PaginationAuth)">
+            <summary>
+            Obtener los usuarios registrados en bloques
+            /// <param name="start">último registro</param>
+            <param name="lenght">Número Trabajadores</param>
+            /// <param name="draw">Página en la que se encuentra</param>
+            </summary>
+            <returns>JSON  de N trabajadores</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.GetDetailsAsync(System.Int32)">
+            <summary>
+            Obtiene los detalles del usuario.
+            </summary>
+            <param name="id">El ID del usuario</param>
+            <returns>Los detalles del usuario.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.UpdateAsync(System.Int32,System.Int32,SISST.Autenticacion.DataTransferObjects.User.UpdateAsync.RequestDtoUpdate)">
+            <summary>
+            Actualiza el usuario especificado.
+            </summary>
+            <param name="id">El ID del usuario.</param>
+            <param name="userId"></param>
+            <param name="dto">El objeto DTO con los datos a actualizar.</param>
+            <returns>La respuesta HTTP indicando si fue exitoso o no.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.DeleteAsync(System.Int32)">
+            <summary>
+            Elimina el usuario especificado.
+            </summary>
+            <param name="id">El ID del usuario a eliminar.</param>
+            <returns>La respuesta HTTP indicando si fue exitoso o no.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.DeactivateAsync(System.Int32,System.Int32)">
+            <summary>
+            Desactiva/activa el usuario especificado.
+            </summary>
+            <param name="id">El ID del usuario a desactivar/activar.</param>
+            <param name="userId">El id del usuario que modificó</param>
+            <returns>La respuesta HTTP indicando si fue exitoso o no.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.ChangePasswordAsync(System.Int32,System.Int32,System.String)">
+            <summary>
+            Cambia el password.
+            </summary>
+            <param name="id">El ID del usuario a desactivar/activar.</param>
+            <param name="userId">El id del usuario que modificó</param>
+            <param name="newPassword">El nuevo password</param>
+            <returns>La respuesta HTTP indicando si fue exitoso o no.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.AddPrivilegiosToUser(System.Int32,SISST.Autenticacion.DataTransferObjects.User.AddRemovePrivilegio.RequestAddRemovePrivilegio)">
+            <summary>
+            Agrega los privilegios especificados a un usuario
+            </summary>
+            <param name="idUser">Id del usuario</param>
+            <param name="model">Objeto con los Ids de los privilegios a registrar</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.RemovePrivilegiosToUser(System.Int32,SISST.Autenticacion.DataTransferObjects.User.AddRemovePrivilegio.RequestAddRemovePrivilegio)">
+            <summary>
+            Elimina los privilegios especificados a un usuario 
+            </summary>
+            <param name="idUser">Id del usuario</param>
+            <param name="model">Objeto con los Ids de los privilegios a eliminar</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.AddRolesToUser(System.Int32,SISST.Autenticacion.DataTransferObjects.User.AddRemoveRol.RequestAddRemoveRol)">
+            <summary>
+            Agrega los roles especificados a un usuario
+            </summary>
+            <param name="idUser">Id del usuario</param>
+            <param name="model">Objeto con los Ids de los roles a registrar</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.RemoveRolesToUser(System.Int32,SISST.Autenticacion.DataTransferObjects.User.AddRemoveRol.RequestAddRemoveRol)">
+            <summary>
+            Elimina los roles especificados a un usuario 
+            </summary>
+            <param name="idUser">Id del usuario</param>
+            <param name="model">Objeto con los Ids de los roles a eliminar</param>
+            <returns>Regresa respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.GetRolByUser(System.Int32)">
+            <summary>
+            Consulta de roles por usuario
+            </summary>
+            <param name="idUser">ID del usuario a consultar los roles</param>
+            <returns>Regresa la respuesta HTTP con la lista de roles del usuario consultado en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.GetUsersbyRolProceso(System.Int32,System.Int32)">
+            <summary>
+            Consulta los Usuarios que tienen un rol y un proceso 
+            </summary>
+            <param name="idRol">ID del rol a consultar los usuarios</param>
+            <param name="idProceso">ID del proceso a consultar los usuarios</param>
+            <returns>Regresa la respuesta HTTP con la lista de usuarios consultados en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.GetUsersbyRol(System.Int32,System.String)">
+            <summary>
+            Consulta los Usuarios que tienen un rol
+            </summary>
+            <param name="idRol">ID del rol a consultar los usuarios</param>
+            <param name="search">Cadena de  carácteres a consultar los usuarios</param>
+            <returns>Regresa la respuesta HTTP con la lista de usuarios consultados en caso de encontrarlo o la respuesta HTTP de la excepción en caso de un error</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Controllers.UsuariosController.getUsuarioDataByTrabajadorId(System.Int32)">
+            <summary>
+            Obtiene los detalles del usuario.
+            </summary>
+            <param name="idTrabajador">El ID del Trabajador</param>
+            <returns>Los detalles del usuario.</returns>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.Area.ResponseQueryAllArea">
+            <summary>
+            este Dto se utilizará solamente para los casos de create  donde se ocupan todos los datos 
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.Area.ResponseQueryArea">
+            <summary>
+            Este DTO se utilizara para la consulta de detalles y de index donde no se ocupan todos los campos y claves
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.Area.ResponseQueryCTIdClaveNombre">
+            <summary>
+            Modelo usado para el módulo DIPCI
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.DataTransferObjects.Catalogos.OpcionesDTO.IdCatalogo">
+            <summary>
+            Identificador
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.DataTransferObjects.Catalogos.OpcionesDTO.IdCatalogoSuperior">
+            <summary>
+            Identificador del catálogo al que pertenece el registro
+            </summary>
+            <remarks>Si no pertenece a otro catálogo su valor es cero</remarks>
+        </member>
+        <member name="P:SISST.Autenticacion.DataTransferObjects.Catalogos.OpcionesDTO.Nombre">
+            <summary>
+            Valor del dato
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.DataTransferObjects.Catalogos.OpcionesDTO.Orden">
+            <summary>
+            Orden con el que se muestra al consultar. Se genera con
+            IdNivel1 + idNivel2/10000 + 1/100000
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:SISST.Autenticacion.DataTransferObjects.Catalogos.OpcionesDTO.EsSeleccionable">
+            <summary>
+            Permite identificar si en una lista desplegable se puede seleccionar o no.
+            Sirve para agrupar elementos que pertenecen a él.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.DataTransferObjects.Privilegio.Create.RequestCreatePrivilegio.porOmision">
+            <summary>
+            Indica si se usará para generar el menú de opciones
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.DataTransferObjects.Privilegio.Query.ResponseQueryPrivilegio.porOmision">
+            <summary>
+            Indica si se usará para generar el menú de opciones
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.DataTransferObjects.Privilegio.Update.ResponseUpdatePrivilegio.porOmision">
+            <summary>
+            Indica si se usará para generar el menú de opciones
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.Role.GetAllAsync.ResponseGetAllRoleDto">
+            <summary>
+            Data transfer object for the role "GetAll" response.
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.Role.GetDetailsAsync.ResponseGetDetailsRoleDto">
+            <summary>
+            Data transfer object for the role "GetDetails" response.
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.Role.GetDetailsAsync.ResponseGetDetailsRoleDtoUpdate">
+            <summary>
+            Data transfer object for the role "GetDetails" response.
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.UpdateStringField">
+            <summary>
+            Class used in data transfer objects for updating string fields.
+            If the object is <c>null</c> then the field shouldn't be updated.
+            If the object is not <c>null</c> then the field should be set to the <c>NewValue</c> property of the object.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.DataTransferObjects.UpdateStringField.NewValue">
+            <summary>
+            Gets or sets the new value.
+            </summary>
+            <value>
+            The new value.
+            </value>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.User.AuthenticateAsync.RequestDtoLogin">
+            <summary>
+            Data transfer object for the "Authenticate" request.
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.User.AuthenticateAsync.ResponseDtoLogin">
+            <summary>
+            Data transfer object for the "Authenticate" response.
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.User.GetAll.ResponseGetAllDto">
+            <summary>
+            Data transfer object for the "GetAll" response.
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.User.GetDetailsAsync.ResponseDtoGD">
+            <summary>
+            Data transfer object for the "GetDetails" response.
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.User.RegisterAsync.RequestDto">
+            <summary>
+            Data transfer object for the "Register" user request.
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.DataTransferObjects.User.UpdateAsync.RequestDtoUpdate">
+            <summary>
+            Data transfer object for the user "Update" request.
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.Helpers.AppSettings">
+            <summary>
+            Class used to map strongly typed settings objects.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.Secret">
+            <summary>
+            Gets or sets the secret used for encryption. Can be any text that is at least 16 characters long.
+            </summary>
+            <value>
+            The secret used for encryption.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.SendGridApiKey">
+            <summary>
+            Gets or sets the SendGrid API key.
+            </summary>
+            <value>
+            The SendGrid API key.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.Name">
+            <summary>
+            Gets or sets the name of the WebAPI.
+            </summary>
+            <value>
+            The name of the WebAPI.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.Email">
+            <summary>
+            Gets or sets the email address that will be used to send emails.
+            </summary>
+            <value>
+            The email address that will be used to send emails.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.EmailName">
+            <summary>
+            Gets or sets the name of the email sender.
+            </summary>
+            <value>
+            The name of the email sender.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.MaxLoginFailedCount">
+            <summary>
+            Gets or sets the maximum count of the failed login attempts.
+            </summary>
+            <value>
+            The maximum count of the failed login attempts.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.LoginFailedWaitingTime">
+            <summary>
+            Gets or sets the time (in seconds) that the user has to wait if they exceeded the maximum count of
+            the failed login attempts.
+            </summary>
+            <value>
+            The login failed waiting time (in seconds) that the user has to wait if they exceeded the maximum count of
+            the failed login attempts.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.MaxUnconfirmedEmailCount">
+            <summary>
+            Gets or sets the maximum count of the unconfirmed email addresses.
+            </summary>
+            <value>
+            The maximum count of the unconfirmed email addresses.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.UnconfirmedEmailWaitingTime">
+            <summary>
+            Gets or sets the time (in seconds) that the user has to wait if they exceeded the maximum count of
+            the unconfirmed email addresses, before they try to change their email address again.
+            </summary>
+            <value>
+            The time (in seconds) that the user has to wait if they exceeded the maximum count of
+            the unconfirmed email addresses, before they try to change their email address again.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.ConfirmEmailUrl">
+            <summary>
+            Gets or sets the URL that will be used to confirm email address.
+            </summary>
+            <value>
+            The URL that will be used to confirm email address.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.MaxResetPasswordCount">
+            <summary>
+            Gets or sets the maximum count of the failed reset password attempts.
+            </summary>
+            <value>
+            The maximum count of the failed reset password attempts.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.ResetPasswordWaitingTime">
+            <summary>
+            Gets or sets the time (in seconds) that the user has to wait if they exceeded the maximum count of
+            the failed reset password attempts.
+            </summary>
+            <value>
+            The time (in seconds) that the user has to wait if they exceeded the maximum count of
+            the failed reset password attempts.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.ResetPasswordValidTime">
+            <summary>
+            Gets or sets the validity time for the reset password request (in seconds).
+            </summary>
+            <value>
+            The validity time for the reset password request (in seconds).
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.ResetPasswordUrl">
+            <summary>
+            Gets or sets the URL that will be used to confirm password reset.
+            </summary>
+            <value>
+            The URL that will be used to confirm password reset.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.AdminUsername">
+            <summary>
+            Gets or sets the administrator username.
+            </summary>
+            <value>
+            The administrator username.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.AdminEmail">
+            <summary>
+            Gets or sets the administrator email.
+            </summary>
+            <value>
+            The administrator email.
+            </value>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.AppSettings.AdminPassword">
+            <summary>
+            Gets or sets the administrator password.
+            </summary>
+            <value>
+            The administrator password.
+            </value>
+        </member>
+        <member name="T:SISST.Autenticacion.Helpers.IAuthHelper">
+            <summary>
+            The authentication helper interface.
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Helpers.IAuthHelper.GetUserId(Microsoft.AspNetCore.Mvc.ControllerBase)">
+            <summary>
+            Gets the identifier of the user that made current request.
+            It will use the first "Name" claim as identifier and cast it to GUID.
+            </summary>
+            <param name="controller">The controller.</param>
+            <returns>The identifier of the user that made current request.</returns>
+        </member>
+        <member name="T:SISST.Autenticacion.Helpers.AuthHelper">
+            <inheritdoc />
+        </member>
+        <member name="M:SISST.Autenticacion.Helpers.AuthHelper.GetUserId(Microsoft.AspNetCore.Mvc.ControllerBase)">
+            <inheritdoc />
+        </member>
+        <member name="T:SISST.Autenticacion.Helpers.Pagination.Extensions">
+            <summary>
+            Extensions for <c>IQueryable</c> to support pagination. 
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Helpers.Pagination.Extensions.GetPagedAsync``1(System.Linq.IQueryable{``0},SISST.Autenticacion.Helpers.Pagination.PaginationFilter)">
+            <summary>
+            Extension method that returns paginated query result.
+            Query result is added into <c>Data</c> property of <c>PagedResult</c>.
+            </summary>
+            <param name="query">The query to paginate.</param>
+            <param name="pf">The pagination filter containing page size and page number.</param>
+            <typeparam name="T">Must be a class.</typeparam>
+            <returns>The paged result.</returns>
+        </member>
+        <member name="T:SISST.Autenticacion.Helpers.Pagination.PagedResult`1">
+            <summary>
+            Class used to store paginated data and additional information about pages.
+            </summary>
+            <typeparam name="T">Must be a class.</typeparam>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.Pagination.PagedResult`1.CurrentPage">
+            <summary>
+            Gets or sets the current page.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.Pagination.PagedResult`1.PageCount">
+            <summary>
+            Gets or sets page count.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.Pagination.PagedResult`1.PageSize">
+            <summary>
+            Gets or sets page size.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.Pagination.PagedResult`1.RowCount">
+            <summary>
+            Gets or sets row count.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.Pagination.PagedResult`1.FirstRowReturned">
+            <summary>
+            Gets the number of the first row returned.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.Pagination.PagedResult`1.LastRowReturned">
+            <summary>
+            Gets the number of the last row returned.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.Pagination.PagedResult`1.Data">
+            <summary>
+            Gets or sets the data.
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Helpers.Pagination.PagedResult`1.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.Helpers.Pagination.PaginationFilter">
+            <summary>
+            PaginationAuth filter.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.Pagination.PaginationFilter.PageNumber">
+            <summary>
+            Gets or sets the page number.
+            If not provided as URL parameter, it will be set to 1.
+            </summary>
+        </member>
+        <member name="P:SISST.Autenticacion.Helpers.Pagination.PaginationFilter.PageSize">
+            <summary>
+            Gets or sets the page size (number of items per page).
+            If this value is not provided as URL parameter or it is greater than <c>_maxPageSize</c> it will be
+            set to <c>_maxPageSize</c>.
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Helpers.Pagination.PaginationFilter.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Helpers.Pagination.PaginationFilter.#ctor(System.Int32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="maxPageSize">The maximum number of items per page.</param>
+        </member>
+        <member name="T:SISST.Autenticacion.Proxy.ICatalogoProxy">
+            <summary>
+            se usa para el llamado de la API de catalogos, solo se llaman las de consulta a los metodos a usar en esta API
+            OJO!! no se pasa por el gateway!!
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.Proxy.Config.ApiGatewayUrl">
+            <summary>
+            se hace un singleton para la variable que recuperará la url de la API de catálogos
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.Proxy.Config.HttpClientTokenExtension">
+            <summary>
+            Esta extension se usa para el llamado de otras APIS desde aqui, se le agrega al encabezado de la peticion el token
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Repositories.AreaRepository.GetCTGeneraDatosBasicosxDivisionGerencia(System.Int32,System.Int32)">
+            <summary>
+            Obtiene los CT que reportan datos básicos de una División, Gerencia o EPS dada.
+            </summary>
+            <param name="idDivisionGerencia"></param>
+            <param name="idProceso"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SISST.Autenticacion.Resources.Localization.LocalizedResource">
+            <summary>
+            This class is used to pass LocalizedResource.resx to <c>IStringLocalizer</c>.
+            It should contain paths to the localized resources (files, templates, images, etc.).
+            </summary>
+        </member>
+        <member name="T:SISST.Autenticacion.Resources.Localization.Translation">
+            <summary>
+            This class is used to pass Translation.resx to <c>IStringLocalizer</c>.
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.AreaService.GetAllCTsxIdPadre(System.Int32)">
+            <summary>
+            Obtienen todos los CT, de NivelJerarquico = CT, que depdenden de un CTSuperior
+            </summary>
+            <param name="idAreaSuperior"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.AreaService.GetCTIdClaveNombre(System.Int32)">
+            <summary>
+            Obtención de los datos del CT para el módulo DIPCI
+            </summary>
+            <param name="idCentroTrabajo">Identificador del Centro de trabajo</param>
+            <returns>Modelo con los datos del CT básicos</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.Interfaces.PrivilegioService.GetPrivilegiosByRol(System.Int32)">
+            <summary>
+            Lista de privilegios ACTIVOS del rol especificado
+            PRME Para que se ordenen o no los privilegios...
+            </summary>
+            <param name="idRol">ID del rol</param>
+            <returns>Lista de privilegios ACTIVOS del rol especificado</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.Interfaces.PrivilegioService.GetPrivilegiosByUser(System.Int32)">
+            <summary>
+            Regresa la lista de privilegios ACTIVOS del usuario especificado
+            </summary>
+            <param name="idUser">ID del usuario</param>
+            <returns>Lista de privilegios ACTIVOS</returns>
+        </member>
+        <member name="T:SISST.Autenticacion.Services.Interfaces.PrivilegioService.Foo">
+             <summary>
+             Clase para simular llamada asíncrona
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.Interfaces.RolService.GetRolesByUser(System.Int32)">
+            <summary>
+            Obtiene la lista de roles asignados a un usuario especificado
+            </summary>
+            <param name="idUser">ID del usuario</param>
+            <returns>Lista de roles asignados</returns>
+        </member>
+        <member name="T:SISST.Autenticacion.Services.Interfaces.RolService.Foo">
+            <summary>
+            Clase para simular llamada asíncrona
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.Interfaces.RolService.GetRolesByUserActivosAsync(System.Int32)">
+            <summary>
+            Obtiene la lista de roles asignados a un usuario especificado que estén activos
+            </summary>
+            <param name="idUser">ID del usuario</param>
+            <returns>Lista de roles asignados</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.Interfaces.RolService.GetRolByUserActivo(System.Int32)">
+            <summary>
+            Obtiene el rol activo de mayor prioridad
+            </summary>
+            <param name="idUser">ID del usuario</param>
+            <returns>Lista de roles asignados</returns>
+        </member>
+        <member name="T:SISST.Autenticacion.Services.IUserService">
+            <summary>
+            The user service.
+            </summary>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.AuthenticateAsync(SISST.Autenticacion.DataTransferObjects.User.AuthenticateAsync.RequestDtoLogin)">
+            <summary>
+            Autentica el usuario especificado.
+            </summary>
+            <param name="dto">The <see cref="T:SISST.Autenticacion.DataTransferObjects.User.AuthenticateAsync.RequestDtoLogin"/>Objeto DTO.</param>
+            <returns>El usuario autenticado con su token.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.CreateAsync(SISST.Autenticacion.DataTransferObjects.User.RegisterAsync.RequestDto)">
+            <summary>
+            Crea un nuevo usuario.
+            </summary>      
+            <param name="dto">The <see cref="T:SISST.Autenticacion.DataTransferObjects.User.RegisterAsync.RequestDto"/>Objeto DTO.</param>
+            <returns>The user details.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.GetAllAsync(System.Boolean)">
+            <summary>
+            Obtiene todos los usuarios
+            </summary>        
+            <returns>Lista de usuarios.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.GetAllPagination(SISST.Autenticacion.DataTransferObjects.Pagination.PaginationAuth,System.Int32,Comunes.DTOs.VMRolPrivilegioClaim)">
+            <summary>
+            Obtiene bloques de usuarios
+            </summary>        
+            <returns>Lista de usuarios.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.GetDetailsAsync(System.Int32)">
+            <summary>
+            Obtiene el usuario por ID
+            </summary>
+            <param name="id">El ID del usuario.</param>
+            <returns>Los detalles del usuario.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.UpdateAsync(System.Int32,System.Int32,SISST.Autenticacion.DataTransferObjects.User.UpdateAsync.RequestDtoUpdate)">
+            <summary>
+            Actualiza el usuario especificado
+            </summary>
+            <param name="id">El ID del usuario que debe ser actualizado.</param>
+            <param name="userId">El ID del usuario que hizo la petición de actualización.</param>
+            <param name="dto">The <see cref="T:SISST.Autenticacion.DataTransferObjects.User.UpdateAsync.RequestDtoUpdate"/>El objeto DTO.</param>
+            <returns>Los detalles del usuario.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.DeleteAsync(System.Int32)">
+            <summary>
+            Elimina el usuario especificado.
+            </summary>
+            <param name="id">El ID del usuario a eliminar</param>
+            <returns>Booleano que indica si fue exitosa la eliminación</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.DeactivateAsync(System.Int32,System.Int32)">
+            <summary>
+            Desactiva/activa el usuario especificado.
+            </summary>
+            <param name="id">El ID del usuario a desactivar/activar</param>
+            <param name="userId"></param>
+            <returns>Booleano que indica si fue exitosa la activacion/desactivacion</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.GetUsersbyRolProceso(System.Int32,System.Int32)">
+            <summary>
+            Obtiene los usuarios por ID rol y ID proceso
+            </summary>
+            <param name="id">El ID del rol.</param>
+            <param name="id">El ID del proceso.</param>
+            <returns>Los detalles del usuario.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.getUsuarioDataByTrabajadorId(System.Int32)">
+            <summary>
+            Obtiene el usuario por ID de Trabajador
+            </summary>
+            <param name="idTrabajador">El ID del Trabajador.</param>
+            <returns>Los detalles del usuario.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.IUserService.GetUsersbyRol(System.Int32,System.String)">
+            <summary>
+            Obtiene los usuarios por ID rol y ID proceso
+            </summary>
+            <param name="id">El ID del rol.</param>
+            <returns>Los detalles del usuario.</returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Services.UserService.GenerateTokenAsync(SISST.Autenticacion.Models.ApplicationUser,SISST.Autenticacion.DataTransferObjects.User.AuthenticateAsync.ResponseDtoLogin,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="usuario"></param>
+            <param name="miIdentityAcceso"></param>
+            <param name="idRolActivo">Si tiene valor se debe establecer como rol activo</param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Autenticacion.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,39 @@
+﻿@model SISST.ViewModels.Comunes.Roles.VMRol
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    ViewData["Title"] = "Inicio";
+}
+<br />
+<br />
+<div class="block-center mt-auto wd-xl" style="width:40%;margin-top:75px!important;">
+    <!-- START card-->
+    <div class="card card-flat">
+        <div class="card-header text-center" style="background-color:#FFF; color:#A7B3CC;font-size:2.3rem;">
+            Bienvenido
+        </div>
+        <div class="card-header text-center" style="background-color:#FFF; color:#005B99;font-size:1.25rem;">
+            Sistema Informático de
+            Seguridad y Salud en el Trabajo
+        </div>
+        <div class="card-body">
+            <p class="text-center py-2" style="font-size:18px;">@Model.descripcion</p>
+
+        </div>
+    </div>
+    <!-- END card-->
+</div>
+
+
+@section Scripts {
+
+    <environment names="Development,Staging,Production">
+        <script>
+            $(document).ready(function () {
+            if ('@TempData["tipoMensaje"]' != "") {
+                toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+            }
+            });
+        </script>
+    </environment>
+}

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<SISST.ViewModels.Privilegios.VMPrivilegio>
+@using SISST.ViewModels.Privilegios
+@{
+    string nombreTabla = "";
+    string clase = "";
+    if ((String)ViewBag.accion == "detalle" || (String)ViewBag.accion2 == "detalle") { nombreTabla = "tblPrivilegioModal"; }
+    else { nombreTabla = "tblPrivilegio"; }
+}
+<table id="@Html.Raw(nombreTabla)" class="table table-striped my-4 w-100 border-gray border dataTables-example">
+    @*<table id="tblPrivilegio" class="table table-striped table-bordered table-hover">*@
+
+    <thead>
+        <tr>
+            <th style="display:none;"></th>
+            @if ((String)ViewBag.accion != "detalle" && (String)ViewBag.accion2 != "detalle")
+            {
+                <th class="sorting_asc_disabled sorting_desc_disabled">
+                    <div class="tooltip-demo">
+                        <button type="button" id="selecTodosPrivilegios" style="cursor:pointer;" data-toggle="tooltip" title="Seleccionar los registros filtrados" class="btn btn-outline btn-default btn-xs desbloquearFormulario"><i class="fa-1x mr-2 far fa-check-square"></i></button>
+                        <button type="button" id="deSelecTodosPrivilegios" style="cursor:pointer;" data-toggle="tooltip" title="Deseleccionar los registros filtrados" class="btn btn-outline btn-default btn-xs desbloquearFormulario"><i class="fa-1x mr-2 far fa-square"></i></button>
+                    </div>
+                </th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.nombrePrivilegio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.url)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.seccion)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+        <tr>
+            <td style="display:none;">@item.id</td>
+            @if ((String)ViewBag.accion != "detalle" && (String)ViewBag.accion2 != "detalle")
+            {
+                <td>
+                    @{
+                        Boolean marcado = false;
+                        if ((List<VMPrivilegio>) ViewBag.listaUsuarioPrivilegios != null)
+                        {
+                            foreach (var itemPrivilegio in (List<VMPrivilegio>
+                                )ViewBag.listaUsuarioPrivilegios)
+                            {
+                                if (item.id == itemPrivilegio.id)
+                                {
+                                    <input type="checkbox" name="enUsuario" id="privilegio_@item.id" class="ckPrivilegio" checked="checked" />
+                                    marcado = true;
+                                }
+                            }
+                            if (!marcado)
+                            {
+                                <input type="checkbox" name="vacio" id="privilegio_@item.id" class="ckPrivilegio" />
+                            }
+                        }
+                        else
+                        {
+                            <input type="checkbox" name="vacio" id="privilegio_@item.id" class="ckPrivilegio" />
+                        }
+                    }
+                </td>
+            }
+            <td>
+
+                @Html.DisplayFor(modelItem => item.nombrePrivilegio)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.modulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seccion)
+            </td>
+
+
+        </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @*@Scripts.Render("~/plugins/jeditable")
+    @Scripts.Render("~/plugins/dataTables")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            alert('entra');
+            $('#tblPrivilegio').dataTable({
+                "aaSorting": [[2, 'asc'], [1, 'asc']],
+                "language": {
+                    "url": "../../Scripts/plugins/dataTables/Spanish.json"
+                }
+            });
+        });
+    </script>*@
+}

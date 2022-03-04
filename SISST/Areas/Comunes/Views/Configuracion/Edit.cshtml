@@ -1,0 +1,125 @@
+﻿@model SISST.ViewModels.Comunes.Catalogos.VMConfiguracion
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{ ViewData["Title"] = "Edición de configuración";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+}
+
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="pl-3">Configuración @Model.Nombre</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item">
+                        <a href="~/Comunes/Configuracion/Index">Lista de configuraciones</a>
+                    </li>
+                    @if (Model.Id.Equals(0))
+                    {
+                        <li class="breadcrumb-item active">Nueva configuración</li>
+                    }
+                    else
+                    {
+                    <li class="breadcrumb-item">
+                        <a href="~/Comunes/Configuracion/Details/@Model.Id">Detalles de configuración</a>
+                    </li>
+                        <li class="breadcrumb-item active">Edición de la configuración</li>
+                    }
+                </ol>
+            </div>
+            <div class="col-md-4 text-right mt-3">
+                @if (Model.Id.Equals(0))
+                {
+                    @Html.ActionLink("Lista de configuración", "Index", "Configuracion", null, new { @class = "btn btn_sistema" })
+                }
+                else
+                {
+                    @Html.ActionLink("Detalles de configuración", "Details", "Configuracion", new { id = Model.Id }, new { @class = "btn btn_sistema" })
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-default">
+    <h4 class="card-header">Edición de configuración</h4>
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "Configuracion", new { Area = "Comunes" }, FormMethod.Post, true, new { role = "form", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @maxlength = "255" })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Variable, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Variable, new { @class = "form-control", @maxlength = "255" })
+                    @Html.ValidationMessageFor(model => model.Variable, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label required-data" })
+
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Valor, new { @class = "form-control", @maxlength = "255" })
+                    @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label required-data" })
+
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Estado, new { @class = "form-control", @maxlength = "255" })
+                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 pl-5 col-form-label">(*) Dato requerido.</label>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-10 offset-2 ">
+                    @if (Model.Id.Equals(0))
+                    {
+                        @Html.ActionLink("Cancelar", "Index", "Configuracion", null, new { @class = claseBotonCancelar })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Cancelar", "Details", "Configuracion", new { id = Model.Id }, new { @class = "btn btn-secondary" })
+                    }
+                    <button class="@claseBotonGuardar" type="submit"><i class="fas fa-save  pr-2"></i>Guardar</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@using (Html.BeginForm("Delete", "Configuracion", FormMethod.Post, new { @id = "frmDelete" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+}
+
+@section Styles {
+
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+            $(document).ready(function () {
+                if ('@TempData["tipoMensaje"]' != "") {
+                    toastr.options.positionClass = 'toast-bottom-right';
+                    toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+            }
+            });
+    </script>
+}
+

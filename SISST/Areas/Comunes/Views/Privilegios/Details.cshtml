@@ -1,0 +1,194 @@
+﻿@model SISST.ViewModels.Privilegios.VMPrivilegio
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Privilegios de usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string showIcono = Model.porOmision ? "display:block;" : "display:none;";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+}
+
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">@ViewData["Title"]</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Index", "Privilegios",  new { Area = "Comunes" })">Lista de privilegios</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Detalle privilegio
+                    </li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Lista de privilegios", "Index", "Privilegios", null, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-default">
+    <h4 class="card-header">
+        Datos del privilegio
+    </h4>
+    <div class="card-body">
+        <form id="formDetails">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.nombrePrivilegio, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.nombrePrivilegio, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.url, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.url, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.Label("", "Módulo", htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.modulo, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.seccion, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.seccion, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.area, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.area, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.porOmision, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                        <div class="col-md-10">
+                            <label class="switch">
+                                <input type="checkbox" checked="@Model.porOmision" disabled>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="divIcono" style="@showIcono">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.orden, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.orden, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.moduloMenu, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.moduloMenu, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.icono, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.icono, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group row">
+            @Html.LabelFor(model => model.activo, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+            <div class="col-md-10">
+                <label class="switch">
+                    <input type="checkbox" checked="@Model.activo" disabled>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>*@
+                    <div class="form-group row">
+                        <div class="col-md-10 offset-2 ">
+                            @if (Model.activo == true)
+                            {
+                                <button type="button" class="@claseBotonCancelar mr-1" onclick="desactivateConfirmation()"><i class="fas fa-user-slash pr-2"></i>Desactivar</button>
+                            }
+                            else
+                            {
+                                <button type="button" class="@claseBotonCancelar mr-1" onclick="activateConfirmation()"><i class="fas fa-user pr-2"></i>Activar</button>
+                            }
+                            <button type="button" class="@claseBotonGuardar mr-1" onclick="location.href='@Url.Action("Edit", "Privilegios", new { Area = "Comunes", id = Model.id })'"> <i class="fa fa-edit pr-2"></i> Editar</button>
+                            @*<button type="button" class="@claseBotonCancelar deleteConfirmation mr-1"><i class="fas fa-trash-alt pr-2"></i>Eliminar</button>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@using (Html.BeginForm("Delete", "Privilegios", FormMethod.Post, new { @id = "frmDelete" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+}
+@using (Html.BeginForm("Delete", "Privilegios", FormMethod.Post, new { @id = "frmDeactivate" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+}
+
+@section Scripts
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // Modal for deactivateConfirmation
+        function desactivateConfirmation() {
+            $.LoadingOverlay("hide");//$.unblockUI();
+
+            swal({
+                title: "¿Está seguro de desactivar el privilegio?",
+                text: "Se desactivará el privilegio. No estará visible en el sistema. \n ",
+                icon: "warning",
+                buttons: { cancel: { text: "Cancelar", value: null, visible: !0, className: "", closeModal: true }, confirm: { text: "¡Sí, desactivarlo!", value: !0, visible: !0, className: "bg-danger", closeModal: true } }
+
+            }).then(function (e) {
+                if (e) {
+                    $.LoadingOverlay("show");//$('.sweet-alert').block({ message: "Por favor espere..." });
+                    $('#frmDeactivate').submit();
+                }
+                else {
+                    swal.close();
+                }
+            });
+
+            $.LoadingOverlay("hide");//$.unblockUI();
+        }
+
+        // Modal for activateConfirmation
+        function activateConfirmation() {
+            $.LoadingOverlay("hide");//$.unblockUI();
+
+            swal({
+                title: "¿Está seguro de activar el privilegio?",
+                text: "Se activará el privilegio. Estará visible en el sistema. \n ",
+                icon: "warning",
+                buttons: { cancel: { text: "Cancelar", value: null, visible: !0, className: "", closeModal: true }, confirm: { text: "¡Sí, activarlo!", value: !0, visible: !0, className: "bg-danger", closeModal: true } }
+
+            }).then(function (e) {
+                if (e) {
+                    $.LoadingOverlay("show");//$('.sweet-alert').block({ message: "Por favor espere..." });
+                    $('#frmDeactivate').submit();
+                }
+                else {
+                    swal.close();
+                }
+            });
+
+            $.LoadingOverlay("hide");//$.unblockUI();
+        }
+    </script>
+}
+
+
+
+

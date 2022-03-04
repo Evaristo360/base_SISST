@@ -1,0 +1,591 @@
+[
+  {
+    "inputFiles": [
+      "vendor/@fortawesome/fontawesome-free/css/brands.css",
+      "vendor/@fortawesome/fontawesome-free/css/regular.css",
+      "vendor/@fortawesome/fontawesome-free/css/solid.css",
+      "vendor/@fortawesome/fontawesome-free/css/fontawesome.css",
+      "vendor/simple-line-icons/css/simple-line-icons.css",
+      "vendor/animate.css/animate.css",
+      "vendor/whirl/dist/whirl.css",
+      "css/bootstrap.css",
+      "css/app.css",
+      "vendor/toastr/toastr.min.css"
+
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    },
+    "outputFileName": "wwwroot/css/plantilla.bundle.css"
+  },
+  {
+    "outputFileName": "wwwroot/css/viewer.part.bundle.css",
+    "inputFiles": [
+
+      "vendor/loaders.css/loaders.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/datatable.css",
+    "inputFiles": [
+      "vendor/datatables.net-bs4/css/dataTables.bootstrap4.css",
+      "vendor/datatables.net-keytable-bs/css/keyTable.bootstrap.css",
+      "vendor/datatables.net-responsive-bs/css/responsive.bootstrap.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/select2.css",
+    "inputFiles": [
+      "vendor/select2/dist/css/select2.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/magnificPopup.css",
+    "inputFiles": [
+      "vendor/magnific-popup/magnific-popup.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/datePicker.css",
+    "inputFiles": [
+      "vendor/datapicker/jquery.datetimepicker.css",
+      "vendor/datapicker/bootstrap-datetimepicker.css",
+      "vendor/timepicker/timepicker.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/datePicker_v1_9_0.css",
+    "inputFiles": [
+      "vendor/datapicker/bootstrap-datepicker_v1_9_0.css",
+      "vendor/timepicker/timepicker.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/steps.js",
+    "inputFiles": [
+      "vendor/jquery-steps/build/jquery.steps.js",
+      "vendor/jquery-validation/dist/jquery.validate.js",
+      "vendor/jquery-validation/dist/additional-methods.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+
+  {
+    "outputFileName": "wwwroot/js/plantilla.bundle.js",
+    "inputFiles": [
+      "vendor/jquery/dist/jquery.js",
+      "vendor/bootstrap/dist/js/bootstrap.js",
+      "vendor/modernizr/modernizr.custom.js",
+      "vendor/js-storage/js.storage.js",
+      "vendor/screenfull/dist/screenfull.js",
+      "vendor/i18next/i18next.js",
+      "vendor/i18next-xhr-backend/i18nextXHRBackend.js",
+      "vendor/popper.js/dist/umd/popper.js",
+      "vendor/toastr/toastr.min.js",
+      "vendor/sweetalert/dist/sweetalert.min.js"
+
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/Popper.js",
+    "inputFiles": [
+      "vendor/popper.js/dist/umd/popper.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/Utilities.js",
+    "inputFiles": [
+      "master/js/UI_Utilities.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/Modals.js",
+    "inputFiles": [
+      "master/js/modals/Modals.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/customValidation.js",
+    "inputFiles": [
+      "master/js/validations/customValidation.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/InformeInicial.js",
+    "inputFiles": [
+      "master/js/Incidentes/InformeInicial.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/IncidenteConLesion.js",
+    "inputFiles": [
+      "master/js/Incidentes/IncidenteConLesion.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/IncidenteSinLesion.js",
+    "inputFiles": [
+      "master/js/Incidentes/IncidenteSinLesion.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/IncidenteDeterioro.js",
+    "inputFiles": [
+      "master/js/Incidentes/IncidenteDeterioro.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/IncidenteContratista.js",
+    "inputFiles": [
+      "master/js/Incidentes/IncidenteContratista.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/DanioEquipoMaterial.js",
+    "inputFiles": [
+      "master/js/Incidentes/DanioEquipoMaterial.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/libIncidenteConLesion.js",
+    "inputFiles": [
+      "master/js/Incidentes/CentroTrabajo.js",
+      "master/js/Incidentes/Trabajador.js",
+      "master/js/Incidentes/TrabajadoresPresenciaEvento.js",
+      "master/js/ImpactoProbabilidadRiesgo.js",
+      "master/js/CausasNecesidades.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/libIncidenteSinLesion.js",
+    "inputFiles": [
+      //"master/js/Incidentes/CentroTrabajo.js",
+      "master/js/Incidentes/Trabajador.js",
+      //"master/js/Incidentes/TrabajadoresPresenciaEvento.js",
+      "master/js/ImpactoProbabilidadRiesgo.js",
+      "master/js/CausasNecesidades.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/libIncidenteDeterioro.js",
+    "inputFiles": [
+      "master/js/Incidentes/CentroTrabajo.js",
+      "master/js/Incidentes/Trabajador.js",
+      "master/js/Incidentes/TrabajadoresPresenciaEvento.js",
+      "master/js/ImpactoProbabilidadRiesgo.js",
+      "master/js/CausasNecesidades.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/libIncidenteContratista.js",
+    "inputFiles": [
+      "master/js/Incidentes/CentroTrabajo.js",
+      "master/js/Incidentes/Trabajador.js",
+      "master/js/Incidentes/TrabajadoresPresenciaEvento.js",
+      "master/js/ImpactoProbabilidadRiesgo.js",
+      "master/js/CausasNecesidades.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/libDanioEquipoMaterial.js",
+    "inputFiles": [
+      "master/js/Incidentes/CentroTrabajo.js",
+      "master/js/Incidentes/Trabajador.js",
+      "master/js/Incidentes/TrabajadoresPresenciaEvento.js",
+      "master/js/ImpactoProbabilidadRiesgo.js",
+      "master/js/CausasNecesidades.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/TrabajadoresSearch.js",
+    "inputFiles": [
+      "master/js/TrabajadoresSearch.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/Usuarios.js",
+    "inputFiles": [
+      "master/js/Usuarios.js",
+      "master/js/TrabajadoresSearch.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/Centros.js",
+    "inputFiles": [
+      "master/js/Centros.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/TrabajadoresIndex.js",
+    "inputFiles": [
+      "master/js/TrabajadoresIndex.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/Trabajadores.js",
+    "inputFiles": [
+      "master/js/Trabajadores.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/Roles.js",
+    "inputFiles": [
+      "master/js/Roles.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/AreasAdministradas.js",
+    "inputFiles": [
+      "master/js/AreasAdministradas.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/viewer.part.bundle.js",
+    "inputFiles": [
+      "master/js/modules/common/wrapper.js",
+      "master/js/app.init.js",
+      "master/js/modules/common/bootstrap-start.js",
+      "master/js/modules/common/card-tools.js",
+      "master/js/modules/common/constants.js",
+      "master/js/modules/common/fullscreen.js",
+      "master/js/modules/common/load-css.js",
+      "master/js/modules/common/localize.js",
+      "master/js/modules/common/navbar-search.js",
+      "master/js/modules/common/now.js",
+      "master/js/modules/common/rtl.js",
+      "master/js/modules/common/sidebar.js",
+      "master/js/modules/common/slimscroll.js",
+      "master/js/modules/common/table-checkall.js",
+      "master/js/modules/common/toggle-state.js",
+      "master/js/modules/common/trigger-resize.js",
+      "master/js/custom/custom.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/datatable.js",
+    "inputFiles": [
+      "vendor/datatables.net/js/jquery.dataTables.js",
+      "vendor/datatables.net-bs4/js/dataTables.bootstrap4.js",
+      "vendor/datatables.net-buttons/js/dataTables.buttons.js",
+      "vendor/datatables.net-buttons-bs/js/buttons.bootstrap.js",
+      "vendor/datatables.net-buttons/js/buttons.colVis.js",
+      "vendor/datatables.net-buttons/js/buttons.flash.js",
+      "vendor/datatables.net-buttons/js/buttons.html5.js",
+      "vendor/datatables.net-buttons/js/buttons.print.js",
+      "vendor/datatables.net-keytable/js/dataTables.keyTable.js",
+      "vendor/datatables.net-responsive/js/dataTables.responsive.js",
+      "vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js",
+      "vendor/jszip/dist/jszip.js",
+      "vendor/pdfmake/build/pdfmake.js",
+      "vendor/pdfmake/build/vfs_fonts.js",
+      "master/js/modules/tables/datatable.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/select2.js",
+    "inputFiles": [
+      "vendor/select2/dist/js/select2.full.js",
+      "vendor/select2/dist/js/es.min.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/datePicker.js",
+    "inputFiles": [
+      "vendor/datapicker/momentv290.js",
+      //"vendor/datapicker/jquery.datetimepicker.full.js",
+      "vendor/datapicker/bootstrap-datepicker.js",
+      "vendor/datapicker/bootstrap-datetimepicker.js",
+      "vendor/timepicker/timepicker.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/datePicker_v1_9_0.js",
+    "inputFiles": [
+      "vendor/datapicker/momentv290.js",
+      "vendor/datapicker/bootstrap-datepicker_v1_9_0.js",
+      "vendor/timepicker/timepicker.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/magnificPopup.js",
+    "inputFiles": [
+      "vendor/magnific-popup/jquery.magnific-popup.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+
+  //Relativos al módulo diagnóstico
+  {
+    "outputFileName": "wwwroot/js/Diagnostico/diagnostico.js",
+    "inputFiles": [
+      "master/js/Diagnostico/sistemasContraIncendio.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+
+  },
+  {
+    "outputFileName": "wwwroot/css/Diagnostico/diagnostico.css",
+    "inputFiles": [
+      "css/Diagnostico/diagnostico.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/jquery.steps.css",
+    "inputFiles": [
+      "vendor/jquery-steps/css/jquery.steps.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery-steps-all.js",
+    "inputFiles": [
+      //"vendor/jquery/dist/jquery.js",
+      "vendor/jquery-steps/build/jquery.steps.js",
+      "vendor/jquery-validation/dist/jquery.validate.js",
+      "vendor/jquery-validation/dist/additional-methods.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/GestionRequisitos.js",
+    "inputFiles": [
+      "master/js/GestionRequisitos.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+
+  //Relativos al Correcciones SST del módulo Gestión
+  {
+    "outputFileName": "wwwroot/js/CorreccionesSST/correccionesSST.js",
+    "inputFiles": [
+      "master/js/CorreccionesSST/correccionesSST.js",
+      "master/js/CorreccionesSST/utilsCorreccionesSST.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+
+  },
+
+  //Relativos a las actas en programas SST
+  {
+    "outputFileName": "wwwroot/js/evidencia.js",
+    "inputFiles": [
+      "master/js/Programas/evidencia.js"
+    ],
+    "minify": {
+      "enabled": false
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/css/ProgramasSST/ProgramasSST_General.css",
+    "inputFiles": [
+      "css/ProgramasSST/ProgramasSST_General.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/ProgramasSST/actas.js",
+    "inputFiles": [
+      "master/js/Programas/Acta/medidas.js",
+      "master/js/Programas/Acta/vocales.js",
+      "master/js/Programas/Acta/utils.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+
+  },
+
+  //Relativos a Simulacros del módulo Gestión
+  {
+    "outputFileName": "wwwroot/js/Simulacros/Simulacros.js",
+    "inputFiles": [
+      "master/js/Simulacros/Simulacros.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+
+  },
+
+  //Relativos a Observación Tareas del módulo Gestión
+  {
+    "outputFileName": "wwwroot/js/ObservacionTareas/ObservacionTareas.js",
+    "inputFiles": [
+      "master/js/ObservacionTareas/ObservacionTareas.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+
+  }
+
+]

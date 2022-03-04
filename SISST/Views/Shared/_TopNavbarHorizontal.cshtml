@@ -1,0 +1,87 @@
+﻿<!-- START Top Navbar-->
+<nav class="navbar topnavbar navbar-expand-lg navbar-light">
+    <!-- START navbar header-->
+    @*<div class="navbar-header">
+        <a class="navbar-brand" href="#/">
+            <div class="brand-logo">
+               
+                <img class="img-fluid" src="~/images/LOGO_SISST.png" alt="App Logo">
+            </div>
+            <div class="brand-logo-collapsed">
+                <img class="img-fluid" src="~/images/LOGO_SISST.png" alt="App Logo">
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topnavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>*@
+    <!-- END navbar header-->
+    <!-- START Nav wrapper-->
+    <div class="navbar-collapse collapse" id="topnavbar">
+        <!-- START Left navbar-->
+        <ul class="nav navbar-nav mr-auto flex-column flex-lg-row">
+            <li class="nav-item dropdown @Html.isActive(controller: "Usuarios")">
+                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#dashboard" data-toggle="dropdown">Administraci&oacute;n</a>
+                <div class="dropdown-menu animated fadeIn">
+                    <a class="dropdown-item @Html.isActive("Usuarios")" href="@Url.Action("Index", "Usuarios", new { Area = "Comunes" })"><em class="fas fa-user mr-3"></em>Usuarios</a>
+                    <a class="dropdown-item @Html.isActive("Roles")" href="@Url.Action("Index", "Roles", new { Area = "Comunes" })"><em class="fas fa-users mr-3"></em>Roles</a>
+                    <a class="dropdown-item @Html.isActive("Privilegios")" href="@Url.Action("Index", "Privilegios", new { Area = "Comunes" })"><em class="far fa-address-book mr-3"></em>Privilegios</a>
+                    <a class="dropdown-item @Html.isActive("Catalogos")" href="@Url.Action("Index", "Catalogos", new { Area = "Comunes" })"><em class="far fa-list-alt mr-3"></em>Cat&aacute;logo</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown @Html.isActive(controller: "Incidentes")">
+                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#dashboard" data-toggle="dropdown">Incidentes</a>
+                <div class="dropdown-menu animated fadeIn">
+                    <a class="dropdown-item @Html.isActive("Usuarios")" href="@Url.Action("Index", "Usuarios", new { Area = "Comunes" })">Incidente con lesión</a>
+                    <a class="dropdown-item @Html.isActive("Roles")" href="@Url.Action("Index", "Roles", new { Area = "Comunes" })">Incidente sin lesión</a>
+                    <a class="dropdown-item @Html.isActive("Privilegios")" href="@Url.Action("Index", "Privilegios", new { Area = "Comunes" })">más</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown @Html.isActive(controller: "Incidentes")">
+                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#dashboard" data-toggle="dropdown">Gestión</a>
+            </li>
+            <li class="nav-item dropdown @Html.isActive(controller: "Incidentes")">
+                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#dashboard" data-toggle="dropdown">Infraestructura</a>
+            </li>
+        </ul>
+        <!-- END Left navbar-->
+        <!-- START Right Navbar-->
+        <ul class="navbar-nav flex-row">
+            <!-- START lock screen-->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Logout", "Home",new {area = ""})" title="Lock screen">
+                    <em class="icon-lock"></em>
+                </a>
+            </li>
+            <!-- END lock screen-->
+            
+            <!-- Fullscreen (only desktops)-->
+            <li class="nav-item d-none d-md-block">
+                <a class="nav-link" href="#" data-toggle-fullscreen="">
+                    <em class="fa fa-expand"></em>
+                </a>
+            </li>
+            
+            <!-- START Offsidebar button
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
+                    <em class="icon-notebook"></em>
+                </a>
+            </li>
+            <!-- END Offsidebar menu-->
+        </ul>
+        <!-- END Right Navbar-->
+    </div>
+    <!-- END Nav wrapper-->
+    <!-- START Search form-->
+    <form class="navbar-form" role="search" action="search.html">
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Type and hit enter ...">
+            <div class="fa fa-times navbar-form-close" data-search-dismiss=""></div>
+        </div>
+        <button class="d-none" type="submit">Submit</button>
+    </form>
+    <!-- END Search form-->
+</nav>
+<!-- END Top Navbar-->
+

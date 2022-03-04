@@ -1,0 +1,164 @@
+﻿@model SISST.ViewModels.Comunes.Roles.VMRolDetalle
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Roles de usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+}
+@using SISST.ViewModels.Privilegios
+
+
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">@ViewData["Title"]</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Index", "Roles",  new { Area = "Comunes" })">Lista de roles</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Detalle rol
+                    </li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Lista de roles", "Index", "Roles", null, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-default">
+    <h4 class="card-header">
+        Datos del rol
+    </h4>
+    <div class="card-body">
+        <form id="formDetails">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label  " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.descripcion, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.prioridad, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.prioridad, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.NivelJerarquico, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.NivelJerarquico, new { @readonly = "readonly", @class = "form-control", @disabled = "true" })
+                </div>
+            </div>
+            @*<div class="form-group row">
+                @Html.LabelFor(model => model.activo, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label " })
+                <div class="col-md-10">
+                    <label class="switch">
+                        <input type="checkbox" checked="@Model.activo" disabled>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>*@
+            <div class="card card-default">
+                <h4 class="card-header">
+                    Lista de privilegios
+                </h4>
+                <div class="card-body">
+                    @await Html.PartialAsync("_Privilegios", (List<VMPrivilegio>)Model.listaPrivilegios, new ViewDataDictionary(ViewData) { { "accion", "detalle" } })
+                </div>
+            </div>
+            <div class="form-group col-xl-10 offset-1 offset-2">
+                @if (Model.activo == true)
+                {
+                    <button type="button" class="@claseBotonCancelar mr-1" onclick="desactivateConfirmation()"><i class="fas fa-user-slash pr-2"></i>Desactivar</button>
+                }
+                else
+                {
+                    <button type="button" class="@claseBotonCancelar mr-1" onclick="activateConfirmation()"><i class="fas fa-user pr-2"></i>Activar</button>
+                }
+                <button type="button" class="@claseBotonGuardar mr-1" onclick="location.href='@Url.Action("Edit", "Roles", new { Area = "Comunes", id = Model.id })'"> <i class="fa fa-edit pr-2"></i> Editar</button>
+                @*<button type="button" class="@claseBotonCancelar deleteConfirmation mr-1"><i class="fas fa-trash-alt pr-2"></i>Eliminar</button>*@
+            </div>
+        </form>
+    </div>
+</div>
+@using (Html.BeginForm("Delete", "Roles", FormMethod.Post, new { @id = "frmDelete" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+}
+@using (Html.BeginForm("Delete", "Roles", FormMethod.Post, new { @id = "frmDeactivate" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/datatable.css" />
+}
+
+@section Scripts
+{
+    <script src="~/js/datatable.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // Modal for deactivateConfirmation
+        function desactivateConfirmation() {
+            $.LoadingOverlay("hide");//$.unblockUI();
+
+            swal({
+                title: "¿Está seguro de desactivar el rol?",
+                text: "Se desactivará el rol. No estará visible en el sistema. \n ",
+                icon: "warning",
+                buttons: { cancel: { text: "Cancelar", value: null, visible: !0, className: "", closeModal: true }, confirm: { text: "¡Sí, desactivarlo!", value: !0, visible: !0, className: "bg-danger", closeModal: true } }
+
+            }).then(function (e) {
+                if (e) {
+                    $.LoadingOverlay("show");//$('.sweet-alert').block({ message: "Por favor espere..." });
+                    $('#frmDeactivate').submit();
+                }
+                else {
+                    swal.close();
+                }
+            });
+
+            $.LoadingOverlay("hide");//$.unblockUI();
+        }
+
+        // Modal for activateConfirmation
+        function activateConfirmation() {
+            $.LoadingOverlay("hide");//$.unblockUI();
+
+            swal({
+                title: "¿Está seguro de activar el rol?",
+                text: "Se activará el rol. Estará visible en el sistema. \n ",
+                icon: "warning",
+                buttons: { cancel: { text: "Cancelar", value: null, visible: !0, className: "", closeModal: true }, confirm: { text: "¡Sí, activarlo!", value: !0, visible: !0, className: "bg-danger", closeModal: true } }
+
+            }).then(function (e) {
+                if (e) {
+                    $.LoadingOverlay("show");//$('.sweet-alert').block({ message: "Por favor espere..." });
+                    $('#frmDeactivate').submit();
+                }
+                else {
+                    swal.close();
+                }
+            });
+
+            $.LoadingOverlay("hide");//$.unblockUI();
+        }
+    </script>
+}
+
+
+

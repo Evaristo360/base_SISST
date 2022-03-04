@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap Admin App">
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <title>@ViewData["Title"] - Sistema Informático de Seguridad y Salud en el Trabajo </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Place styles for plugins -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+
+    <environment names="Development,Staging,Production">
+        <!-- =============== Este estilo se genera a partir del bundleconfig.json ===============-->
+        <link rel="stylesheet" href="~/css/plantilla.bundle.css" />
+    </environment>
+
+</head>
+
+<body>
+
+<div class="wrapper divisionColores">
+    <section>@RenderBody()</section>
+</div>
+
+
+    <environment names="Development,Staging,Production">
+
+        <!-- =============== Este estilo se genera a partir del bundleconfig.json ===============-->
+        <script src="~/js/plantilla.bundle.js"></script>
+        @RenderSection("Scripts", required: false)
+        <script src="~/js/viewer.part.bundle.js"></script>
+
+    </environment>
+
+
+</body>
+
+</html>
+

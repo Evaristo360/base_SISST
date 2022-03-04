@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SISST.Catalog</name>
+    </assembly>
+    <members>
+        <member name="M:SISST.Catalog.Controllers.ArchivoAdjuntoController.CreateAsync(Comunes.DTOs.ArchivoAdjunto.RequestCreateArchivoAdjunto)">
+            <summary>
+            Crear archivo adjunto
+            </summary>
+            <param name="dto">DTO con los datos del formato 13</param>
+            <returns>Respuesta HTTP con el resultado de la operación</returns>
+        </member>
+        <member name="M:SISST.Catalog.Controllers.ArchivoAdjuntoController.GetByIdReferenciaAsync(System.Int32,System.String,System.Int32)">
+             <summary>
+            Obtener todos los formatos 13.         
+             </summary>
+             <param name="idReferencia">Filtro Id de referencia</param>
+             <param name="tablaReferencia">Filtro tabla de referencia</param>        
+             <returns>La respuesta HTTP con la lista de registros.</returns>
+        </member>
+        <member name="M:SISST.Catalog.Controllers.ArchivoAdjuntoController.GetByIdAsync(System.Int32)">
+            <summary>
+            Regresa los datos de un archivo adjunto
+            </summary>
+            <param name="id">ID del archivo adjunto</param>
+            <returns>Datos del archivo adjunto</returns>
+        </member>
+        <member name="M:SISST.Catalog.Controllers.ArchivoAdjuntoController.DeleteAsync(Comunes.DTOs.ArchivoAdjunto.RequestDeleteArchivoAdjunto)">
+            <summary>
+            Eliminar el/los archivo(s) adjunto(s) especificado(s)
+            </summary>
+            <param name="dto">DTO con la lista de IDs a eliminar</param>
+            <returns>La respuesta HTTP con el resultado de la operación</returns>       
+        </member>
+        <member name="M:SISST.Catalog.Controllers.ArchivoAdjuntoController.DeleteIncidenteAsync(System.Int32)">
+            <summary>
+            Eliminar el/los archivo(s) adjunto(s) de un Incidente
+            </summary>
+            <param name="dto">DTO con la lista de IDs a eliminar</param>
+            <returns>La respuesta HTTP con el resultado de la operación</returns>       
+        </member>
+        <member name="M:SISST.Catalog.Controllers.CatalogoController.GetAll">
+            <summary>
+            Obtención de todos los Catálogos.
+            </summary>
+            <remarks>
+            GET / Catalogo
+            </remarks>
+            <returns>Lista de catálogos</returns>
+        </member>
+        <member name="M:SISST.Catalog.Controllers.CatalogoController.Get(System.Int32)">
+            <summary>
+            Obtención de un catálogo
+            </summary>
+            <param name="id">Identificador del elemento</param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Catalog.Controllers.CatalogoController.GetOpcion(System.Int32)">
+            <summary>
+            Obtención de una opción, con todos sus datos
+            </summary>
+            <param name="id">Identificador de la opción</param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Catalog.Controllers.CatalogoController.GetOpciones(System.Int32,System.Int32)">
+            <summary>
+            Obtención de los elementos (opciones o valores) de un Catálogo.
+            </summary>
+            <param name="id">Identificador del catálogo</param>
+            <param name="idProceso">Identificador del proceso</param>
+            <returns>Lista de opciones del catálogo</returns>
+        </member>
+        <member name="M:SISST.Catalog.Controllers.FtpController.UploadFile(Comunes.DTOs.FTP.FTPConfigFiles)">
+            <summary>
+            Sube un archivo del local al servidor FTP
+            </summary>
+            <param name="files"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Catalog.Controllers.FtpController.DownloadFile(Comunes.DTOs.FTP.FTPConfigFiles)">
+            <summary>
+            Descarga un archivo del servidor FTP al local
+            </summary>
+            <param name="files"></param>
+            <returns></returns>
+            
+        </member>
+        <member name="T:SISST.Catalog.DataTransferObjects.Catalogo.CatalogoDto">
+            <summary>
+            Modelo del catálogo
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.CatalogoDto.IdCatalogo">
+            <summary>
+            Identificador
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.CatalogoDto.Nombre">
+            <summary>
+            Valor del dato
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.CatalogoDto.Descripcion">
+            <summary>
+            Descripción del dato
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.CatalogoDto.Estado">
+            <summary>
+            Estado del registro 1 Activo, 2 Inactivo
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.CatalogoDeleteDto.IdCatalogo">
+            <summary>
+            Identificador del registro a eliminar
+            </summary>
+        </member>
+        <member name="T:SISST.Catalog.DataTransferObjects.Catalogo.CatalogoOpcionesDto">
+            <summary>
+            Modelo del catálogo y sus opciones, en caso que aplique también las subopciones
+            </summary>
+        </member>
+        <member name="T:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto">
+            <summary>
+            Modelo de una opción
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto.IdCatalogo">
+            <summary>
+            Identificador
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto.IdCatalogoSuperior">
+            <summary>
+            Identificador del catálogo al que pertenece el registro
+            </summary>
+            <remarks>Si no pertenece a otro catálogo su valor es cero</remarks>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto.Nombre">
+            <summary>
+            Valor del dato
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto.Descripcion">
+            <summary>
+            Descripción del dato
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto.Orden">
+            <summary>
+            Orden con el que se muestra al consultar
+            </summary>
+            <remarks>El valor por omisión es 0</remarks>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto.Estado">
+            <summary>
+            Estado del registro 1 Activo, 2 Inactivo
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto.Clave">
+            <summary>
+            Clave o mnemónico de nombre (nombre corto)
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto.Ayuda">
+            <summary>
+            Descripción o ejemplo para lo que se refiere el nombre
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto.EsSeleccionable">
+            <summary>
+            Permite identificar si en una lista desplegable se puede seleccionar o no.
+            Sirve para agrupar elementos que pertenecen a él.
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDto.NombreCatalogo">
+            <summary>
+            Se refiere al nombre del catálogo superior
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionDeleteDto.IdCatalogo">
+            <summary>
+            Identificador del registro a eliminar
+            </summary>
+        </member>
+        <member name="T:SISST.Catalog.DataTransferObjects.Catalogo.OpcionSelectDto">
+            <summary>
+            Modelo para presentar las opciones de un catálogo
+            en, por ejemplo, listas de selección
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionSelectDto.IdCatalogo">
+            <summary>
+            Identificador
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionSelectDto.IdCatalogoSuperior">
+            <summary>
+            Identificador del catálogo al que pertenece el registro
+            </summary>
+            <remarks>Si no pertenece a otro catálogo su valor es cero</remarks>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionSelectDto.Nombre">
+            <summary>
+            Valor del dato
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionSelectDto.Orden">
+            <summary>
+            Orden con el que se muestra al consultar. Se genera con
+            IdNivel1 + idNivel2/10000 + 1/100000
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionSelectDto.EsSeleccionable">
+            <summary>
+            Permite identificar si en una lista desplegable se puede seleccionar o no.
+            Sirve para agrupar elementos que pertenecen a él.
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.DataTransferObjects.Catalogo.OpcionSelectDto.Clave">
+            <summary>
+            Se requiere en los catálogos de Proyectos de Seguridad
+            </summary>
+        </member>
+        <member name="T:SISST.Catalog.Helpers.Exceptions.AppException">
+            <summary>
+            Custom exception class for throwing application specific exceptions (e.g. for validation) 
+            that can be caught and handled within the application.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:SISST.Catalog.Helpers.Exceptions.AppException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SISST.Catalog.Helpers.Exceptions.AppException"/> class.
+            </summary>
+        </member>
+        <member name="M:SISST.Catalog.Helpers.Exceptions.AppException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SISST.Catalog.Helpers.Exceptions.AppException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:SISST.Catalog.Helpers.Exceptions.AppException.#ctor(System.String,System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SISST.Catalog.Helpers.Exceptions.AppException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:SISST.Catalog.Helpers.Exceptions.EntityNotFoundException">
+            <summary>
+            Exception that should be thrown when the requested entity is not found.
+            </summary>
+            <seealso cref="T:SISST.Catalog.Helpers.Exceptions.AppException" />
+        </member>
+        <member name="M:SISST.Catalog.Helpers.Exceptions.EntityNotFoundException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SISST.Catalog.Helpers.Exceptions.EntityNotFoundException"/> class.
+            </summary>
+        </member>
+        <member name="M:SISST.Catalog.Helpers.Exceptions.EntityNotFoundException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SISST.Catalog.Helpers.Exceptions.EntityNotFoundException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:SISST.Catalog.Helpers.Exceptions.EntityNotFoundException.#ctor(System.String,System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SISST.Catalog.Helpers.Exceptions.EntityNotFoundException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:SISST.Catalog.Helpers.ResponseMessage">
+            <summary>
+            Response message.
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.Helpers.ResponseMessage.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="P:SISST.Catalog.Models.Catalogo.IdCatalogo">
+            <summary>
+            Identificador
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.Models.Catalogo.IdCatalogoSuperior">
+            <summary>
+            Identificador del catálogo al que pertenece el registro
+            </summary>
+            <remarks>Si no pertenece a otro catálogo su valor es cero</remarks>
+        </member>
+        <member name="P:SISST.Catalog.Models.Catalogo.Nombre">
+            <summary>
+            Valor del dato
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.Models.Catalogo.Descripcion">
+            <summary>
+            Descripción del dato
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.Models.Catalogo.Orden">
+            <summary>
+            Orden con el que se muestra al consultar
+            </summary>
+            <remarks>El valor por omisión es 0</remarks>
+        </member>
+        <member name="P:SISST.Catalog.Models.Catalogo.Estado">
+            <summary>
+            Estado del registro 1 Activo, 2 Inactivo
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.Models.Catalogo.Clave">
+            <summary>
+            Clave o mnemónico de nombre (nombre corto)
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.Models.Catalogo.Ayuda">
+            <summary>
+            Descripción o ejemplo para lo que se refiere el nombre
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.Models.Catalogo.EsSeleccionable">
+            <summary>
+            Permite identificar si en una lista desplegable se puede seleccionar o no.
+            Sirve para agrupar elementos que pertenecen a él.
+            </summary>
+        </member>
+        <member name="P:SISST.Catalog.Models.Catalogo.IdProceso">
+            <summary>
+            Identifica el proceso al que pertenece la opción del catálogo
+            0 Aplica en todos los procesos
+            != 0 Aplica solo al proceso indicado
+            </summary>
+        </member>
+        <member name="M:SISST.Catalog.Services.ArchivoAdjuntoService.CreateArchivoAdjunto(Comunes.DTOs.ArchivoAdjunto.RequestCreateArchivoAdjunto)">
+            <summary>
+            Registrar nuevo archivo adjunto
+            </summary>
+            <param name="dto">Archivo DTO con los datos del consecutivo</param>
+            <returns>Regresa la respuesta HTTP</returns>
+        </member>
+        <member name="M:SISST.Catalog.Services.ArchivoAdjuntoService.DeleteArchivoAdjunto(Comunes.DTOs.ArchivoAdjunto.RequestDeleteArchivoAdjunto)">
+            <summary>
+            Eliminar archivos adjuntos
+            </summary>
+            <param name="dto">DTO con la lista de IDs de archivos adjuntos a eliminar</param>
+            <returns>Booleano</returns>
+        </member>
+        <member name="M:SISST.Catalog.Services.ICatalogoService.GetAllAsync">
+            <summary>
+            Obtención de la lista de catálogos
+            </summary>
+            <returns>Lista de catálogos</returns>
+        </member>
+        <member name="M:SISST.Catalog.Services.ICatalogoService.GetCatalogoAsync(System.Int32)">
+            <summary>
+            Obtención de un catálogo
+            </summary>
+            <param name="idCatalogo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Catalog.Services.ICatalogoService.GetCatalogoOpcionesAsync(System.Int32)">
+            <summary>
+            Obtención de los datos de un catálogo y su lista de opciones y subopciones (si aplica).
+            </summary>
+            <param name="idCatalogo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Catalog.Services.CatalogoService.GetAllAsync">
+            <summary>
+            Obtiene la lista de todos los catálogos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Catalog.Services.CatalogoService.GetCatalogoAsync(System.Int32)">
+            <summary>
+            Obtiene un catálogo
+            </summary>
+            <param name="idCatalogo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Catalog.Services.CatalogoService.GetCatalogoOpcionesAsync(System.Int32)">
+            <summary>
+            Obtención de los datos de un catálogo y su lista de opciones y subopciones (si aplica).
+            </summary>
+            <param name="idCatalogo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Catalog.Services.CatalogoService.GetOpcionAsync(System.Int32)">
+            <summary>
+            Obtiene los datos de una opción 
+            </summary>
+            <param name="idOpcion"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SISST.Catalog.Services.CatalogoService.GetOpcionesAsync(System.Int32,System.Int32)">
+            <summary>
+            Obtiene las opciones de un catálogo, considerando el proceso y el estado activo
+            </summary>
+            <param name="idCatalogo"></param>
+            <param name="idProceso"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SISST.Catalog.Services.IFTPService">
+            <summary>
+            Clase similar a DatosBasicos.EnvioArchivos/FTPService
+            Cualquier actualizacion grande, debe de reflejarse en su similar en DatosBasicos.EnvioArchivos
+            </summary>
+        </member>
+    </members>
+</doc>

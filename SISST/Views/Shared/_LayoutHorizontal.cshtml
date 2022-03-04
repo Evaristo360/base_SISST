@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap Admin App">
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <title>@ViewData["Title"] - Sistema Informático de Seguridad y Salud en el Trabajo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <environment names="Development,Staging,Production">
+        <!-- =============== Este estilo se genera a partir del bundleconfig.json ===============-->
+        <link rel="stylesheet" href="~/css/plantilla.bundle.css" />
+        <link href="~/css/app.css" rel="stylesheet" asp-append-version="true" id="maincss" />
+    </environment>
+    <!-- Place styles for plugins -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+
+
+</head>
+<body class="layout-h p-0" >
+    <div id="sisst_header" class="white-bg bannerPrincipal">
+        <div class="row" >
+            <div class="col-md-6 p-0 m-0 float-left" >
+                <div class ="pl-3">
+                    <a href="/Home/Dashboard">
+                        <img src="~/images/LogoTitulo.png" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6" >
+                <div class="p-0 m-0 float-right" >
+                    <img src="~/images/LogoCFE.png" title="Logo EPS" style="display:inline;" />
+                    @*<img src="@SAPEEv3.Utils.SimpleSessionPersister.URLLogoCFE" title="Logo CFE" class="img-responsive" style="display:inline;width:160px;height:80px;" />*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+
+        <!-- top navbar-->
+        <header class="topnavbar-wrapper">
+            @*<partial name="_TopNavbarHorizontal" />*@
+            <partial name="_TopNavbarHorizontalMenu" />
+        </header>
+        <!-- offsidebar-->
+        <aside class="offsidebar d-none">
+            <partial name="_Offsidebar" />
+        </aside>
+        <!-- Main section -->
+        <section class="section-container" >
+            <!-- Page content-->
+            <div class="content-wrapper">
+                @RenderBody()
+            </div>
+        </section>
+        <!-- Page footer-->
+        <footer class="footer-container">
+            <partial name="_Footer" />
+        </footer>
+    </div>
+
+    @if (IsSectionDefined("BodyArea"))
+    {
+        @RenderSection("BodyArea", required: false)
+    }
+
+    <environment names="Development,Staging,Production">
+
+        <!-- =============== Este estilo se genera a partir del bundleconfig.json ===============-->
+        <script src="~/js/plantilla.bundle.js"></script>
+        @RenderSection("Scripts", required: false)
+        <script src="~/js/viewer.part.bundle.js"></script>
+        <!-- =============== APP SCRIPTS ===============-->
+
+        <script src="~/js/app.js"></script>
+        <script src="~/js/blockUI.js"></script>
+    </environment>
+
+    
+
+
+</body>
+</html>
+

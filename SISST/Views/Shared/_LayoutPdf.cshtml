@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap Admin App">
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <title>@ViewData["Title"] - Sistema Informático de Seguridad y Salud en el Trabajo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <environment names="Development,Staging,Production">
+        <!-- =============== Este estilo se genera a partir del bundleconfig.json ===============-->
+        <!-- <link rel="stylesheet" href="~/css/plantilla.bundle.css" /> -->
+        @*<link rel="stylesheet" href="~/css/app.css" />*@
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            -->
+        <style>
+            /* SOLUCIONA PROBLEMA DE SOLAPAMIENTO EN TABLAS <table /> */
+            thead {
+                display: table-header-group
+            }
+
+            tfoot {
+                display: table-row-group
+            }
+
+            tr {
+                page-break-inside: avoid
+            }
+            body, body *{
+                font-family: Arial !important;
+            }
+            body {
+                font-size: 12px !important;
+            }
+            .tablePestaniaEncabezado {
+                background: #DDDDDD;
+                
+            }
+                .tablePestaniaEncabezado,
+                .tablePestaniaEncabezado th {
+                    padding: 2px !important;
+                }
+
+                .sin_border_tabla {
+                    border: none !important;
+                    display: none !important;
+                }
+
+            .tablePestania td {
+                border-top: none !important;
+                padding: .25rem;
+            }
+
+            .tablePestania tbody tr:first-child {
+                border-top: 1px solid #dee2e6;
+            }
+
+            .tablePestania thead {
+                /*border-bottom: 1px solid #dee2e6;*/
+            }
+
+            .tablePestania {
+                border-top: 1px solid #dee2e6;
+                border-left: 1px solid #dee2e6;
+                border-right: 1px solid #dee2e6;
+                border-bottom: 1px solid #dee2e6;
+            }
+            .etiqueta_campo {
+                font-weight: bolder;
+            }
+
+            .sin_resultados {
+                color: #AAA;
+                text-align: center;
+                font-style: oblique;
+                min-height: 30px;
+            }
+
+            .tablePestaniaEncabezado {
+                background: #0f3d38;
+                color: white;
+                font-size: 16px;
+                text-transform: uppercase;
+            }
+
+                .tablePestaniaEncabezado .td {
+                    border: 1px solid #0f3d38;
+                }
+            .tableCausasNecesidades .tablePestaniaEncabezado,
+            .tablePestania tbody .tablePestaniaEncabezado {
+                font-size: 12px !important;
+                font-weight: normal;
+                text-align: center;
+            }
+            .footerTable
+            {
+                font-size:10px;
+            }
+
+            .divPestaniaEncabezado {
+                background: #EDF1F2;
+            }
+        </style>
+    </environment>
+    <!-- Place styles for plugins -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="~/css/select2.css" /> -->
+    <style>
+        body {
+            background-color: #ffffff !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- top navbar-->
+    <!--
+    <header>
+        Encabezado
+    </header>
+    -->
+
+    <div class="wrapper">
+
+
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+    </div>
+    <!-- Page footer
+    <footer class="footer-container">
+        Pie de página
+    </footer>
+    -->
+    @if (IsSectionDefined("scripts"))
+    {
+        RenderSection("scripts");
+    }
+    @if (IsSectionDefined("BodyArea"))
+    {
+        @RenderSection("BodyArea", required: false)
+    }
+</body>
+</html>
+

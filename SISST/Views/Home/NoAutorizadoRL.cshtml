@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Layout = "~/Views/Shared/_LayoutModalRL.cshtml";
+
+    ViewData["Title"] = "No autorizado";
+    var ruta = ViewData["ruta"];
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+}
+
+<div class="card card-default" style="border: none; height: 100%; width: 100%;">
+    <h4 class="card-header" style="background-color: #298CB6; color: white; border-radius: 0px;">
+        @ViewData["Title"]
+        <button type="button" class="close" onclick="cerrar();">
+            <span aria-hidden="true" style="color: white;">x</span>
+        </button>
+    </h4>
+    <div class="card-body col-md-12">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="brand-logo col-md-12" style="padding: 5px 15px !important">
+                    <img class="img-fluid" src="~/images/logo_v2.png" alt="App Logo">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <h4>No cuenta con el rol o privilegio requerido para acceder al recurso solicitado.</h4>
+                <h4>Pongase en contacto con el administrador del sistema.</h4>
+
+                <button type="button" class="@claseBotonGuardar" onclick="cerrar();"> <i class="fa fa-plus-circle pr-2"></i> Cerrar</button>
+
+                <h4 class="text-white-50">@Html.Raw(@ruta)</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<environment names="Development,Staging,Production">
+    <link rel="stylesheet" href="~/css/plantilla.bundle.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+</environment>
+
+<environment names="Development,Staging,Production">
+
+    <script src="~/js/plantilla.bundle.js"></script>
+    <script src="~/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
+    <script type="text/javascript">
+
+        var urlInicio= '@Url.Action("Inicio", "Home", new { })';
+
+        function cerrar() {
+
+            if (parent) {
+                if (window) {
+                    self.close();
+                }
+                if (parent.$.magnificPopup) {
+                    parent.$.magnificPopup.close();
+                }
+
+                console.log("cambio de pagina");
+
+                parent.location.href = urlInicio;
+            } else {
+                location.href = urlInicio;
+            }
+        }
+    </script>
+
+</environment>

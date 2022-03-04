@@ -1,0 +1,84 @@
+﻿@model SISST.ViewModels.Comunes.Catalogos.VMCatalogo
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Nuevo catálogo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+}
+
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3"> Nuevo catálogo </h3>
+                <ol class="breadcrumb mb-0 " >
+                    <li class="breadcrumb-item">
+                        <a href="~/Comunes/Catalogos/Index">Lista de catálogos</a>
+                    </li>
+                    <li class="breadcrumb-item active">Nuevo catálogo</li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Lista de catálogos", "Index", "Catalogos", null, new { @class = "btn btn_sistema"})
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-default ">
+    <h4 class="card-header" >Datos del catálogo</h4>
+    <div class="card-body">
+        @using (Html.BeginForm("Create", "Catalogos", FormMethod.Post, new {role = "form", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @maxlength = "255" })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control autoResize", @maxlength = "250", id = "CatalogoDescripcion" })
+                    @await Component.InvokeAsync("contadorCaracteres", new { nameTextBox = "CatalogoDescripcion", classTextBox = "CD", max = 250 })
+                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(q => q.Estado, new SelectList(ViewBag.ListaEstados, "Value", "Text"),
+                                            "Seleccione estado", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 pl-5 col-form-label">(*) Dato requerido.</label>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-10 offset-2">
+                    <button type="button" class="@claseBotonCancelar" onclick="location.href='@Url.Action("Index", "Catalogos", new {})'"><i class="fa fa-times pr-2"></i>Cancelar</button>
+                    <button type="submit" class="@claseBotonGuardar mr-1"><i class="fas fa-save pr-2"></i> Guardar</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+            $(document).ready(function () {
+                if ('@TempData["tipoMensaje"]' != "") {
+                    toastr.options.positionClass = 'toast-bottom-right';
+                    toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+                }
+            });
+    </script>
+}

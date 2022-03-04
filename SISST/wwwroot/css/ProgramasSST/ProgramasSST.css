@@ -1,0 +1,541 @@
+#dvElementos {
+    margin: 10px auto;
+    width: 100%;
+    overflow-x:scroll;
+    display:block;
+}
+#dvElementosPrincipal > div {
+    margin: auto;
+}
+    #btn_tareas {
+        margin: 10px;
+    }
+.tablaMesesTask {
+    width: 100%;
+    height: 25px;
+}
+.gantt_side_content {
+    color: #333;
+}
+.gantt_row_project
+{
+    border-bottom:#EEE 1px solid;
+}
+
+.ganttElementos, .ganttElementos * {
+    font-size: 10px !important;
+}
+
+.summary-bar {
+    font-weight: bold;
+}
+
+.gantt_resource_task .gantt_task_content {
+    color: inherit;
+}
+
+.gantt_resource_task .gantt_task_progress {
+    background-color: rgba(33,33,33,0.3);
+}
+
+.gantt_cell:nth-child(1) .gantt_tree_content {
+    border-radius: 16px;
+    width: 100%;
+    height: 80%;
+    margin: 5% 0;
+    line-height: 230%;
+}
+
+.gantt_row_task.gantt_resource_P .fa-plus,
+.gantt_row_task.gantt_resource_R .fa-plus {
+    display: none !important;
+}
+
+#dvElementos .fa,
+#dvActividades .fa {
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    opacity: 1;
+    padding: 5px;
+}
+
+    #dvElementos .fa:hover,
+    #dvActividades .fa:hover {
+        opacity: 0.6;
+        
+    }
+
+#dvElementos .fa-pencil:hover,
+#dvActividades .fa-pencil:hover{
+    color: #ffa011;
+}
+
+#dvElementos .fa-plus,
+#dvActividades .fa-plus {
+    /*color: #328EA0;*/
+}
+
+#dvElementos .fa-times,
+#dvActividades .fa-times {
+
+    /*color: red;*/
+}
+
+.gantt-dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    z-index: 2;
+    border-left: 1px solid #cecece
+}
+
+    .gantt-dropdown:hover {
+        background: rgba(0,0,0, 0.1);
+    }
+
+#gantt_dropdown {
+    position: absolute;
+    display: none;
+    border: 1px solid #cecece;
+    background: #fff;
+    padding: 10px;
+}
+#EncabezadoTablaElementosMeses {
+    height: 25px;
+    position: relative;
+    line-height: 25px
+}
+    #EncabezadoTablaElementosMeses .gantt_scale_cell {
+        width: 50px;
+        height: 25px;
+        /* display: inline-block; */
+        
+    }
+#EncabezadoTablaElementos .gantt_task {
+    width: inherit;
+    height: inherit;
+}
+#EncabezadoTablaElementos .gantt_task_scale {
+    height: 50px;
+}
+#EncabezadoTablaElementos .gantt_scale_line2 {
+    height: 24px;
+    position: relative;
+    line-height: 24px
+}
+#EncabezadoTablaElementosAnio {
+    height: 24px;
+    position: absolute;
+    left: 0px
+}
+#dvElementosEncabezadoFilaData
+{
+
+}
+    #dvElementosEncabezadoFilaData .MesProgramado,
+    #dvElementosEncabezadoFilaData .MesReal {
+        width: 100%;
+    }
+    #dvElementosEncabezadoFilaData .gantt_task_cell {
+        width: 50px;
+        height: 25px;
+        display: block !important;
+        text-align: center;
+        float: left !important;
+        /*padding-top: 5px;*/
+
+        /* display: inline-block; */
+    }
+    #dvElementosEncabezadoFilaData .leyendaP,
+    #dvElementosEncabezadoFilaData .leyendaR {
+        padding-top: 5px;
+    }
+.tablaMesesTask.programado {
+    background-color: rgba(41,153,190,.2);
+}
+    .tablaMesesTask.programado .gantt_task_cell {
+        border: rgba(41,153,190,.3) 1px solid;
+    }
+    .tablaMesesTask.real {
+        background-color: rgba(255,204,102,.2);
+    }
+        .tablaMesesTask.real .gantt_task_cell {
+            border: rgba(255,204,102,.5) 1px solid;
+        }
+.gantt_grid_scale_derecha {
+    text-align: right !important;
+    background: #fefefe;
+}
+
+#dvElementosPieFilaData .tablaMesesTask{
+    width: 100%;
+}
+
+#dvElementosPieFilaData .gantt_task_cell {
+    width: 50px;
+    height: 25px;
+    display: block !important;
+    text-align: center;
+    float: left !important;
+}
+
+#dvElementosPieFilaData .gantt_task_cell{
+    /*padding-top: 5px;*/
+
+}
+
+#EncabezadoTablaElementosMesesPie {
+    height: 25px;
+    position: relative;
+    line-height: 25px;
+}
+
+    #EncabezadoTablaElementosMesesPie .gantt_scale_cell {
+        width: 50px;
+        height: 25px;
+        /* display: inline-block; */
+    }
+
+/* Checkbox */
+#ElementosList {
+    overflow:auto;
+    
+}
+
+.radiobutonmodificado .c-checkbox span, .radiobutonmodificado .c-radio span {
+    background-color: white;
+}
+
+.c-checkbox input[type=radio]:checked + span, .c-radio input[type=radio]:checked + span {
+    background-color: #5D9cec;
+}
+
+.c-checkbox input[type=checkbox]:checked + span, .c-checkbox input[type=radio]:checked + span, .c-radio input[type=checkbox]:checked + span, .c-radio input[type=radio]:checked + span {
+    border-color: #5d9cec;
+    background-color: #5d9cec;
+}
+
+    .c-checkbox input[type=radio]:checked + span:before, .c-radio input[type=radio]:checked + span:before {
+        color: #FFF;
+    }
+/* Fuente */
+
+.gantt_grid_scale .gantt_grid_head_cell
+{
+    color: #666;
+}
+.gantt_task .gantt_task_scale .gantt_scale_cell {
+    color: #666;
+    /*border-right: 1px solid #a4bed4;*/
+}
+.tablaMesesTask .gantt_task_cell {
+    /*border-right: 1px solid #a4bed4;*/
+}
+.tablaMesesTask {
+    /*border-bottom: 1px solid #a4bed4 !important; */
+}
+#dvActividadesEncabezadoFila .gantt_container {
+    white-space: normal !important;
+    
+}
+#dvActividadesEncabezadoFila .gantt_tree_content {
+    white-space: normal !important;
+    line-height: 20px !important;
+    margin-top:5px;
+}
+/* Colores botones */
+.iconosElementos, .iconosActividades {
+    font-size: 14px !important;
+    opacity: 1;
+}
+.eliminaElemento, .eliminaActividad {
+    color: #b35f60 !important;
+}
+    .eliminaElemento:hover, .eliminaActividad:hover {
+        color: #d38c99 !important;
+    }
+.recursosElemento {
+    color: #86b4a4 !important;
+}
+    .recursosElemento:hover {
+        color: #a5d4d0 !important;
+    }
+#SumaPonderacionElementosCk, #SumaPonderacionActividadesCk {
+    color: #2b48c4 !important;
+}
+    #SumaPonderacionElementosCk:hover, #SumaPonderacionActividadesCk:hover{
+        color: #65a9ef !important;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+.list_ponderacion:hover, .list_ponderacion_actividad:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/************ Actividades ***************/
+#dvActividades {
+    margin: 10px auto;
+    overflow-x: auto;
+}
+#dvActividadesHeader
+{
+    width:96%;
+    display:block;
+    margin:auto;
+}
+
+.ganttActividades, .ganttActividades * {
+    font-size: 10px !important;
+}
+
+#EncabezadoTablaActividadesMeses {
+    height: 25px;
+    position: relative;
+    line-height: 25px
+}
+    #EncabezadoTablaActividadesMesesPie .gantt_scale_cell:first-child,
+    #EncabezadoTablaActividadesMeses .gantt_scale_cell:first-child {
+        width: 25px;
+        height: 25px;
+    }
+#EncabezadoTablaActividadesMesesPie .gantt_scale_cell,
+#EncabezadoTablaActividadesMeses .gantt_scale_cell {
+    width: 100px;
+    height: 25px;
+    /* display: inline-block; */
+}
+
+#EncabezadoTablaActividades .gantt_task {
+    width: inherit;
+    height: inherit;
+}
+
+#EncabezadoTablaActividades .gantt_task_scale {
+    height: 50px;
+}
+
+#EncabezadoTablaActividades .gantt_scale_line2 {
+    height: 24px;
+    position: relative;
+    line-height: 24px
+}
+
+#EncabezadoTablaActividadesAnio {
+    height: 50px;
+    /*position: absolute;
+    left: 0px
+       */
+    text-align: center !important;
+    display: block;
+    line-height: 50px;
+}
+
+#dvActividadesEncabezadoFilaData {
+}
+
+    #dvActividadesEncabezadoFilaData .MesProgramado,
+    #dvActividadesEncabezadoFilaData .MesReal {
+        width: 100%;
+    }
+
+    #dvActividadesEncabezadoFilaData .gantt_task_cell {
+        width: 25px;
+        height: 25px;
+        display: block !important;
+        text-align: center;
+        float: left !important;
+        /*padding-top: 5px;*/
+        /* display: inline-block; */
+    }
+
+    #dvActividadesEncabezadoFilaData .leyendaP,
+    #dvActividadesEncabezadoFilaData .leyendaR {
+        padding-top: 5px;
+    }
+#dvActividadesPieFilaData
+{
+    width:1230px;
+}
+#dvActividadesPieFilaData .tablaMesesTask {
+    width: 100%;
+}
+
+#dvActividadesPieFilaData .gantt_task_cell {
+    width: 25px;
+    height: 25px;
+    display: block !important;
+    text-align: center;
+    float: left !important;
+    /*padding-top: 5px;*/
+    /* display: inline-block; */
+}
+
+#dvActividadesPieFilaData .gantt_task_cell {
+    padding-top: 5px;
+}
+#EncabezadoTablaActividades{
+
+}
+#EncabezadoTablaActividadesMesesPie {
+    height: 25px;
+    position: relative;
+    line-height: 25px
+}
+
+/* Checkbox */
+#ActividadesList {
+    overflow: auto;
+}
+
+.iconosActividades {
+    font-size: 14px !important;
+}
+.project_selected .gantt_tree_content {
+    margin: 0px !important;
+    height:25px !important;
+    line-height:25px !important;
+}
+
+#dvActividadesPrincipal
+{
+    /* border: 1px solid red !important; */
+}
+#panelActividadesSecundarioTareas > div
+{
+    width: 1250px;
+}
+#panelActividadesSecundarioTareas {
+    overflow-x:auto;
+    /* padding-bottom:60px !important; */
+}
+.mesInactivo {
+    background: #EEE;
+    border: 1px solid #DDD !important;
+    cursor: not-allowed !important;
+}
+.panelActividadesSecundario .tablaMesesTask .gantt_task_cell {
+    cursor: pointer;
+}
+
+.seleccionarTarea {
+    background-color: rgba(41,153,190,1);
+    color:white;
+}
+.seleccionarElemento {
+    background-color: rgba(41,153,190,1);
+    color: white;
+}
+.seleccionarElementoReal {
+    background: rgba(255,204,102,.5);
+    /* color:white; */
+}
+.subirEvidencia {
+    background: rgba(255,204,102,.5);
+    /* color:white; */
+}
+#ModalRecurso {
+    position: absolute !important;
+}
+.sobrePasoPonderacion
+{
+    color:darkred;
+    font-weight:bolder;
+}
+.borde_derecho
+{
+    border-right:#EEE 1px solid !important;
+}
+.texto_centrado
+{
+    text-align:center !important;
+}
+.infoPie
+{
+    overflow:hidden;
+}
+#dvActividadesEncabezado
+{
+    padding-left:20px;
+}
+.porcentajeAvance2Dv, .avanceReal2Dv {
+    display: none;
+}
+
+/* Gil Superviciones */
+#dvActividadesHeader * {
+    font-size: 14px !important;
+}
+#EncabezadoGilSuperviciones
+{
+
+}
+.ocultaEncabezadoGilSuperviciones {
+    display: none;
+}
+.btn-circle {
+    height: 30px;
+    min-width: 30px;
+    width: 30px;
+    font-size: 10px;
+    line-height: 1em;
+    border-radius: 50%;
+    padding: 0;
+    position: relative;
+    border-width: 1px !important;
+    border-style:solid !important;
+    margin: 5px;
+}
+#ResultadosGilSuperviciones
+{
+    padding:15px;
+}
+#ModalActividadGil
+{
+    margin-top:50px;
+}
+.clearfix {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.btn-outline-white {
+    color: #FFF;
+    border-color: #FFF;
+}
+
+    .btn-outline-white:hover {
+        color: #666;
+        background-color: #FFF;
+        border-color: #FFF;
+    }
+
+    .btn-outline-white:focus, .btn-outline-white.focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-outline-white.disabled, .btn-outline-white:disabled {
+        color: #AAA;
+        background-color: transparent;
+    }
+
+    .btn-outline-white:not(:disabled):not(.disabled):active, .btn-outline-white:not(:disabled):not(.disabled).active,
+    .show > .btn-outline-white.dropdown-toggle {
+        color: #FFF;
+        background-color: #000;
+        border-color: #000;
+    }
+
+        .btn-outline-white:not(:disabled):not(.disabled):active:focus, .btn-outline-white:not(:disabled):not(.disabled).active:focus,
+        .show > .btn-outline-white.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
+        }
+
+#btnAddActividadGil {
+    position: absolute;
+    margin-top: -5px;
+}

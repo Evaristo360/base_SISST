@@ -1,0 +1,67 @@
+﻿@model List<SISST.ViewModels.Comunes.Catalogos.VMCatalogo>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{ ViewData["Title"] = "Catálogo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");}
+
+<div class="card card-default ">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">Catálogos del sistema</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item active">
+                        Lista de catálogos
+                    </li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Nuevo catálogo", "Create", "Catalogos", null, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-default ">
+    <h4 class="card-header">Lista de catálogos</h4>
+    <div class="card-body">
+        <table class="table table-striped my-4 w-100 border-gray border dataTables-example">
+            <thead>
+                <tr>
+                    <th>
+                        <span data-toggle="tooltip" title="Presione sobre el nombre de catálogo para ver detalles"> Catálogo</span>
+                    </th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="gradeX">
+                        <td><a href="~/Comunes/Catalogos/Details/@item.IdCatalogo">@item.Nombre</a></td>
+                        <td>@item.Descripcion</td>
+                        <td>@item.EtiquetaEstado</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/datatable.css" />
+}
+
+@section Scripts {
+    <script>
+            $(document).ready(function () {
+                if ('@TempData["tipoMensaje"]' != "") {
+                    toastr.options.positionClass = 'toast-bottom-right';
+                    toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+            }
+            });
+    </script>
+
+    <script src="~/js/datatable.js"></script>
+}

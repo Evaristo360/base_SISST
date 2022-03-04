@@ -1,0 +1,162 @@
+﻿@model IEnumerable<SISST.ViewModels.Comunes.Areas.VMAreaDetalle>
+@{ ViewData["Title"] = "Centros de trabajo";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="pl-3">@ViewData["Title"]</h3>
+                <ol class="breadcrumb mb-0 " style="background-color:white;">
+                    <li class="breadcrumb-item active">
+                        Lista de centros de trabajo
+                    </li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Nuevo centro de trabajo", "Create", "Centros", new { Area = "Comunes" }, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-default">
+
+    <div class="card-body">
+        <table id="centrosTable" class="table table-striped my-4 w-100 border-gray border table-hover">
+            <thead>
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(r => r.Clave)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(r => r.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(r => r.NivelJerarquico)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(r => r.AreaSuperior)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(r => r.Proceso)
+                    </th>                   
+                    <th>
+                        @Html.DisplayName("Estatus")
+                    </th>
+                </tr>
+            </thead>
+            
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/datatable.css" />
+}
+
+@section Scripts {
+    <script src="~/js/datatable.js"></script>
+
+    <script>
+                var oTable = "";
+                $(document).ready(function () {
+                    if ('@TempData["tipoMensaje"]' != "") {
+                        toastr.options.positionClass = 'toast-bottom-right';
+                        toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+                    }
+                    oTable = $("#centrosTable").DataTable({
+                    //"processing": true,
+                    "serverSide": true,
+                    "pageLength": 20,
+                    "ajax": {
+                        "url": '@Url.Action("GetAllPagination", "Centros", new { Area = "Comunes" } )',
+                        "type": "POST",
+                        "datatype": "json",
+                        dataSrc: function (response) {
+                            response.recordsTotal = response.recordsTotal;
+                            response.recordsFiltered = response.recordsTotal;//En el Datatable recordsFiltered debe ser igual al recordsTotal, esto para habilitar la pagincación
+                            response.draw = response.draw;
+                            response.data = response.data == null ? [] : response.data
+                            return response.data;
+                        }
+                    },
+                    "columns": [
+                        {
+                            "render": function (data, type, row, meta) {
+                                var url = "@Url.Action("Details", "Centros", new { Area = "Comunes" } )" + "/" + row.id;
+                                return `<a href="${url}">${row.clave}</a>`;
+                            }
+                        },
+                        { "data": "nombre", "name": "nombre", "autoWidth": true },
+                        { "data": "nivelJerarquico", "name": "nivelJerarquico", "autoWidth": true },
+                        { "data": "areaSuperior", "areasuperior": "areaSuperior", "autoWidth": true },
+                        { "data": "proceso", "name": "proceso", "autoWidth": true },
+                        //{ "data": "tipoInstalacion", "name": "tipoInstalacion", "autoWidth": true },
+                        //{ "data": "subTipoInstalacion", "areasuperior": "subTipoInstalacion", "autoWidth": true },
+                        {
+                            "render": function (data, type, row, meta) {
+                                return (row.activo ? "Activo" : "Inactivo");
+                            }
+                        }
+                    ],
+                    dom: "Blfrtip",//"Bfrtip",
+                    buttons: [
+                        { extend: "pdf", className: "'btn btn-outline-secondary", title: $("title").text() },
+                        { extend: "excel", className: "'btn btn-outline-secondary", title: "XLS-File" },
+                        { extend: "print", className: "'btn btn-outline-secondary" }],
+                    order: [],
+                    responsive: true,
+                    lengthMenu: [
+                        [10, 20, 50],
+                        ['10', '20', '50']
+                    ],
+                    language: {
+                        buttons: {
+                            pageLength: "Mostrar _MENU_ registros",
+                            print: "Imprimir"
+                        },
+                        //processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw" style="color:#2097D0;"></i><span style="color:#2097D0; font-size:1.25rem">Cargando...</span> ',
+                        "sLengthMenu": "Mostrar _MENU_ registros por página",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    }
+                });
+
+
+                    $('#centrosTable_filter input').unbind();
+                    $('#centrosTable_filter input').bind('keyup', function (e) {
+                        if (e.keyCode == 13) {
+                            oTable.search(this.value).draw();
+                        }
+                    });
+
+                    if (document.getElementsByClassName("dt-buttons").length > 0) {
+                        divButtonss = document.getElementsByClassName("dt-buttons");
+                        divButtonss[0].style.cssFloat = "right";
+                    }
+
+                });
+    </script>
+}
+

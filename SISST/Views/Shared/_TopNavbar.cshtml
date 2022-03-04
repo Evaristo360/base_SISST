@@ -1,0 +1,290 @@
+@using SISST.ViewModels.Privilegios;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Http
+@using SISST.ViewModels.Comunes.Usuarios
+@using SISST.ViewModels.Comunes.Roles
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    string lastUrl = Context.Request.Path;
+    string currentUser = "";
+    string rolActivo = "";
+    string areaAdministrada = "";
+    string centroTrabajo = "";
+    var areasAdministradas = new List<SelectListItem>();
+    var rolesUsuario = new List<SelectListItem>();
+    try
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            currentUser = User.Identity.Name;
+        }
+        var buscaPrivilegios = User.FindFirst("roles");
+        centroTrabajo = User.FindFirst("Area").Value;
+        areaAdministrada = User.FindFirst("IdArea").Value;
+        var privilegiosRolActivo = new VMRolPrivilegioClaim();
+        List<VMPrivilegio> listaPrivilegios = new List<VMPrivilegio>();
+
+        areasAdministradas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<SelectListItem>>(User.FindFirst("areasAdministradas").Value);
+        if (buscaPrivilegios != null)
+        {
+            List<VMRolPrivilegioClaim> parametros = Newtonsoft.Json.JsonConvert.DeserializeObject<List<VMRolPrivilegioClaim>>(buscaPrivilegios.Value);
+            foreach (var r in parametros.Distinct().ToList())
+            {
+                if (r.Activo == true)
+                {
+                    rolActivo = r.Id.ToString();
+                    rolesUsuario.Add(new SelectListItem { Text = r.Name, Value = r.Id.ToString(), Selected = true });
+                }
+                else
+                {
+                    rolesUsuario.Add(new SelectListItem { Text = r.Name, Value = r.Id.ToString(), Selected = false });
+                }
+
+            }
+        }
+
+        var roles = User.FindFirst("roles").Value;
+        var prioridad = User.FindFirst("Prioridad").Value;
+        //se obtienen los roles que se almacenan en el claim
+        var role = Newtonsoft.Json.JsonConvert.DeserializeObject<List<VMRolPrivilegioClaim>>(roles);
+        //Se obtienen los privilegios del rol activo
+        var rolData = role.FirstOrDefault(x => x.Activo == true);
+        int idJerarquico = rolData.IdNivelJerarquico;
+    }catch(Exception e)
+    {
+
+    }
+}
+<!-- START Top Navbar-->
+<nav class="navbar topnavbar">
+    <!-- START navbar header-->
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#/">
+            <div class="brand-logo" style="padding:5px 15px!important">
+                <img class="img-fluid" src="~/images/logo_v2.png" alt="App Logo">
+            </div>
+            <div class="brand-logo-collapsed">
+                @*PRME Aquí va el logo de SISST cuando se colapsa el menu izquierdo*@
+                <img class="img-fluid" src="~/images/logo_v2.png" alt="App Logo">
+            </div>
+        </a>
+    </div>
+    <!-- END navbar header-->
+    <!-- START Left navbar-->
+    <ul class="navbar-nav mr-auto flex-row" style="align-items: center;">
+        <li class="nav-item">
+            <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+            <a class="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
+                <em class="fas fa-bars"></em>
+            </a>
+            @*Button to show/hide the sidebar on mobile. Visible on mobile only.*@
+            <a class="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
+                <em class="fas fa-bars"></em>
+            </a>
+        </li>
+
+        <!-- START User avatar toggle-->
+        <li class="nav-item d-none d-md-block">
+            <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+            @*id="user-block-toggle" href="#user-block" data-toggle="collapse"*@
+            <a class="nav-link">
+                <em class="icon-user"></em> @currentUser
+            </a>
+        </li>
+        <!-- END User avatar toggle-->
+        <!-- START Perfil menu-->
+        <li class="nav-item">
+            <div class="nav-link">
+                @if (rolesUsuario.Count > 0)
+                {
+                    @Html.DropDownList(rolActivo, rolesUsuario, htmlAttributes: new { @class = "roles-select-list", id = "rolesUsuario" })
+                }
+            </div>
+
+
+        </li>
+        <!-- END Perfil menu-->
+        <li class="nav-item d-none d-md-block ">
+            <div class="nav-link">
+                <span style="background:#227497 !important" class="p-1" id="spanAreas">
+                    <!--<span id="lblAreaAdmin" style="display: inline-block; width: 200px; vertical-align: middle; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" title="@areaAdministrada -- @centroTrabajo">@areaAdministrada -- @centroTrabajo</span>-->
+                    <div id="divAreasAdministradas" style="display: contents;">
+                        @if (areasAdministradas.Count > 0)
+                        {
+                            @Html.DropDownList(areaAdministrada, areasAdministradas, htmlAttributes: new { @class = "select2", id = "areasAdministradas" })
+                        }
+                        </div>
+                </span>
+            </div>
+        </li>
+    </ul>
+    <!-- END Left navbar-->
+    <!-- START Right Navbar-->
+    <ul class="navbar-nav flex-row">
+        <!-- START lock screen-->
+        <li class="nav-item d-none d-md-block">
+            <a class="nav-link espereGuardar" href="@Url.Action("Logout", "Home",new {area = ""})" title="Cerrar sesi&oacute;n">
+                <em class="icon-lock"></em>
+                Cerrar sesi&oacute;n
+            </a>
+        </li>
+        <!-- END lock screen-->
+        <!-- Fullscreen (only desktops)-->
+        <li class="nav-item d-none d-md-block">
+            <a class="nav-link" href="#" data-toggle-fullscreen="">
+                <em class="fa fa-expand"></em>
+            </a>
+        </li>
+        <!-- START Alert menu-->
+        @*PRME Deshabilitado hasta que se especifique su funcionalidad*@
+        <li class="nav-item dropdown dropdown-list" style="display:none">
+            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret mr-3" href="#" data-toggle="dropdown">
+                <em class="icon-bell"></em>
+                <span class="badge badge-danger">11</span>
+            </a>
+            <!-- START Dropdown menu-->
+            <div class="dropdown-menu dropdown-menu-right animated flipInX">
+                <div class="dropdown-item">
+                    <!-- START list group-->
+                    <div class="list-group">
+                        <!-- list item-->
+                        <div class="list-group-item list-group-item-action">
+                            <div class="media">
+                                <div class="align-self-start mr-2">
+                                    <em class="fab fa-twitter fa-2x text-info"></em>
+                                </div>
+                                <div class="media-body">
+                                    <p class="m-0">New followers</p>
+                                    <p class="m-0 text-muted text-sm">1 new follower</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- list item-->
+                        <div class="list-group-item list-group-item-action">
+                            <div class="media">
+                                <div class="align-self-start mr-2">
+                                    <em class="fa fa-envelope fa-2x text-warning"></em>
+                                </div>
+                                <div class="media-body">
+                                    <p class="m-0">New e-mails</p>
+                                    <p class="m-0 text-muted text-sm">You have 10 new emails</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- list item-->
+                        <div class="list-group-item list-group-item-action">
+                            <div class="media">
+                                <div class="align-self-start mr-2">
+                                    <em class="fa fa-tasks fa-2x text-success"></em>
+                                </div>
+                                <div class="media-body">
+                                    <p class="m-0">Pending Tasks</p>
+                                    <p class="m-0 text-muted text-sm">11 pending task</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- last list item-->
+                        <div class="list-group-item list-group-item-action">
+                            <span class="d-flex align-items-center">
+                                <span class="text-sm">More notifications</span>
+                                <span class="badge badge-danger ml-auto">14</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END list group-->
+                </div>
+            </div>
+            <!-- END Dropdown menu-->
+        </li>
+        <!-- END Alert menu-->
+    </ul>
+    <!-- END Right Navbar-->
+</nav>
+<!-- END Top Navbar-->
+
+<script type="text/javascript">
+    $("#rolesUsuario").on('change', function (e) {
+        $.LoadingOverlay("show")
+        var optionSelected = $(this).find("option:selected");
+        var textSelected = optionSelected.text();
+        if ("@rolActivo" != textSelected)
+        {
+            $("#areasAdministradas").prop("disabled", true);
+            top.location.href = "@Url.Action("cambiaRolActivo", "Home", new { Area=""})?idRol=" + this.value;
+        }
+    });
+
+    $("#areasAdministradas").on('change', function (e) {
+        $.LoadingOverlay("show")
+        var optionSelected = $(this).find("option:selected");
+        var areaSelected = optionSelected.text();
+        console.log("val=>", areaSelected, "@areaAdministrada", this.value)
+        if ("@areaAdministrada" != areaSelected)
+        {
+
+            if (this.value == 0) {
+                 top.location.href = "@Url.Action("Index", "AreasAdministradas", new { Area="Comunes"})";
+            } else {
+                var idRolActivo = $("#rolesUsuario").val();
+                console.log("rolActivoID=>", idRolActivo)
+                $("#rolesUsuario").prop("disabled", true);
+                top.location.href = '@Url.Action("cambiaAreaActivo", "Home", new { Area=""})?idArea=' + this.value + '&lastUrl=@lastUrl' + '&rol=' + idRolActivo;
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        @*$("#divAreasAdministradas").hide();
+        $("#areasAdministradas").prop("disabled", false);
+        if ('@rolActivo' != "") {
+            console.log("rol seleccionado: @rolActivo");
+           // $("#rolesUsuario").text("@rolActivo");
+            $("#rolesUsuario option").filter(function () {
+                return this.text == "@rolActivo";
+            }).attr('selected', true);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetAreasAdministradas", "AreasAdministradas", new { Area="Comunes"})',
+            dataType: 'json',
+            success: function (areas) {
+                $("#lblAreaAdmin").remove();
+                $("#divAreasAdministradas").show();
+                $("#areasAdministradas").empty();
+                if (areas.length == 0) {
+                    $("#areasAdministradas").append('<option value = "NA" style="color:black">'
+                        + "Seleccione..." + '</option>');
+                }
+                $.each(areas, function (i, area) {
+                    if (area.idJerarquico == @idJerarquico || @prioridad == 5) {
+                        if (area.claveArea == '@areaAdministrada') {
+                            $("#areasAdministradas").append('<option value="'
+                                + area.idArea + '" selected style="color:black">'
+                                + area.claveArea + " -- " + area.nombreArea + '</option>');
+                        } else {
+                            $("#areasAdministradas").append('<option value="'
+                                + area.idArea + '" style="color:black">'
+                                + area.claveArea + " -- " + area.nombreArea + '</option>');
+                        }
+                    }
+                });
+                $("#areasAdministradas").append('<option value = "0" style="color:black">'
+                    + "Agregar" + '</option>');
+            }
+        });*@
+
+        @*$("#select2-areasAdministradas-container").hover(
+            function () {
+                $('#select2-areasAdministradas-container').attr("title", '@areaAdministrada  -- @centroTrabajo.ToString()');
+            }
+        );*@
+
+    });
+</script>
+@*
+    PRME Si ya está en el _layout, tambien se requierer aquí, pregunatra a Evaristo
+    <script src="~/js/select2.js"></script> Se tienen dos veces*@
+<script src="~/js/select2.js"></script>
+<link rel="stylesheet" href="~/css/select2.css" />

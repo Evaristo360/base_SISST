@@ -1,0 +1,119 @@
+﻿@model IEnumerable<SISST.ViewModels.Comunes.Usuarios.VMAplicationRol>
+@using SISST.ViewModels.Privilegios
+@{
+    try
+    {
+        if (ViewBag.StylePrivilegios == null)
+        {
+            ViewBag.StylePrivilegios = "";
+        }
+    }
+    catch (Exception ex)
+    {
+        ViewBag.StylePrivilegios = "";
+    }
+
+}
+@Html.Editor("numeroRoles", new { htmlAttributes = new { @id = "nRoles", @class = "validaRoles", @Style = "display:none;" } })
+<span class="text-danger" data-valmsg-for="numeroRoles" data-valmsg-replace=true></span>
+<table id="tablaRol" class="table table-striped my-4 w-100 border-gray border dataTables-example">
+    <thead>
+        <tr>
+            <th style="display:none;"></th>
+            @if ((String)ViewBag.accion == "crear")
+            {
+                <th>
+                    @Html.Label("Agregar")
+                </th>
+            }
+            <th>
+                @Html.DisplayName("Nombre")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            @if (ViewBag.StylePrivilegios == "")
+            {
+                <th class="text-center">
+                    @Html.Label("Privilegios")
+                </th>
+            }
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.esInvisible == false)
+            {
+                <tr>
+                    <td style="display:none;">@item.Id</td>
+                    @if ((String)ViewBag.accion == "crear")
+                    {
+
+                        <td>
+                            @{
+
+                                string idPrivilegios = "";
+                                foreach (var rolPrivilegio in item.rolPrivilegio)
+                                {
+                                    idPrivilegios += rolPrivilegio.id.ToString() + ",";
+                                }
+                                idPrivilegios = idPrivilegios.TrimEnd(',');
+
+                                if (item.esSeleccionado)
+                                {
+                                    <input type="checkbox" name="@idPrivilegios" id="@item.Id" class="chkRol" checked />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="@idPrivilegios" id="@item.Id" class="chkRol" />
+                                }
+
+                            }
+                        </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    @if (ViewBag.StylePrivilegios == "")
+                    {
+                        <td class="text-center">
+                            @{
+                                string idModal = "#modalPrivilegio" + item.Id;
+                            }
+                            <a id="@item.Id" name="@item.Id" data-toggle="modal" data-target="@idModal" title="Ver Privilegios" style="@ViewBag.StylePrivilegios"><i class="far fa-eye pr-1"></i></a>
+                        </td>
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+@foreach (var item in Model)
+{
+    if (item.esInvisible == true)
+    {
+        <div style="display:none;">
+            @if ((String)ViewBag.accion == "crear")
+            {
+                string idPrivilegios = "";
+                foreach (var rolPrivilegio in item.rolPrivilegio)
+                {
+                    idPrivilegios += rolPrivilegio.id.ToString() + ",";
+                }
+                idPrivilegios = idPrivilegios.TrimEnd(',');
+                if (item.esSeleccionado)
+                {
+                    <input type="checkbox" style="display:none;" name="@idPrivilegios" id="@item.Id" class="chkRol" />
+                    <input type="hidden" name="listaRol" value="@item.Id">
+                }
+            }
+        </div>
+    }
+}
+

@@ -1,0 +1,389 @@
+﻿@using SISST.ViewModels.Comunes.Privilegios;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Http
+@using SISST.ViewModels.Comunes.Usuarios
+@using SISST.ViewModels.Comunes.Roles
+@using SISST.config
+@using Comunes.Enumerables;
+
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AliasWeb aliasWeb
+@{
+    var isLaboratorio = false;
+
+    var alias = aliasWeb.Value;
+    var buscaPrivilegios = User.FindFirst("roles");
+    string rolActivo = "";
+    int rolActivoId = 0;
+    var privilegiosRolActivo = new VMRolPrivilegioClaim();
+    List<VMPrivilegioBase> listaPrivilegios = new List<VMPrivilegioBase>();
+    if (buscaPrivilegios != null)
+    {
+        List<VMRolPrivilegioClaim> parametros = Newtonsoft.Json.JsonConvert.DeserializeObject<List<VMRolPrivilegioClaim>>(buscaPrivilegios.Value);
+        privilegiosRolActivo = parametros.FirstOrDefault(x => x.Activo == true);
+        if (privilegiosRolActivo != null)
+        {
+            rolActivoId = privilegiosRolActivo.Id;
+            rolActivo = privilegiosRolActivo.Name;
+            if(privilegiosRolActivo.Id == (int)enumRol.METLAB || privilegiosRolActivo.Id == (int)enumRol.GERLAB)
+            {
+                isLaboratorio = true;
+            }
+        }
+        listaPrivilegios = string.IsNullOrEmpty(rolActivo) ? new List<VMPrivilegioBase>() : privilegiosRolActivo.Privilegios;
+    }
+    //buscar privilegios del usuario
+    var privilegiosUsuario = User.FindFirst("PrivilegiosUsuario");
+    List<VMPrivilegioBase> privilegios = new List<VMPrivilegioBase>();
+    if (privilegiosUsuario != null)
+    {
+        Newtonsoft.Json.JsonConvert.DeserializeObject<List<VMPrivilegioBase>>(privilegiosUsuario.Value);
+    }
+    if (privilegios.Count > 0)
+    {
+        listaPrivilegios.AddRange(privilegios);
+    }
+
+    List<VMPrivilegioBase> Model = new List<VMPrivilegioBase>();
+    string currentUser = string.Empty;
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        currentUser = User.Identity.Name;
+        Model = listaPrivilegios.GroupBy(x => x.id).Select(y => y.First()).ToList();//listaPrivilegios.Distinct().ToList();
+    }
+    //checar si hay módulo seleccionado
+    string moduloSel = Context.Session.GetString("moduloSel");
+
+    if (isLaboratorio)
+    {
+        moduloSel = "Laboratorio";
+    }
+    //Prioridad de módulos, por ahora a mano
+    //1 Incidentes
+    //2 Gestión de Seguridad
+    //3 Proyectos de Seguridad
+    //4 Protección Civil
+    string filtroModulo = string.IsNullOrEmpty(moduloSel) ? "Incidentes" : moduloSel.ToLower();
+    string claseModulo = " modulo_gris";
+    string claseBotonGuardar = "btn btn_gris";
+    string claseBotonCancelar = "btn btn_gris_outline";
+
+    if (Model.Count() > 0)
+    {
+        if (isLaboratorio)
+        {
+            filtroModulo = "Laboratorio";
+            claseModulo = "modulo_turquesa";
+            claseBotonGuardar = "btn btn_turquesa";
+            claseBotonCancelar = "btn btn_turquesa_outline";
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(moduloSel))
+            {
+                if (Model.Where(x => x.modulo.ToLower() == "Incidentes").Count() > 0)
+                {
+                    filtroModulo = "Incidentes";
+                    claseModulo = " modulo_naranja";
+                    claseBotonGuardar = "btn btn_naranja";
+                    claseBotonCancelar = "btn btn_naranja_outline";
+                }
+                else if (Model.Where(x => x.modulo.ToLower() == "gestión de seguridad").Count() > 0)
+                {
+                    filtroModulo = "Gestión de Seguridad";
+                    claseModulo = " modulo_azul";
+                    claseBotonGuardar = "btn btn_azul";
+                    claseBotonCancelar = "btn btn_azul_outline";
+                }
+                else if (Model.Where(x => x.modulo.ToLower() == "proyectos de seguridad").Count() > 0)
+                {
+                    filtroModulo = "Proyectos de Seguridad";
+                    claseModulo = " modulo_verde";
+                    claseBotonGuardar = "btn btn_verde";
+                    claseBotonCancelar = "btn btn_verde_outline";
+                }
+                else if (Model.Where(x => x.modulo.ToLower() == "protección civil integral").Count() > 0)
+                {
+                    filtroModulo = "Protección Civil Integral";
+                    claseModulo = " modulo_lavanda";
+                    claseBotonGuardar = "btn btn_lavanda";
+                    claseBotonCancelar = "btn btn_lavanda_outline";
+                }
+                else if (Model.Where(x => x.modulo.ToLower() == "panel de control").Count() > 0)
+                {
+                    filtroModulo = "Panel de control";
+                    claseModulo = " modulo_gris";
+                    claseBotonGuardar = "btn btn_gris";
+                    claseBotonCancelar = "btn btn_gris_outline";
+                }
+                else
+                {
+                    filtroModulo = Model.FirstOrDefault().modulo;
+                }
+                Context.Session.SetString("moduloSel", filtroModulo);
+                moduloSel = filtroModulo;
+            }
+            else
+            {
+                if (filtroModulo == "incidentes")
+                {
+                    claseModulo = " modulo_naranja";
+                    claseBotonGuardar = "btn btn_naranja";
+                    claseBotonCancelar = "btn btn_naranja_outline";
+                }
+                else if (filtroModulo == "gestión de seguridad")
+                {
+                    claseModulo = " modulo_azul";
+                    claseBotonGuardar = "btn btn_azul";
+                    claseBotonCancelar = "btn btn_azul_outline";
+                }
+                else if (filtroModulo == "proyectos de seguridad")
+                {
+                    claseModulo = " modulo_verde";
+                    claseBotonGuardar = "btn btn_verde";
+                    claseBotonCancelar = "btn btn_verde_outline";
+                }
+                else if (filtroModulo == "protección civil integral")
+                {
+                    claseModulo = " modulo_lavanda";
+                    claseBotonGuardar = "btn btn_lavanda";
+                    claseBotonCancelar = "btn btn_lavanda_outline";
+                }
+                else if (filtroModulo == "panel de control")
+                {
+                    claseModulo = " modulo_gris";
+                    claseBotonGuardar = "btn btn_gris";
+                    claseBotonCancelar = "btn btn_gris_outline";
+                }
+            }
+        }
+
+        Model = Model.Where(x => x.porOmision == true).Where(x => x.modulo.ToLower() == filtroModulo.ToLower()).ToList();
+    }
+    Context.Session.SetString("claseBotonGuardar", claseBotonGuardar);
+    Context.Session.SetString("claseBotonCancelar", claseBotonCancelar);
+}
+<!-- START Sidebar (left)-->
+<div class="aside-inner" style="padding-top:74px!important">
+    <nav class="sidebar" data-sidebar-anyclick-close="" style="border-top-style: solid;
+        border-top-color: #F38C30 ; border-top-width: 3px;">
+        <!-- START sidebar nav-->
+        <ul class="sidebar-nav">
+            <!-- shotcuts modulos-->
+            @if(!isLaboratorio){
+            <li>
+                @*class="nav-heading"Se agregó nav-heading y se pierde el onclick. Se gana que se oculta bien.
+            No se requiere!!!*@
+                <Center>
+                    <div id="shotcuts" class="pt-3 pb-3">
+                        @if (filtroModulo.ToLower() == "incidentes")
+                        {
+                            <img src="~/images/ic_accident.png" class="mr-1" title="Incidentes" />
+                        }
+                        else
+                        {
+                            <a href="#" title="Incidentes" onclick="setModulo('Incidentes')">
+                                <img src="~/images/ic_accident.png" class="mr-1" />
+                            </a>
+                        }
+                        @if (filtroModulo.ToLower() == "gestión de seguridad")
+                        {
+                            <img src="~/images/ic_gseguridad.png" class="mr-1" title="Gestión de la seguridad" />
+                        }
+                        else
+                        {
+                            <a href="#" title="Gestión de la seguridad" onclick="setModulo('Gestión de Seguridad')">
+                                <img src="~/images/ic_gseguridad.png" class="mr-1" />
+                            </a>
+                        }
+                        @if (filtroModulo.ToLower() == "proyectos de seguridad")
+                        {
+                            <img src="~/images/ic_proyectos.png" class="mr-1" title="Proyectos de seguridad" />
+                        }
+                        else
+                        {
+                            <a href="#" title="Proyectos de seguridad" onclick="setModulo('Proyectos de Seguridad')">
+                                <img src="~/images/ic_proyectos.png" class="mr-1" />
+                            </a>
+                        }
+                        @if (filtroModulo.ToLower() == "protección civil integral")
+                        {
+                            <img src="~/images/ic_pcivil.png" class="mr-1" title="Protección Civil Integral" />
+                        }
+                        else
+                        {
+                            <a href="#" title="Protección Civil Integral" onclick="setModulo('Protección Civil Integral')">
+                                <img src="~/images/ic_pcivil.png" class="mr-1" />
+                            </a>
+                        }
+                        @if (filtroModulo.ToLower() == "panel de control")
+                        {
+                            <img src="~/images/ic_panel.png" class="mr-1" title="Panel de Control" />
+                        }
+                        else
+                        {
+                            <a href="#" title="Panel de Control" onclick="setModulo('Panel de control')">
+                                <img src="~/images/ic_panel.png" class="mr-1" />
+                            </a>
+                        }
+                    </div>
+                </Center>
+                <hr style="margin:5px;" class="hr" />
+            </li>
+            }
+            <!-- END shotcuts modulos-->
+            <!-- Modulos name -->
+            <li class="nav-heading">
+                <center>
+                    <div class="@claseModulo">
+                        @moduloSel
+                    </div>
+                </center>
+            </li>
+            <!-- Iterates over all sidebar items-->
+            @if (User.Identity.IsAuthenticated)
+            {
+                string iconDefault = "fa-minus";
+                string controlador = string.Empty;
+                @if (Model != null && Model.Count() > 0)
+                {
+                    var moduloMenuActual = "-";
+                    var moduloMenu = "";
+                    var liTipo = "";
+                    var controlActivo = "";
+                    foreach (var item in Model.Distinct().ToList())
+                    {
+                        int index = 0;
+                        string icono = !string.IsNullOrEmpty(item.icono) ? item.icono : iconDefault;
+                        index = item.url.IndexOf(@"/") != -1 ? item.url.LastIndexOf(@"/") : 2;
+                        controlador = !string.IsNullOrEmpty(item.url) ? item.url.Substring(1, index - 1) : "";
+                        string accion = !string.IsNullOrEmpty(item.url) ? item.url.Substring(index + 1) : "";
+
+                        moduloMenu = (item.moduloMenu == null) ? "" : item.moduloMenu;
+                        //liTipo = moduloMenu.Equals("") ? "Unico" : "Anidado";
+
+                        if (moduloMenu != moduloMenuActual)
+                        {
+                            moduloMenuActual = moduloMenu;
+                            controlActivo = moduloMenu.Replace(" ", "");
+                            if (moduloMenu.Equals(""))
+                            {
+                                controlActivo = accion;
+                                // Se verifica si se debe cerrar una anterior. AKI PRME
+                                if (liTipo.Equals("Anidado"))
+                                {
+                                    @Html.Raw("</ul></li>")
+                                }
+                                liTipo = "Unico";
+                            }
+                            else
+                            {
+                                // Se verifica si se debe cerrar una anterior.
+                                if (liTipo.Equals("Anidado"))
+                                {
+                                    @Html.Raw("</ul></li>")
+                                }
+                                liTipo = "Anidado";
+
+                                // Se abre la sección que tiene subsecciones.
+                                @Html.Raw("<li class='" + @Html.isActive(controller: controlador, moduloMenu) + "'>" +
+                                  "<a href='#" + controlador.ToLower() + "' title='" + moduloMenu + "' data-toggle='collapse'>" +
+                                      "<em class='fas " + icono + "'></em>" +
+                                      "<span data-localize='sidebar.nav." + controlador.ToLower() + "." + controlador.ToUpper() + "'>" + moduloMenu + "</span>" +
+                                  "</a>" +
+                                  "<ul id='" + controlador.ToLower() + "' class='sidebar-nav sidebar-subnav collapse'> " +
+                                      "<li class='sidebar-subnav-header'>" + moduloMenu + "<hr></li>")
+                            } // Fin del else
+                        }
+                        else if (moduloMenu.Equals(""))
+                        {
+                            controlActivo = accion;
+                            liTipo = "Unico";
+                        }
+
+                        if (liTipo.Equals("Unico"))
+                        {
+                            @Html.Raw("<li class='" + @Html.isActive(controlador, accion) + "'>" +
+                                        "<a href='#' title='" + item.seccion + "' " +
+                                            " onclick =\"getURL('" + item.url + "','" + item.area + "')\">" +
+                                            "<em class='fas " + icono + "'></em>" +
+                                            "<span data-localize='sidevar.nav." + controlador.ToLower() + "." + accion.ToUpper() + "'>&nbsp;" + item.seccion + "</span>" +
+                                        "</a>" +
+                                        "</li>")
+                        }
+                        else
+                        {
+                            @Html.Raw("<li class='" + @Html.isActive(controlador, accion) + "'>" +
+                                            "<a href='#' title='" + item.seccion + "' " +
+                                            " onclick=\"getURL('" + item.url + "','" + item.area + "')\">" +
+                                                //"<em class='fas " + icono + "'></em>" +
+                                                "<span data-localize='sidevar.nav." + controlador.ToLower() + "." + accion.ToUpper() + "'>&nbsp;" + item.seccion + "</span>" +
+                                            "</a>" +
+                                        "</li>")
+                        }
+                    } //endforeach
+                      // Por si el último es anidado, se cierran los tags
+                    @if (liTipo.Equals("Anidado"))
+                    {
+                        @Html.Raw("</ul></li>")
+                    }
+
+                }
+            }
+        </ul>
+        <!-- END sidebar nav-->
+    </nav>
+    @*<footer class="footer-container">
+        <img src="~/images/Logo-CFE.png" title="" style="margin-top:-100px; margin-left:-200px;" />
+    </footer>*@
+</div>
+<!-- END Sidebar (left)-->
+
+<script type="text/javascript">
+    function getURL(patronURL, area) {
+        var path = location.pathname;
+        var alias = "@alias";
+        if (alias != "")
+            alias = "/" + alias;
+        if (area != "")
+            area = "/" + area;
+        $.LoadingOverlay("show");        
+        location.href = location.protocol + "//" + location.host + alias + area + patronURL;
+    }
+
+    function setModulo(mod) {
+        $.ajaxSetup({
+            url: '@Url.Action("setModulo", "Home", new { Area=""})'
+        });
+        $.ajax({
+            data: { modulo:mod},
+            type: 'get',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (XMLHttpRequest.status == "404") {
+                    $("#msgAjax").html("<div class='text-danger'>Error 404. No se encontró el recurso solicitado.</div>");
+                } else if (XMLHttpRequest.status == "500") {
+                    $("#msgAjax").html("<div class='text-danger'>Error 500. Hay un error de programación en el recurso solicitado.</div>");
+                } else {
+                    $("#msgAjax").html('Estado:' + XMLHttpRequest.status + ', ' + XMLHttpRequest.statusText);
+                }
+            },
+            success: function (data) {
+                //console.log("resultado: " + data.status)
+                //location.reload();               
+                if (mod == "Incidentes") {
+                    if (@rolActivoId == 7) {
+                        location.href = "@Url.Action("Listado", "Incidentes",  new { Area = "Incidentes", regional = true })";
+                    } else if (@rolActivoId == 8) {
+                        location.href = "@Url.Action("Listado", "Incidentes",  new { Area = "Incidentes", nacional = true })";
+                    } else {
+                        location.href = "@Url.Action("Index", "Incidentes",  new { Area = "Incidentes" })";
+                    }
+                } else {
+                    location.href = '@Url.Action("Inicio", "Home", new { Area=""})';
+                }
+            }
+        });//end ajax
+    }
+
+</script>

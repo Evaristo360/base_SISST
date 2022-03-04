@@ -1,0 +1,298 @@
+﻿@using SISST.ViewModels.Comunes.Privilegios;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Http
+@using SISST.ViewModels.Comunes.Usuarios
+@using SISST.ViewModels.Comunes.Roles
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var buscaPrivilegios = User.FindFirst("roles");
+    string rolActivo = "";
+    var privilegiosRolActivo = new VMRolPrivilegioClaim();
+    List<VMPrivilegioBase> listaPrivilegios = new List<VMPrivilegioBase>();
+    if (buscaPrivilegios != null)
+    {
+        List<VMRolPrivilegioClaim> parametros = Newtonsoft.Json.JsonConvert.DeserializeObject<List<VMRolPrivilegioClaim>>(buscaPrivilegios.Value);
+        privilegiosRolActivo = parametros.FirstOrDefault(x => x.Activo == true);
+        if (privilegiosRolActivo != null)
+            rolActivo = privilegiosRolActivo.Name;
+        listaPrivilegios = string.IsNullOrEmpty(rolActivo) ? new List<VMPrivilegioBase>() : privilegiosRolActivo.Privilegios;
+    }
+    //buscar privilegios del usuario
+    var privilegiosUsuario = User.FindFirst("PrivilegiosUsuario");
+    List<VMPrivilegioBase> privilegios = Newtonsoft.Json.JsonConvert.DeserializeObject<List<VMPrivilegioBase>>(privilegiosUsuario.Value);
+    if (privilegios.Count > 0)
+    {
+        listaPrivilegios.AddRange(privilegios);
+    }
+
+    List<VMPrivilegioBase> Model = new List<VMPrivilegioBase>
+    ();
+    string currentUser = string.Empty;
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        currentUser = User.Identity.Name;
+        Model = listaPrivilegios.Distinct().ToList();
+    }
+    //checar si hay módulo seleccionado
+    string moduloSel = Context.Session.GetString("moduloSel");
+
+    //Prioridad de módulos, por ahora a mano
+    //1 Incidentes
+    //2 Gestión de Seguridad
+    //3 Proyectos de Seguridad
+    //4 Protección Civil
+    string filtroModulo = moduloSel;
+    string claseModulo = " modulo_gris";
+    string claseBotonGuardar = "btn btn_gris";
+    string claseBotonCancelar = "btn btn_gris_outline";
+
+    if (Model.Count() > 0)
+    {
+        if (string.IsNullOrEmpty(moduloSel))
+        {
+            if (Model.Where(x => x.modulo == "Incidentes").Count() > 0)
+            {
+                filtroModulo = "Incidentes";
+                claseModulo = " modulo_naranja";
+                claseBotonGuardar = "btn btn_naranja";
+                claseBotonCancelar = "btn btn_naranja_outline";
+            }
+            else if (Model.Where(x => x.modulo == "Gestión de Seguridad").Count() > 0)
+            {
+                filtroModulo = "Gestión de Seguridad";
+                claseModulo = " modulo_azul";
+                claseBotonGuardar = "btn btn_azul";
+                claseBotonCancelar = "btn btn_azul_outline";
+            }
+            else if (Model.Where(x => x.modulo == "Proyectos de Seguridad").Count() > 0)
+            {
+                filtroModulo = "Proyectos de Seguridad";
+                claseModulo = " modulo_verde";
+                claseBotonGuardar = "btn btn_verde";
+                claseBotonCancelar = "btn btn_verde_outline";
+            }
+            else if (Model.Where(x => x.modulo == "Protección Civil").Count() > 0)
+            {
+                filtroModulo = "Protección Civil";
+            }
+            else if (Model.Where(x => x.modulo == "Panel de control").Count() > 0)
+            {
+                filtroModulo = "Panel de control";
+                claseBotonGuardar = "btn btn_gris";
+                claseBotonCancelar = "btn btn_gris_outline";
+            }
+            else
+            {
+                filtroModulo = Model.FirstOrDefault().modulo;
+                
+            }
+            Context.Session.SetString("moduloSel", filtroModulo);
+        }
+        else
+        {
+            filtroModulo = moduloSel;
+            if (moduloSel == "Incidentes")
+            {
+                claseModulo = " modulo_naranja";
+                claseBotonGuardar = "btn btn_naranja";
+                claseBotonCancelar = "btn btn_naranja_outline";
+            }
+            else if (moduloSel == "Gestión de Seguridad")
+            {
+                claseModulo = " modulo_azul";
+                claseBotonGuardar = "btn btn_azul";
+                claseBotonCancelar = "btn btn_azul_outline";
+            }
+            else if (moduloSel == "Proyectos de Seguridad")
+            {
+                claseModulo = " modulo_verde";
+                claseBotonGuardar = "btn btn_verde";
+                claseBotonCancelar = "btn btn_verde_outline";
+            }
+            else if (moduloSel == "Protección Civil")
+            {
+                //pendiente
+            }
+            else if(moduloSel=="Panel de control")
+            {
+                claseBotonGuardar = "btn btn_gris";
+                claseBotonCancelar = "btn btn_gris_outline";
+            }
+            //else
+            //{
+            //    Context.Session.SetString("claseBotonGuardar", "btn btn btn-green");
+            //    Context.Session.SetString("claseBotonCancelar", "btn btn btn-secondary");
+            //}
+        }
+        Model = Model.Where(x => x.porOmision == true).Where(x => x.modulo == filtroModulo).ToList();
+    }
+    Context.Session.SetString("claseBotonGuardar", claseBotonGuardar);
+    Context.Session.SetString("claseBotonCancelar", claseBotonCancelar);
+    }
+<!-- START Sidebar (left)-->
+<div class="aside-inner">
+    <nav class="sidebar" data-sidebar-anyclick-close=""
+         style="border-top-style: solid; margin-top: -1px;
+        border-top-color: #F38C30 ; border-top-width: 3px;">
+        <!-- START sidebar nav-->
+        <ul class="sidebar-nav">
+            <!-- START user info
+            AKI PRME: VERIFICAR; Esta sección se puede omitir, dado que no se usa, es decir desde la barra de navegación no se llama-->
+            <li class="has-user-block">
+                <div id="user-block" class="collapse">
+                    <div class="item user-block">
+                        <!-- User picture-->
+                        <div class="user-block-picture">
+                            <div class="user-block-status">
+                                <img src="~/images/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail rounded-circle" />
+                                <div class="circle bg-success circle-lg"></div>
+                            </div>
+                        </div>
+                        <!-- Name and Job-->
+                        <div class="user-block-info">
+                            <span class="user-block-name">Hola, @currentUser</span>
+                            <span class="user-block-role">@rolActivo</span>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+            <!-- END user info-->
+            <li>
+                <!-- AKI PRME agregué <li> -->
+                <div id="shotcuts" class="pt-3 pb-3">
+                    @*style="text-align:center;"*@
+                    @if (filtroModulo == "Incidentes")
+                    {
+                        <img src="~/images/ic_accident_sel.png" title="Incidentes" />
+                    }
+                    else
+                    {
+                        <a href="#" title="Incidentes" onclick="setModulo('Incidentes')">
+                            <img src="~/images/ic_accident.png" class="mr-2" />
+                        </a>
+                    }
+                    @if (filtroModulo == "Gestión de Seguridad")
+                    {
+                        <img src="~/images/ic_gseguridad_sel.png" title="Gestión de la seguridad" class="mr-2" />
+                    }
+                    else
+                    {
+                        <a href="#" title="Gestión de la seguridad" onclick="setModulo('Gestión de Seguridad')">
+                            <img src="~/images/ic_gseguridad.png" class="mr-2" />
+                        </a>
+                    }
+                    @if (filtroModulo == "Proyectos de Seguridad")
+                    {
+                        <img src="~/images/ic_proyectos_sel.png" title="Proyectos de seguridad" class="mr-2" /> @*<span>&nbsp; &nbsp;</span>*@
+                    }
+                    else
+                    {
+                        <a href="#" title="Proyectos de seguridad" onclick="setModulo('Proyectos de Seguridad')">
+                            <img src="~/images/ic_proyectos.png" />
+                        </a>
+                    }
+                    @if (filtroModulo == "Panel de control")
+                    {
+                        <img src="~/images/ic_panel_sel.png" title="Panel de Control" />
+                    }
+                    else
+                    {
+                        <a href="#" title="Panel de Control" onclick="setModulo('Panel de control')">
+                            <img src="~/images/ic_panel.png" />
+                        </a>
+                    }
+                </div>
+                <hr style="margin:5px;" class="hr" />
+            </li>
+            <!-- shotcuts modulos-->
+            <!-- Iterates over all sidebar items-->
+            <li>
+                <center>
+                    <div class="@claseModulo">
+                        @filtroModulo
+                    </div>
+                </center>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                string iconDefault = "fa-minus";
+                string controlador = string.Empty;
+                @if (Model != null && Model.Count() > 0)
+                {
+                    var moduloActual = "";
+                    var NombreMenu = "";
+                    foreach (var item in Model.Distinct().ToList())
+                    {
+                        int index = 0;
+                        if (NombreMenu == "")
+                        {
+                            NombreMenu = item.modulo;
+                        }
+                        else if (NombreMenu != item.modulo)
+                        {
+                            NombreMenu = item.modulo;
+                            moduloActual = item.modulo;
+                        }
+                        string icono = !string.IsNullOrEmpty(item.icono) ? item.icono : iconDefault;
+                        index = item.url.IndexOf(@"/") != -1 ? item.url.LastIndexOf(@"/") : 2;
+
+                        controlador = !string.IsNullOrEmpty(item.url) ? item.url.Substring(1, index - 1) : "";
+                        string accion = !string.IsNullOrEmpty(item.url) ? item.url.Substring(index + 1) : "";
+
+                        @Html.Raw("<li class='" + @Html.isActive(controlador, accion) + "'><a href='#' onclick=\"getURL('" + item.url + "','" + item.area + "')\">" +
+                                                    "<em class='fas " + icono + "'></em>&nbsp;<span >" + item.seccion + "</span></a></li>");
+
+                    } //endforeach
+                    if (moduloActual != "")
+                    { @Html.Raw("</ul>")}
+
+            }
+            }
+            <!-- END shotcuts módulos-->
+        </ul>
+        <!-- END sidebar nav-->
+    </nav> 
+    <footer class="footer-container">
+        <img src="~/images/logoCFE.png.png" title="" />
+    </footer>
+</div>
+<!-- END Sidebar (left)-->
+<script type="text/javascript">
+    function getURL(patronURL, area) {
+        var path = location.pathname;
+        //var alias = "System.Configuration.ConfigurationManager.AppSettings["sitioWebAliasIIS"]";
+        var alias = "";       
+        //alert(location.protocol + "//" + location.host + alias + area + patronURL)
+        if (area != "")
+            area = "/" + area;
+        location.href = location.protocol + "//" + location.host + alias + area + patronURL;
+    }
+
+    function setModulo(mod) {
+        $.ajaxSetup({
+            url: '@Url.Action("setModulo", "Home", new { Area=""})'
+        });
+        $.ajax({
+            data: { modulo:mod},
+            type: 'get',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (XMLHttpRequest.status == "404") {
+                    $("#msgAjax").html("<div class='text-danger'>Error 404. No se encontró el recurso solicitado.</div>");
+                } else if (XMLHttpRequest.status == "500") {
+                    $("#msgAjax").html("<div class='text-danger'>Error 500. Hay un error de programación en el recurso solicitado.</div>");
+                } else {
+                    $("#msgAjax").html('Estado:' + XMLHttpRequest.status + ', ' + XMLHttpRequest.statusText);
+                }
+            },
+            success: function (data) {
+                console.log("resultado: " + data.status)
+                //location.reload();
+                location.href = '@Url.Action("Inicio", "Home", new { Area=""})'
+            }
+        });//end ajax
+    }
+
+</script>

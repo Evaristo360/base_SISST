@@ -1,0 +1,44 @@
+﻿@model List<SISST.ViewModels.Comunes.Areas.VMAreaDetalle>
+@{
+}
+<div class="modal inmodal" id="mdlAreas" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content animated fadeIn">
+            <div class="modal-header">
+                <h4 class="modal-title">Centros de trabajo</h4>
+            </div>
+            <div id="AreasParcial" class="modal-body modalArea">
+                <table id="tblAreas" class="table table-striped table-bordered table-hover dataTables-example" style="width:100%!important">
+                    <thead>
+
+                        <tr>
+                            <th>
+                                @Html.DisplayName("Clave")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Nombre")
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a href="javascript:seleccionar('@item.Id','@item.Clave --  @item.Nombre');">@item.Clave</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white desbloquearFormulario" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

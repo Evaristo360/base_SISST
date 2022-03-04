@@ -1,0 +1,303 @@
+﻿@model SISST.ViewModels.Comunes.Catalogos.VMOpcion
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{ ViewData["Title"] = "Nueva de opción de catálogo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8  align-content-center">
+                <h3 class="pl-3">Nueva opción del catálogo @Model.NombreCatalogo </h3>
+                <ol class="breadcrumb mb-0 ">
+                    <li class="breadcrumb-item">
+                        <a href="~/Comunes/Catalogos/Index">Lista de catálogos</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="~/Comunes/Catalogos/Details/@ViewBag.IdCatalogo">Consulta de catálogo</a>
+                    </li>
+                    <li class="breadcrumb-item active">Nueva opción de catálogo</li>
+                </ol>
+            </div>
+            <div class="col-4 text-right mt-3">
+                @Html.ActionLink("Consulta de catálogo", "Details", "Catalogos", new { id = ViewBag.IdCatalogo }, new { @class = "btn btn_sistema" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-default">
+    <h4 class="card-header">Datos de la opción nueva </h4>
+    <div class="card-body">
+        @using (Html.BeginForm("CreateOpcion", "Catalogos", FormMethod.Post, new { id = "form-Edit", role = "form", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @*@Html.HiddenFor(model => model.IdCatalogoSuperior)*@
+            <div class="form-group row">
+                <label class="col-md-2 pl-5 col-form-label">Tipo de opción</label>
+                <div class="col-md-10">
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            @Html.RadioButtonFor(model => model.EsSeleccionable, 1, new { @class = "form-check-input", id = "idSeleccionable" })
+                            @*@Html.LabelFor(model => model.EsSeleccionable, "Seleccionable")*@
+                            <label for="idSeleccionable">Seleccionable</label>
+                        </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            @Html.RadioButtonFor(model => model.EsSeleccionable, 0, new { @class = "form-check-input", id = "idAgrupador" })
+                            @*@Html.LabelFor(model => model.EsSeleccionable, "Agrupador")*@
+                            <label for="idAgrupador">Agrupador</label>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="divOpcionAgrupa">
+                <div class="col-md-12">
+                    <div class="form-group row" id="divOpcionAgrupa">
+                        <label class="col-md-2 offset-2 col-form-label required-data">Opción que agrupa</label>
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(q => q.IdCatalogoSuperior,
+                                                    new SelectList(ViewBag.ListaOpcionAgrupadora, "Value", "Text", Model.IdCatalogoSuperior),
+                                                    "Seleccione opción que agrupa", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Clave, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Clave, new { @class = "form-control", @maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.Clave, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Orden, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Orden, new { @class = "form-control", @maxlength = "5" })
+                    @Html.ValidationMessageFor(model => model.Orden, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @maxlength = "500" })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control autoResize", @maxlength = "250", id = "CatalogoOpcionDescripcion" })
+                    @await Component.InvokeAsync("contadorCaracteres", new { nameTextBox = "CatalogoOpcionDescripcion", classTextBox = "COD", max = 250 })
+                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Ayuda, htmlAttributes: new { @class = "col-md-2 pl-5 col-form-label" })
+                <div class="col-md-10">
+                    <div class="card card-default ">
+                        <div class="card-body">
+                            <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                                <div class="btn-group dropdown">
+                                    <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" title="Font">
+                                        <em class="fa fa-font"></em>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javacript:void" data-edit="fontName Arial" style="font-family:'Arial';">Arial</a>
+                                        <a class="dropdown-item" href="javacript:void" data-edit="fontName Sans" style="font-family:'Sans';">Sans</a>
+                                        <a class="dropdown-item" href="javacript:void" data-edit="fontName Serif" style="font-family:'Serif';">Serif</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" title="Font Size">
+                                        <em class="fa fa-text-height"></em>&nbsp;
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javacript:void" data-edit="fontSize 5" style="font-size:24px;">Huge</a>
+                                        <a class="dropdown-item" href="javacript:void" data-edit="fontSize 3" style="font-size:18px;">Normal</a>
+                                        <a class="dropdown-item" href="javacript:void" data-edit="fontSize 1" style="font-size:14px;">Small</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-secondary" data-edit="bold" data-toggle="tooltip" title="Bold (Ctrl/Cmd+B)">
+                                        <em class="fa fa-bold"></em>
+                                    </a>
+                                    <a class="btn btn-secondary" data-edit="italic" data-toggle="tooltip" title="Italic (Ctrl/Cmd+I)">
+                                        <em class="fa fa-italic"></em>
+                                    </a>
+                                    <a class="btn btn-secondary" data-edit="strikethrough" data-toggle="tooltip" title="Strikethrough">
+                                        <em class="fa fa-strikethrough"></em>
+                                    </a>
+                                    <a class="btn btn-secondary" data-edit="underline" data-toggle="tooltip" title="Underline (Ctrl/Cmd+U)">
+                                        <em class="fa fa-underline"></em>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-secondary" data-edit="insertunorderedlist" data-toggle="tooltip" title="Bullet list">
+                                        <em class="fa fa-list-ul"></em>
+                                    </a>
+                                    <a class="btn btn-secondary" data-edit="insertorderedlist" data-toggle="tooltip" title="Number list">
+                                        <em class="fa fa-list-ol"></em>
+                                    </a>
+                                    <a class="btn btn-secondary" data-edit="outdent" data-toggle="tooltip" title="Reduce indent (Shift+Tab)">
+                                        <em class="fas fa-outdent"></em>
+                                    </a>
+                                    <a class="btn btn-secondary" data-edit="indent" data-toggle="tooltip" title="Indent (Tab)">
+                                        <em class="fa fa-indent"></em>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-secondary" data-edit="justifyleft" data-toggle="tooltip" title="Align Left (Ctrl/Cmd+L)">
+                                        <em class="fa fa-align-left"></em>
+                                    </a>
+                                    <a class="btn btn-secondary" data-edit="justifycenter" data-toggle="tooltip" title="Center (Ctrl/Cmd+E)">
+                                        <em class="fa fa-align-center"></em>
+                                    </a>
+                                    <a class="btn btn-secondary" data-edit="justifyright" data-toggle="tooltip" title="Align Right (Ctrl/Cmd+R)">
+                                        <em class="fa fa-align-right"></em>
+                                    </a>
+                                    <a class="btn btn-secondary" data-edit="justifyfull" data-toggle="tooltip" title="Justify (Ctrl/Cmd+J)">
+                                        <em class="fa fa-align-justify"></em>
+                                    </a>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" title="Hyperlink">
+                                        <em class="fa fa-link"></em>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <div class="input-group">
+                                            <input class="form-control form-control-sm" id="LinkInput" placeholder="URL" type="text" data-edit="createLink" />
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-secondary" type="button">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-secondary" data-edit="unlink" data-toggle="tooltip" title="Remove Hyperlink">
+                                        <em class="fa fa-cut"></em>
+                                    </a>
+                                </div>
+                                @*<div class="btn-group">
+                                    <a class="btn btn-secondary" id="pictureBtn" data-toggle="tooltip" title="Insert picture (or just drag &amp; drop)">
+                                        <em class="far fa-image"></em>
+                                    </a>
+                                    <input type="file" data-edit="insertImage" style="position:absolute; opacity:0; width:41px; height:34px;" />
+                                </div>*@
+                                <div class="btn-group ml-auto">
+                                    <a class="btn btn-secondary" data-edit="undo" data-toggle="tooltip" title="Undo (Ctrl/Cmd+Z)">
+                                        <em class="fa fa-undo"></em>
+                                    </a>
+                                    <a class="btn btn-secondary" data-edit="redo" data-toggle="tooltip" title="Redo (Ctrl/Cmd+Y)">
+                                        <em class="fas fa-redo"></em>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="editor" style="overflow:scroll; height:150px;max-height:150px;">@Html.Raw(@Model.Ayuda)</div>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model => model.Ayuda, new { @id = "Ayuda" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(q => q.Estado, new SelectList(ViewBag.ListaEstados, "Value", "Text"),
+                                                "Seleccione el estado", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.IdProceso, htmlAttributes: new { @class = "col-md-2  pl-5 col-form-label required-data" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(q => q.IdProceso,
+                                            new SelectList(ViewBag.ListaProcesos, "Value", "Text"),
+                                            "Seleccione el proceso", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdProceso, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 pl-5 col-form-label">(*) Dato requerido.</label>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-10 offset-2">
+                    <button type="button" class="@claseBotonCancelar" onclick="location.href='@Url.Action("Details", "Catalogos", new { id = ViewBag.IdCatalogo })'"><i class="fa fa-times pr-2"></i>Cancelar</button>
+                    <button type="button" class="@claseBotonGuardar mr-1 copiarAyuda"><i class="fas fa-save pr-2"></i> Guardar</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/vendor/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="~/js/jquery.hotkeys.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            // En caso de que aplique, se muestra mensaje
+            if ('@TempData["tipoMensaje"]' != "") {
+                toastr.options.positionClass = 'toast-bottom-right';
+                toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+            }
+            // Se muestra u oculta la lista de opciones Agrupadoras
+            if ('@Model.EsSeleccionable.Equals(Byte.Parse("1"))' == 'True') {
+                //Se verifica que se tengan opciones que agrupan
+                if('@ViewBag.ListaOpcionAgrupadora.Count.Equals(1)' != 'True')
+                    $('#divOpcionAgrupa').css('display', 'block');
+                else
+                    $('#divOpcionAgrupa').css('display', 'none');
+            }
+            else {
+                $('#divOpcionAgrupa').css('display', 'none');
+            }
+
+            // Ocultar o mostrar las opciones de Opcion que agrupa para los elementos seleccionables
+            $('#idAgrupador').click(function () {
+                $('#divOpcionAgrupa').css('display', 'none');
+            });
+            $('#idSeleccionable').click(function () {
+                //Se verifica que se tengan opciones que agrupan
+                if('@ViewBag.ListaOpcionAgrupadora.Count.Equals(1)' != 'True')
+                    $('#divOpcionAgrupa').css('display', 'block');
+                else
+                    $('#divOpcionAgrupa').css('display', 'none');
+            });
+
+            $('.copiarAyuda').click(function () {
+                var htmlEditor = $("#editor").html();
+                $('#Ayuda').val(htmlEditor);
+                $("#form-Edit").submit();
+            });
+        });
+
+        $(function () {
+            function initToolbarBootstrapBindings() {
+                var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
+                    'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
+                    'Times New Roman', 'Verdana'],
+                    fontTarget = $('[title=Font]').siblings('.dropdown-menu');
+                $.each(fonts, function (idx, fontName) {
+                    fontTarget.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">' + fontName + '</a></li>'));
+                });
+                $('a[title]').tooltip({ container: 'body' });
+                $('.dropdown-menu input').click(function () { return false; })
+                    .change(function () { $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle'); })
+                    .keydown('esc', function () { this.value = ''; $(this).change(); });
+
+                $('[data-role=magic-overlay]').each(function () {
+                    var overlay = $(this), target = $(overlay.data('target'));
+                    overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+                });
+            };
+
+            initToolbarBootstrapBindings();
+
+            $('#editor').wysiwyg();
+
+        });
+    </script>
+
+}

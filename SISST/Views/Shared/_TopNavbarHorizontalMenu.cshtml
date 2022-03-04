@@ -1,0 +1,143 @@
+﻿@using SISST.ViewModels.Privilegios;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Http
+@using SISST.ViewModels.Comunes.Usuarios 
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    List<VMPrivilegio> Model = new List<VMPrivilegio>();
+    @if (User.Identity.IsAuthenticated)
+    {
+        //var lista = new List<VMPrivilegio>();
+        //var json = HttpContextAccessor.HttpContext.Session.GetString("_privilegios");
+        //Dictionary<string, object> parametros = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(json.ToString());
+        //var listaPrivilegios = Newtonsoft.Json.JsonConvert.DeserializeObject<List<VMPrivilegio>>(parametros.First(x => x.Key == "model").Value.ToString());
+        //if (listaPrivilegios.Count() > 0)
+        //    lista.AddRange(listaPrivilegios);
+        //var jsonRoles = HttpContextAccessor.HttpContext.Session.GetString("_roles");
+        //Dictionary<string, object> parametros2 = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonRoles.ToString());
+        //var listaRoles = Newtonsoft.Json.JsonConvert.DeserializeObject<List<VMAplicationRol>>(parametros2.First(x => x.Key == "model").Value.ToString());
+        //if (listaRoles.Count() > 0)
+        //{
+        //    foreach (var lr in listaRoles)
+        //    {
+        //        lista.AddRange(lr.rolPrivilegio);
+        //    }
+        //}
+        //Model = lista.Distinct().ToList();
+    }
+    
+
+    }
+    
+<nav class="navbar topnavbar navbar-expand-lg navbar-light">
+<!-- START navbar header-->
+<!-- END navbar header-->
+<!-- START Nav wrapper-->
+<div class="navbar-collapse collapse" id="topnavbar">
+
+<ul class="nav navbar-nav mr-auto flex-column flex-lg-row">
+    <li class="nav-item dropdown @Html.isActive(controller: "Home")">
+        <a class="nav-link" href="@Url.Action("Index","Home",new { area = "" })">Inicio</a>
+    </li>
+@*<ul class='nav navbar-nav mr-auto flex-column flex-lg-row'>*@
+            @if(User.Identity.IsAuthenticated)
+            {
+                string iconDefault = "fa-minus";
+                string controlador = string.Empty;
+            <!-- START Left navbar-->
+            @if (Model != null && Model.Count() > 0)
+            {
+
+
+                var moduloActual = "";
+                var NombreMenu = "";
+
+
+                foreach (var item in Model.Where(x => x.porOmision == true).OrderBy(e => e.modulo))
+                {
+                    int index = 0;
+                    if (NombreMenu == "")
+                    {
+                        NombreMenu = item.modulo;
+                        index = item.url.IndexOf(@"/") > 0 ? item.url.LastIndexOf(@"/") : 2;
+                        controlador = !string.IsNullOrEmpty(item.url)  ? item.url.Substring(1, index - 1) : "";
+                        @Html.Raw("<li class='nav-item dropdown " + @Html.isActive(controller: controlador) + "'><a class='nav-link dropdown-toggle dropdown-toggle-nocaret' href='#dashboard' data-toggle='dropdown'>" + NombreMenu + "</a><div class='dropdown-menu animated fadeIn'>")
+                        //moduloActual = item.modulo;
+                        moduloActual = item.modulo;
+                    }
+                    else if (NombreMenu != item.modulo)
+                    {
+                        NombreMenu = item.modulo;
+                        index = item.url.IndexOf(@"/") > 0 ? item.url.LastIndexOf(@"/") : 2;
+                        @Html.Raw("</div></li>");
+                        controlador = !string.IsNullOrEmpty(item.url) ? item.url.Substring(1, index - 1) : "";
+                        @Html.Raw("<li class='nav-item dropdown " + @Html.isActive(controller: controlador) + "'><a class='nav-link dropdown-toggle dropdown-toggle-nocaret' href='#dashboard' data-toggle='dropdown'>" + NombreMenu + "</a><div class='dropdown-menu animated fadeIn'>")                       
+                        moduloActual = item.modulo;
+                    }
+
+                    index = item.url.IndexOf(@"/")>0 ? item.url.LastIndexOf(@"/") : 2;
+                    //!string.IsNullOrEmpty(item.url) 
+                    string icono = !string.IsNullOrEmpty(item.icono) ? item.icono : iconDefault;
+                    controlador = !string.IsNullOrEmpty(item.url) ? item.url.Substring(1, index - 1) : "";
+                    @Html.Raw("<a class='dropdown-item " + @Html.isActive(controller: controlador) + "' href='#' onclick=\"getURL('" + item.url + "','" + item.area+"')\"><em class='fas " + icono  + "'></em>&nbsp;" + item.nombrePrivilegio + "</a>");
+
+                } //endforeach
+                if (moduloActual != "")
+                { @Html.Raw("</li>")}
+
+                        }
+                    }
+        </ul>
+
+        @*</ul>*@
+        <!-- END Left navbar-->
+        <!-- START Right Navbar-->
+        <ul class="navbar-nav flex-row">
+            <!-- START lock screen-->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Logout", "Home",new {area = ""})" title="Lock screen">
+                    <em class="icon-lock"></em>
+                </a>
+            </li>
+            <!-- END lock screen-->
+            <!-- Fullscreen (only desktops)-->
+            <li class="nav-item d-none d-md-block">
+                <a class="nav-link" href="#" data-toggle-fullscreen="">
+                    <em class="fa fa-expand"></em>
+                </a>
+            </li>
+
+            <!-- START Offsidebar button
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
+                    <em class="icon-notebook"></em>
+                </a>
+            </li>
+            <!-- END Offsidebar menu-->
+        </ul>
+        <!-- END Right Navbar-->
+        </div>
+        <!-- END Nav wrapper-->
+        <!-- START Search form-->
+        <form class="navbar-form" role="search" action="search.html">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Type and hit enter ...">
+                <div class="fa fa-times navbar-form-close" data-search-dismiss=""></div>
+            </div>
+            <button class="d-none" type="submit">Submit</button>
+        </form>
+        <!-- END Search form-->
+        </nav>
+        <!-- END Top Navbar-->
+
+        <script type="text/javascript">
+            function getURL(patronURL, area) {
+                var path = location.pathname;
+                //var alias = "System.Configuration.ConfigurationManager.AppSettings["sitioWebAliasIIS"]";
+                var alias = "";
+                //var area = "/Comunes"
+                //alert(location.protocol + "//" + location.host + alias + area + patronURL)
+                location.href = location.protocol + "//" + location.host + alias + "/"+ area + patronURL;
+            }
+        </script>

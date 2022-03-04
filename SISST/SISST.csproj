@@ -1,0 +1,467 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>7ae59141-d759-41a0-a4fb-af3a1381b6d1</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\**" />
+    <Compile Remove="ViewModels\Incidentes\**" />
+    <Compile Remove="wwwroot\lib\NumeralJS\tests\**" />
+    <Compile Remove="wwwroot\master\**" />
+    <Compile Remove="wwwroot\server\**" />
+    <Compile Remove="wwwroot\vendor\**" />
+    <Content Remove="Models\**" />
+    <Content Remove="ViewModels\Incidentes\**" />
+    <Content Remove="wwwroot\lib\NumeralJS\tests\**" />
+    <Content Remove="wwwroot\master\**" />
+    <Content Remove="wwwroot\server\**" />
+    <Content Remove="wwwroot\vendor\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="ViewModels\Incidentes\**" />
+    <EmbeddedResource Remove="wwwroot\lib\NumeralJS\tests\**" />
+    <EmbeddedResource Remove="wwwroot\master\**" />
+    <EmbeddedResource Remove="wwwroot\server\**" />
+    <EmbeddedResource Remove="wwwroot\vendor\**" />
+    <None Remove="Models\**" />
+    <None Remove="ViewModels\Incidentes\**" />
+    <None Remove="wwwroot\lib\NumeralJS\tests\**" />
+    <None Remove="wwwroot\master\**" />
+    <None Remove="wwwroot\server\**" />
+    <None Remove="wwwroot\vendor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <Compile Remove="Controllers\PrivilegiosController.cs" />
+
+    <Compile Remove="ViewModels\Comunes\Catalogos\VMCatalogo.cs" />
+
+    <Compile Remove="ViewModels\Comunes\Catalogos\VMOpcion.cs" />
+
+    <Compile Remove="ViewModels\Comunes\ResponseMessage.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <Content Remove="modernizr-config.json" />
+
+    <Content Remove="wwwroot\js\popper.js.map" />
+
+    <Content Remove="wwwroot\js\steps.js" />
+
+    <Content Remove="wwwroot\webfonts\fa-brands-400.eot" />
+    <Content Remove="wwwroot\webfonts\fa-brands-400.svg" />
+    <Content Remove="wwwroot\webfonts\fa-brands-400.ttf" />
+    <Content Remove="wwwroot\webfonts\fa-brands-400.woff" />
+    <Content Remove="wwwroot\webfonts\fa-brands-400.woff2" />
+    <Content Remove="wwwroot\webfonts\fa-regular-400.eot" />
+    <Content Remove="wwwroot\webfonts\fa-regular-400.svg" />
+    <Content Remove="wwwroot\webfonts\fa-regular-400.ttf" />
+    <Content Remove="wwwroot\webfonts\fa-regular-400.woff" />
+    <Content Remove="wwwroot\webfonts\fa-regular-400.woff2" />
+    <Content Remove="wwwroot\webfonts\fa-solid-900.eot" />
+    <Content Remove="wwwroot\webfonts\fa-solid-900.svg" />
+    <Content Remove="wwwroot\webfonts\fa-solid-900.ttf" />
+    <Content Remove="wwwroot\webfonts\fa-solid-900.woff" />
+    <Content Remove="wwwroot\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="master\js\diagnosticoBORRAR.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="master\js\diagnosticoBORRAR.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="FluentDateTime" Version="2.0.0" />
+
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Comunes\Views\Privilegios\" />
+    <Folder Include="AutoMapper\Profiles\" />
+    <Folder Include="Connected Services\" />
+    <Folder Include="Rotativa\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\EditorTemplate\" />
+    <Folder Include="Views\Shared\Modals\" />
+    <Folder Include="wwwroot\js\ObservacionTareas\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+
+    <None Include="SISST.sln" />
+
+    <None Include="wwwroot\js\jquery.blockUI.js" />
+
+    <None Include="wwwroot\js\popper.js.map" />
+
+    <None Include="wwwroot\js\toastr.js.map" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+
+    <None Include="wwwroot\lib\NumeralJS\.gitignore" />
+
+    <None Include="wwwroot\lib\NumeralJS\.travis.yml" />
+
+    <None Include="wwwroot\lib\NumeralJS\Gruntfile.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\karma-ci.conf.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\LICENSE" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\bg.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\chs.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\cs.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\da-dk.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\de-ch.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\de.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\en-au.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\en-gb.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\en-za.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\es-es.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\es.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\et.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\fi.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\fr-ca.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\fr-ch.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\fr.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\hu.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\it.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\ja.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\lv.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\nl-be.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\nl-nl.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\no.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\pl.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\pt-br.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\pt-pt.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\ru-ua.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\ru.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\sk.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\sl.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\th.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\tr.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\uk-ua.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\locales\vi.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\be-nl.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\bg.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\chs.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\cs.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\da-dk.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\de-ch.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\de.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\en-au.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\en-gb.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\en-za.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\es-es.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\es.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\et.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\fi.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\fr-ca.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\fr-ch.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\fr.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\hu.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\it.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\ja.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\lv.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\nl-be.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\nl-nl.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\no.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\pl.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\pt-br.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\pt-pt.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\ru-ua.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\ru.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\sk.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\sl.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\th.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\tr.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\uk-ua.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\locales\vi.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\min\numeral.min.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\numeral.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\README.md" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\formats\bps.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\formats\bytes.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\formats\currency.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\formats\exponential.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\formats\ordinal.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\formats\percentage.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\formats\time.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\bg.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\chs.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\cs.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\da-dk.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\de-ch.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\de.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\en-au.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\en-gb.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\en-za.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\es-es.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\es.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\et.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\fi.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\fr-ca.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\fr-ch.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\fr.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\hu.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\it.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\ja.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\lv.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\nl-be.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\nl-nl.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\no.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\pl.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\pt-br.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\pt-pt.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\ru-ua.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\ru.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\sk.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\sl.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\th.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\tr.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\uk-ua.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\locales\vi.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\src\numeral.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\templates\anon.js" />
+
+    <None Include="wwwroot\lib\NumeralJS\templates\types.js" />
+
+    <None Include="wwwroot\webfonts\fa-brands-400.eot" />
+    <None Include="wwwroot\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\webfonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\webfonts\fa-brands-400.woff" />
+    <None Include="wwwroot\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-regular-400.eot" />
+    <None Include="wwwroot\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\webfonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\webfonts\fa-regular-400.woff" />
+    <None Include="wwwroot\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-solid-900.eot" />
+    <None Include="wwwroot\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\webfonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\webfonts\fa-solid-900.woff" />
+    <None Include="wwwroot\webfonts\fa-solid-900.woff2" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SISST.Common\Enumerables\Comunes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+  <PackageReference Include="Rotativa.AspNetCore" Version="1.2.0-beta" />
+  <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Rotativa\wkhtmltoimage.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Rotativa\wkhtmltopdf.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="vendor\jquery-steps\build\jquery.steps.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" bundleconfig_1json__JsonSchema="" properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

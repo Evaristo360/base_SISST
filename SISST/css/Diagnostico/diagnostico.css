@@ -1,0 +1,31 @@
+﻿/*
+    diagnostico.css
+
+    Hoja de estilos para el módulo diágnostico, 
+    el contenido corresponde a clases y definiciones particulares al módulo, 
+    inlcuyendo aquella de apoyo para los eventos de validación en el DOM
+
+    Creada por
+        Juan Miguel González Castro
+        Septiembre 2021
+
+    Importante:
+        Se consume vía bundleconfig
+*/
+
+/*
+    .isDisabled
+    Prestna los objetos en modo desahilitado, y para el caso de las ligas <a 
+    inhabilita los eventos del rtón.
+
+    Creada por
+        Juan Miguel González Castro
+        Septiembre 2021
+*/
+.isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+    pointer-events: none;
+}

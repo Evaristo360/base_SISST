@@ -1,0 +1,61 @@
+@media print   {
+    .noprint {
+        display: none !important;
+        height: 0;
+    }
+
+    .horizontal {
+        font-weight: normal !important;
+        text-align: left !important;
+        writing-mode: vertical-lr;
+        text-orientation: sideways-left !important;
+    }
+
+    .accordion .card-header:after {
+        font-family: 'FontAwesome';
+        content: "- ";
+        float: left;
+    }
+
+    .accordion .card-header.collapsed:after {
+        /* symbol for "collapsed" panels */
+        content: "+";
+    }
+
+    .hiddenRow { padding: 0 !important; }
+
+    .cra-aplica { background-color: lightgrey !important; }
+
+    .cra-no-aplica { background-color: #E8E8E8 !important; }
+
+    .cra-cumplimiento { background-color: honeydew !important; }
+
+    .cra-no-cumplimiento { background-color: beige; }
+
+    .expediente-norma {
+        font-weight: bold !important;
+        font-size: 1.05em;
+    }
+
+    .lista-elemento {
+        text-align: left;
+        font-style: italic;
+        list-style-type: lower-alpha;
+    }
+
+    .norma-requisito-agrupador {
+        font-style: italic;
+        text-align: left;
+    }
+
+    .norma-requisito { text-align: center; }
+
+    th { text-align: center; }
+
+    .tabla-norma thead { background: gainsboro; }
+
+    .scroll-thead {
+        width: 100%;
+        display: inline-table;
+    }
+}
