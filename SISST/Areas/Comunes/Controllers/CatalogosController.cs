@@ -1,6 +1,6 @@
 ﻿using Comunes.Enumerables;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;//
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -48,12 +48,14 @@ namespace SISST.Areas.Comunes.Controllers
             List<VMOpcion> listOpciones = await _catalogoProxy.GetOpciones(id, 0);
             return listOpciones;
         }
+
         public async Task<IActionResult> Details(int id)
         {
             HttpContext.Session.SetString("idCatalogo", id.ToString()); //Se resguarda el identificador del catálogo
             VMCatalogoOpciones catalogo = await _catalogoProxy.GetCatalogoOpciones(id);
             return View(catalogo);
         }
+
         public IActionResult Create()
         {            
             ListaEstadosCatalogo();
@@ -62,6 +64,7 @@ namespace SISST.Areas.Comunes.Controllers
             
             return View(catalogo);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VMCatalogo catalogo )

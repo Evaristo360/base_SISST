@@ -1,0 +1,328 @@
+﻿@model SISST.Areas.Gestion.Models.ModelosDeDifusion.VMIndex;
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Nueva Reunion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //no se que onda pero ya los puse si no pues los borro
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+}
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/CreateReunion.css" rel="stylesheet" />
+</head>
+
+<div class="row">
+
+    <div class="col-12">
+        <div class="card w-100 tarjetaprincipal">
+            <div class="card-body">
+                <h5 class="card-title titulos">Desarrollo de reunión o plática de difusión</h5>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="subtitulos">Completa cuidadosamente todos los espacios</p>
+                    </div>
+                    <div class="col-6" align="right">
+                        @*<button type="button" class="@claseBotonCancelar" onclick="location.href='@Url.Action("Index", "ReunionesDeDifusion", new {})'"><i class="fa fa-times pr-2"></i>Cancelar</button>
+        <button type="submit" class="@claseBotonGuardar mr-1"><i class="fas fa-save pr-2"></i> Guardar</button>*@
+                        <button type="button" class="@claseBotonCancelar" onclick="location.href='@Url.Action("Index", "ReunionesDeDifusion", new {})'"><i class="fa fa-times pr-2"></i>Regresar</button>
+                        <button type="submit" class="@claseBotonGuardar mr-1"><i class="fas fa-save pr-2"></i> Modificar</button>
+                        <button type="submit" class="@claseBotonGuardar mr-1"><i class="fas fa-save pr-2"></i> Reporte</button>
+                    </div>
+                </div>
+                @using (Html.BeginForm("Create", "ReunionesDeDifusion", FormMethod.Post, new { role = "form", autocomplete = "off" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <!--Inico de primera parte del formulario-->
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Datos generales</h5>
+                            <div class="row">
+
+                                <div class="col-6">
+
+                                    <div class="form-group col-md-8">
+                                        <label class="texto">Centro trabajo *</label>
+                                        <input type="text" class="form-control" id="" disabled>
+                                    </div>
+
+                                    <div class="form-group col-md-8">
+                                        <label class="texto">Departamento *</label>
+                                        <select class="form-control">
+                                            <option value="value">Dep Pruebas</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-10 ">
+                                        <label class="texto">Vo Bo (Jefe de Departamento) *</label>
+                                        <div class="row">
+                                            <div class="col-2" align="center">
+                                                <input type="text" class="form-control" id="" placeholder="12ER">
+                                            </div>
+                                            <input type="text" class="form-control col-md-7" id="" placeholder="Prueba VoBo">
+                                            <button type="button" style="margin-left:2px" class="@claseBotonCancelar"><i class="fa fa-list"></i></button>
+
+                                            <!--  <button style="margin-left:2px">List</button>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-8">
+                                        <label class="texto">Horario *</label>
+                                        @Html.TextBoxFor(model => model.Horario, new { @class = "form-control", @maxlength = "255" })
+                                        @Html.ValidationMessageFor(model => model.Horario, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br /><br />
+
+                                <div class="col-6">
+                                    <div class="form-group col-md-8">
+                                        <label class="texto">Fecha *</label>
+                                        <input type="Date" class="form-control" id="" placeholder="10:30">
+                                    </div>
+
+                                    <div class="form-group col-md-10 ">
+                                        <label class="texto">Coordinador de servicio o expositor de plática *</label>
+                                        <div class="row">
+                                            <div class="col-2" align="center">
+                                                <input type="text" class="form-control" id="" placeholder="3894">
+                                            </div>
+                                            <input type="text" class="form-control col-md-7" id="" placeholder="Ing. Prueba">
+
+                                            <button type="button" class="@claseBotonCancelar" data-toggle="modal" data-target="#modalLoad"><i class="fa fa-list"></i></button>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-10 ">
+                                        <label class="texto">Revisó (Coordinador sistema Gestion) *</label>
+                                        <div class="row">
+                                            <div class="col-2" align="center">
+                                                <input type="text" class="form-control" id="" placeholder="4334">
+                                            </div>
+                                            <input type="text" class="form-control col-md-7" id="" placeholder="Ing. Guillermo">
+
+                                            <button type="button" style="margin-left:2px" class="@claseBotonCancelar"><i class="fa fa-list"></i></button>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-10 ">
+                                        <label class="texto">Numero de participantes *</label>
+                                        <div class="row">
+                                            <div class="col-5" align="center">
+                                                <input type="text" class="form-control" id="" placeholder="10">
+                                            </div>
+                                            <button type="button" style="margin-left:2px" class="@claseBotonCancelar"><i class="fa fa-list"></i> Participantes</button>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-10">
+                                <label class="texto">Tema *</label>
+                                @Html.TextAreaFor(model => model.Tema, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Tema, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Iniico seguna partye del formulario-->
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <h5 class="card-title subtitulos">Apoyo didactico usado</h5>
+                            <br />
+                            <p class="texto">Seleccion Multiple</p>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <label class="form-check-label" for="inlineCheckbox1">Proyector de Cañon</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">Computadora</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">Rotafolios</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">Pizarron</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">Rreproductor DVD</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">Otro</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- inicio tercera parte del formulario-->
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <h5 class="card-title subtitulos">Desarrollo del tema</h5>
+                            <div class="form-group col-md-10">
+                                <label class="texto">Introduccion *</label>
+
+                                @Html.TextAreaFor(model => model.Introduccion, new { @class = "form-control", @maxlength = "255" })
+                                @Html.ValidationMessageFor(model => model.Introduccion, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group col-md-10">
+                                <label class="texto">Desarrollo *</label>
+
+                                @Html.TextAreaFor(model => model.Desarrollo, new { @class = "form-control", @maxlength = "255" })
+                                @Html.ValidationMessageFor(model => model.Desarrollo, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group col-md-10">
+                                <label class="texto">Conclusión *</label>
+
+                                @Html.TextAreaFor(model => model.Conclusiones, new { @class = "form-control", @maxlength = "255" })
+                                @Html.ValidationMessageFor(model => model.Conclusiones, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- inicio cuarta parte-->
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <h5 class="card-title subtitulos">Comentarios y conclusiones (retroalimentacion)</h5>
+                            <div class="form-group col-md-10">
+                                <label class="texto">Retroalimentacion *</label>
+
+                                @Html.TextAreaFor(model => model.Retroalimentacion, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Retroalimentacion, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                <!--parte final-->
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title subtitulos">Generacion de correcciones SST</h5>
+                        <p class="texto"> Desarrollo de la reunion se requiere los siguientes formatos 13  </p>
+                        <div class="form-group col-md-10 ">
+                            <div class="row">
+                                <div class="col-5" align="center">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <button type="button" style="margin-left:2px" class="@claseBotonCancelar"><i class="fa fa-save"></i> Agregar</button>
+
+                            </div>
+                        </div>
+                        <br />
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Eliminar</th>
+                                    <th align="center"><b>Seguimiento en F13</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i class="fas fa-trash"></i></td>
+                                    <td>Texto de prueba</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!--ginal de la quibta parte-->
+
+            </div>
+        </div>
+    </div><!--Final de segunda coliumna-->
+</div><!--final del row-->
+<!--Modal para la pirmera a ver que rollo jaja-->
+<div class="modal fade " id="modalLoad" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLoad">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="text" name="nombre" class="form-control" value="" />
+                    </div>
+                    <div class="col-6">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h5>Trabajadores</h5>
+                        <table class="table">
+                            <thead style="background: #DCD379 ">
+                                <tr>
+                                    <th>RPE</th>
+                                    <th>Nombre</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>S2ID</td>
+                                    <td>Prueba 1</td>
+                                </tr>
+                                <tr>
+                                    <td>S233</td>
+                                    <td>Prueba 2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <h5>Participantes</h5>
+                        <table class="table">
+                            <thead style="background: #DCD379 ">
+                                <tr>
+                                    <th>RPE</th>
+                                    <th>Nombre</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>S2ID</td>
+                                    <td>Prueba 1</td>
+                                    <td><i class="fas fa-trash"></i></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- no jalo jaja y fin-->
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+            $(document).ready(function () {
+                if ('@TempData["tipoMensaje"]' != "") {
+                    toastr.options.positionClass = 'toast-bottom-right';
+                    toastr['@TempData["tipoMensaje"]']('@TempData["mensaje"]');
+                }
+            });
+    </script>
+
+}

@@ -1,0 +1,101 @@
+﻿
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Reuniones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+    //string claseBotonBuscar = Context.Session.GetString("claseBotonBuscar");
+
+    string claseBotonGuardar = Context.Session.GetString("claseBotonGuardar");
+    //string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+    //falta saber defginir ese pedo de los botones en el style pero lo encontrare y valdra jajaj
+
+}
+
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/CreateReunion.css" rel="stylesheet" />
+</head>
+
+<div class="card w-100 tarjetaprincipal">
+    <div class="card-body">
+        <div class="card-title row">
+            <div class="col-4"><h5 style="color:white">Documentos</h5></div>
+            <div class="col-8" align="right">
+                
+                <button type="button" class="@claseBotonCancelar" 
+                        onclick="location.href='@Url.Action("Index", "ReunionesDeDifusion", new {})'">Regresar</button>
+                <button type="submit" class="@claseBotonGuardar mr-1"><i class="fas fa-save pr-2"></i> Guardar</button>
+
+            </div>
+        </div>
+
+        <div class="card w-100">
+            <div class="card-body">
+                <br />
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group col-md-8">
+                            <label class="texto">Fecha *</label><br />
+                            <label class="textodocumentos">12/12/2020</label>
+                        </div>
+                        
+                        <div class="form-group col-md-8">
+                            <label class="texto">Tipo de documento a cargar *</label>
+                            <select class="form-control">
+                                <option value="value">Seleccione uno</option>
+                                <option value="value">Fotos</option>
+                                <option value="value">Otros</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group col-md-8">
+                            <label class="texto">Departamento *</label><br />
+                            <label class="textodocumentos">Prueba Dep</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="texto">Expositor *</label><br />
+                            <label class="textodocumentos">Prueba Expositor</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="textodocumentos" align="center">
+                                La suma de los archivos no debe de exceder 10 Mergas <br />
+                                porque puede provocar que el servidor se dature
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group col-md-10 ">
+                            <label class="texto">Archivo 1 *</label>
+                            <input type="text" class="form-control" id="">
+                            <button type="button" style="margin-left:1px" class="@claseBotonCancelar">Examninar</button>
+                            <!--  <button style="margin-left:2px">List</button>-->
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group col-md-10 ">
+                            <label class="texto">Titulo *</label>
+                            <input type="text" class="form-control" id="" placeholder="Titulo">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group col-md-10 ">
+                            <label class="texto">Descripcion*</label>
+                            <input type="text" class="form-control" id="" placeholder="Descripcion">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

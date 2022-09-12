@@ -210,19 +210,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\akwid\\.nuget\\packages\\": {}
+    "C:\\Users\\Mario\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\akwid\\Desktop\\base_SISST\\SISST.Common\\Common.Logging\\Common.Logging.csproj",
+      "projectUniqueName": "D:\\INEEL\\Clonado\\SISST.Common\\Common.Logging\\Common.Logging.csproj",
       "projectName": "Common.Logging",
-      "projectPath": "C:\\Users\\akwid\\Desktop\\base_SISST\\SISST.Common\\Common.Logging\\Common.Logging.csproj",
-      "packagesPath": "C:\\Users\\akwid\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\akwid\\Desktop\\base_SISST\\SISST.Common\\Common.Logging\\obj\\",
+      "projectPath": "D:\\INEEL\\Clonado\\SISST.Common\\Common.Logging\\Common.Logging.csproj",
+      "packagesPath": "C:\\Users\\Mario\\.nuget\\packages\\",
+      "outputPath": "D:\\INEEL\\Clonado\\SISST.Common\\Common.Logging\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\akwid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -272,7 +272,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
       }
     }
   }

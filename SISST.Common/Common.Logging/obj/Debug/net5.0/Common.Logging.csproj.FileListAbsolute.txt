@@ -21,3 +21,15 @@ C:\Users\akwid\Desktop\base_SISST\SISST.Common\Common.Logging\obj\Debug\net5.0\C
 C:\Users\akwid\Desktop\base_SISST\SISST.Common\Common.Logging\obj\Debug\net5.0\Common.Logging.dll
 C:\Users\akwid\Desktop\base_SISST\SISST.Common\Common.Logging\obj\Debug\net5.0\ref\Common.Logging.dll
 C:\Users\akwid\Desktop\base_SISST\SISST.Common\Common.Logging\obj\Debug\net5.0\Common.Logging.pdb
+D:\INEEL\Clonado\SISST.Common\Common.Logging\bin\Debug\net5.0\Common.Logging.deps.json
+D:\INEEL\Clonado\SISST.Common\Common.Logging\bin\Debug\net5.0\Common.Logging.dll
+D:\INEEL\Clonado\SISST.Common\Common.Logging\bin\Debug\net5.0\ref\Common.Logging.dll
+D:\INEEL\Clonado\SISST.Common\Common.Logging\bin\Debug\net5.0\Common.Logging.pdb
+D:\INEEL\Clonado\SISST.Common\Common.Logging\obj\Debug\net5.0\Common.Logging.csproj.AssemblyReference.cache
+D:\INEEL\Clonado\SISST.Common\Common.Logging\obj\Debug\net5.0\Common.Logging.GeneratedMSBuildEditorConfig.editorconfig
+D:\INEEL\Clonado\SISST.Common\Common.Logging\obj\Debug\net5.0\Common.Logging.AssemblyInfoInputs.cache
+D:\INEEL\Clonado\SISST.Common\Common.Logging\obj\Debug\net5.0\Common.Logging.AssemblyInfo.cs
+D:\INEEL\Clonado\SISST.Common\Common.Logging\obj\Debug\net5.0\Common.Logging.csproj.CoreCompileInputs.cache
+D:\INEEL\Clonado\SISST.Common\Common.Logging\obj\Debug\net5.0\Common.Logging.dll
+D:\INEEL\Clonado\SISST.Common\Common.Logging\obj\Debug\net5.0\ref\Common.Logging.dll
+D:\INEEL\Clonado\SISST.Common\Common.Logging\obj\Debug\net5.0\Common.Logging.pdb

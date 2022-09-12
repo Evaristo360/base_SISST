@@ -52,8 +52,11 @@ namespace SISST
             services.AddHttpClient<IAreasAdministradasProxy, AreasAdministradasProxy>();
 
             services.AddHttpClient<IArchivoAdjuntoCatalogoProxy, ArchivoAdjuntoCatalogoProxy>();
-            
 
+            //aqui van a ir losmios proxies
+            services.AddHttpClient<IReunionesProxy, ReunionesProxy>();
+
+            //fin de los mios
 
             services.AddScoped<IServicios, Servicios>();
             services.AddScoped<IArchivosAdjuntosService, ArchivosAdjuntosService>();

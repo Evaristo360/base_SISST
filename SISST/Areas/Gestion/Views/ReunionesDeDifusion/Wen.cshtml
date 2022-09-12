@@ -1,0 +1,116 @@
+﻿
+    @using Microsoft.AspNetCore.Http
+   
+
+    @{
+        ViewData["Title"] = "Reuniones";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+        string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+        // string claseBotonBuscar = Context.Session.GetString("claseBotonBuscar");
+        //falta saber defginir ese pedo de los botones en el style pero lo encontrare y valdra jajaj
+
+    }
+
+    <head>
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    </head>
+
+    <div class="card w-100 tarjetaprincipal">
+        <div class="card-body">
+
+            <div class="card w-100">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 style="color:blue">TRABAJADORES</h5>
+                            <p style="color:blue">Lista de trabajadores</p>
+                        </div>
+                        <div class="col-6">
+                            <div align="right">
+                                <button type="button" class="@claseBotonCancelar"
+                                        onclick="location.href='@Url.Action("Create", "ReunionesDeDifusion", new {})'">
+                                    <i class="fas fa-plus pr-2"></i>Nuevo Trabaador
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    
+                </div>
+            </div>
+
+
+
+
+          
+
+            <div class="card w-100">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 style="color:blue">Lista de trabajadores</h5>
+                            <p>Mostrar <input type="number" style="width : 40px; heigth:10px" /> registros por página</p>
+                        </div>
+                        <div class="col-6" align="right">
+
+
+                            <p>Buscar <input type="text" style=" heigth:10px" /></p>
+                            <button type="button" class="@claseBotonCancelar"
+                                    onclick="location.href='@Url.Action("Create", "ReunionesDeDifusion", new {})'">
+                                Excel
+                            </button>
+                            <button type="button" class="@claseBotonCancelar"
+                                    onclick="location.href='@Url.Action("Create", "ReunionesDeDifusion", new {})'">
+                                Imprimir
+                            </button>
+
+                        </div>
+                    </div>
+
+
+
+                    <table class="table table-bordered">
+                        <thead style="background: white ">
+                            <tr>
+                                <th scope="col" style="color:black">RPE</th>
+                                <th scope="col" style="color:black">Nombre</th>
+                                <th scope="col" style="color:black">Centro de Trabajo</th>
+                                <th scope="col" style="color:black">Estatus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12YD</td>
+                                <td>PRUEBA NOMBRE</td>
+                                <td>PRUEBA CENTRO TRABAJO</td>
+                                <td>ACTIVO</td>
+                            </tr>
+                        </tbody>
+
+                    </table><br />
+                            <div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <p>Mostrando registros del 1 al 10 de un total de 5 registros</p>
+                                    </div>
+                                    <div class="col-4" align="right">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

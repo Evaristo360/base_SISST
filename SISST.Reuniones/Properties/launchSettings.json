@@ -1,0 +1,33 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:46285/",
+      "sslPort": 0
+      //44396
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": false, //aqui se usa el true para mostrar las rutas
+      "launchUrl": "swagger",//aqui iba el api/reuniones
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "SISST.Reuniones": {
+      "commandName": "Project",
+      //"dotnetRunMessages": "true",
+      "launchBrowser": false,//aqui estaba en true pero lo cambie a false
+      //"launchUrl": "weatherforecast",
+      //"applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:46285"
+    }
+  }
+}

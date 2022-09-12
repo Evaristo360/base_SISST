@@ -1,0 +1,3 @@
+2022-03-15T12:14:51.0409437-06:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-03-15T12:14:51.0696641-06:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-03-15T12:14:51.0746628-06:00  [INF] Content root path: "D:\INEEL\Clonado\SISST.Autenticacion" (b5d60022)

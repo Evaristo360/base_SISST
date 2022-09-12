@@ -52,7 +52,29 @@
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
+    },
+    //Reuniones 46285
+    {
+      //aqui se pone {everything} para q tome en cuenta todos los controladores y rutas de la API
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 46285
+        }
+      ],
+    
+      //se pone /catalogos/{everything} para que se llamen directo tal cual en la API se tiene q a fuerza poner algo antes de
+      "UpstreamPathTemplate": "/reuniones/{everything}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "PATCH", "DELETE" ],
+      //estas lineas son las que se ocupan para implementar la autenticacion con jwt en todas las llamadas de estas rutas
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
     }
+
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:44390"

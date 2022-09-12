@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SISST.Reuniones</name>
+    </assembly>
+    <members>
+        <member name="M:SISST.Reuniones.Helpers.Exceptions.AppException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SISST.Reuniones.Helpers.Exceptions.AppException"/> class.
+            </summary>
+        </member>
+        <member name="M:SISST.Reuniones.Helpers.Exceptions.AppException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SISST.Reuniones.Helpers.Exceptions.AppException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:SISST.Reuniones.Helpers.Exceptions.AppException.#ctor(System.String,System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SISST.Reuniones.Helpers.Exceptions.AppException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="P:SISST.Reuniones.Helpers.ResponseMessage.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+    </members>
+</doc>

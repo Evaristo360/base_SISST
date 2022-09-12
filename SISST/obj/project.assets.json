@@ -10999,19 +10999,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\akwid\\.nuget\\packages\\": {}
+    "C:\\Users\\Mario\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\akwid\\Desktop\\base_SISST\\SISST\\SISST.csproj",
+      "projectUniqueName": "D:\\INEEL\\Clonado\\SISST\\SISST.csproj",
       "projectName": "SISST",
-      "projectPath": "C:\\Users\\akwid\\Desktop\\base_SISST\\SISST\\SISST.csproj",
-      "packagesPath": "C:\\Users\\akwid\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\akwid\\Desktop\\base_SISST\\SISST\\obj\\",
+      "projectPath": "D:\\INEEL\\Clonado\\SISST\\SISST.csproj",
+      "packagesPath": "C:\\Users\\Mario\\.nuget\\packages\\",
+      "outputPath": "D:\\INEEL\\Clonado\\SISST\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\akwid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11025,8 +11025,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\akwid\\Desktop\\base_SISST\\SISST.Common\\Enumerables\\Comunes.csproj": {
-              "projectPath": "C:\\Users\\akwid\\Desktop\\base_SISST\\SISST.Common\\Enumerables\\Comunes.csproj"
+            "D:\\INEEL\\Clonado\\SISST.Common\\Enumerables\\Comunes.csproj": {
+              "projectPath": "D:\\INEEL\\Clonado\\SISST.Common\\Enumerables\\Comunes.csproj"
             }
           }
         }
@@ -11126,7 +11126,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
       }
     }
   }

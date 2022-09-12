@@ -226,7 +226,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 1,
                             Activo = true,
-                            ConcurrencyStamp = "45fc77b1-26b8-4c62-924b-9ebdb6e4f559",
+                            ConcurrencyStamp = "8bda8553-496d-4c4a-89d1-1c7e3a07db42",
                             Descripcion = "El Administrador tiene acceso al Panel de control general del sistema.",
                             IdNivelJerarquico = 3632,
                             Name = "Administrador",
@@ -237,7 +237,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 2,
                             Activo = true,
-                            ConcurrencyStamp = "d055fef4-ec00-4919-afff-a43bf1f6bc1f",
+                            ConcurrencyStamp = "f4119f71-4bbd-4399-a573-8a3736768fcb",
                             Descripcion = "Responsable local de SST",
                             IdNivelJerarquico = 3635,
                             Name = "Responsable local de SST",
@@ -248,7 +248,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 3,
                             Activo = true,
-                            ConcurrencyStamp = "c9e7c307-284d-4aa5-af7a-ea86c35ecc08",
+                            ConcurrencyStamp = "cb7bb48b-2ae3-4c23-b7c4-a274d8bac844",
                             Descripcion = "Usuario que consulta información",
                             IdNivelJerarquico = 3635,
                             Name = "Consulta",
@@ -259,7 +259,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 4,
                             Activo = true,
-                            ConcurrencyStamp = "cbc42e7e-b367-4f5b-bab0-6ba55c73f000",
+                            ConcurrencyStamp = "10ea7351-818d-4c6f-8503-c87d33f39ba9",
                             Descripcion = "Responsable de proceso / área",
                             IdNivelJerarquico = 3635,
                             Name = "Responsable de proceso / área",
@@ -270,7 +270,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 5,
                             Activo = true,
-                            ConcurrencyStamp = "00ec0be0-0ac0-40c3-b25b-5f81ce230ab7",
+                            ConcurrencyStamp = "9f4c9b91-2602-4da8-ac4e-ee4fdcbf382b",
                             Descripcion = "Integrante de la CSH ",
                             IdNivelJerarquico = 3635,
                             Name = "Integrante de la CSH",
@@ -281,7 +281,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 6,
                             Activo = true,
-                            ConcurrencyStamp = "226fe549-4155-486f-b199-a1a610146d3b",
+                            ConcurrencyStamp = "ebc060a6-9985-4754-bcca-3056b871f407",
                             Descripcion = "Aprobador ",
                             IdNivelJerarquico = 3635,
                             Name = "Aprobador",
@@ -292,7 +292,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 7,
                             Activo = true,
-                            ConcurrencyStamp = "6f55ca01-db06-4da2-93e4-820168c5cf45",
+                            ConcurrencyStamp = "803c5816-ce30-415b-bb43-f62ff2e1becd",
                             Descripcion = "Responsable regional de SST",
                             IdNivelJerarquico = 3634,
                             Name = "Responsable regional de SST",
@@ -303,7 +303,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 8,
                             Activo = true,
-                            ConcurrencyStamp = "1a0005f7-f56b-457b-b431-323f1ac210d7",
+                            ConcurrencyStamp = "45bb8b7e-ae23-4ce5-90fb-c380ecf8871e",
                             Descripcion = "Responsable nacional de SST",
                             IdNivelJerarquico = 3633,
                             Name = "Responsable nacional de SST",
@@ -314,7 +314,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 9,
                             Activo = true,
-                            ConcurrencyStamp = "05cbd25b-33d2-407d-88b3-4bc086f7aa36",
+                            ConcurrencyStamp = "ef256536-bfaf-4d79-a467-bdc41723c29f",
                             Descripcion = "GestionRL",
                             IdNivelJerarquico = 3632,
                             Name = "GestionRL",
@@ -325,7 +325,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 10,
                             Activo = true,
-                            ConcurrencyStamp = "1ad13af5-8e34-43b2-9bc9-cec060936b38",
+                            ConcurrencyStamp = "f3bd46ae-4a85-4257-b8af-4638c6b4d897",
                             Descripcion = "Gerente Laboratorio",
                             IdNivelJerarquico = 3635,
                             Name = "Gerente Laboratorio",
@@ -336,7 +336,7 @@ namespace SISST.Autenticacion.Migrations
                         {
                             Id = 11,
                             Activo = true,
-                            ConcurrencyStamp = "0897019a-c347-4b56-be8a-c4172e9b7471",
+                            ConcurrencyStamp = "0e2307ed-7029-48e6-a709-f2b5c0a1a121",
                             Descripcion = "Metrólogo Laboratorio",
                             IdNivelJerarquico = 3635,
                             Name = "Metrólogo",
@@ -433,8 +433,6 @@ namespace SISST.Autenticacion.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("TrabajadorId");
-
                     b.ToTable("Usuario");
 
                     b.HasData(
@@ -443,7 +441,7 @@ namespace SISST.Autenticacion.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "9c21e30c-ab8d-435e-a370-9f61e76819a8",
-                            CreatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(8213),
+                            CreatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 712, DateTimeKind.Local).AddTicks(1700),
                             Email = "sisstproyecto@gmail.com",
                             EmailConfirmed = false,
                             IsActive = true,
@@ -455,7 +453,7 @@ namespace SISST.Autenticacion.Migrations
                             SecurityStamp = "IVJATBL6BCF73ZUWLQ45EO2UM7TE3OSQ",
                             TrabajadorId = 1,
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(8589),
+                            UpdatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(2328),
                             UpdatedById = 1,
                             UserName = "00000"
                         },
@@ -464,7 +462,7 @@ namespace SISST.Autenticacion.Migrations
                             Id = 2,
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "dd1b73db-fece-4137-a173-401bb609c5b7",
-                            CreatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9335),
+                            CreatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4682),
                             Email = "nejacome@ineel.mx",
                             EmailConfirmed = false,
                             IsActive = true,
@@ -476,7 +474,7 @@ namespace SISST.Autenticacion.Migrations
                             SecurityStamp = "YJUNEA6CTHIGSOOEGYO65QRPKYSVPPEL",
                             TrabajadorId = 2,
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9346),
+                            UpdatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4707),
                             UpdatedById = 1,
                             UserName = "4385"
                         },
@@ -485,7 +483,7 @@ namespace SISST.Autenticacion.Migrations
                             Id = 3,
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "320252da-6a52-4c05-93a7-093da71846b5",
-                            CreatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9361),
+                            CreatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4722),
                             Email = "gescobedo@ineel.mx",
                             EmailConfirmed = false,
                             IsActive = true,
@@ -497,7 +495,7 @@ namespace SISST.Autenticacion.Migrations
                             SecurityStamp = "2UVTWXFBH6DM4ZISCHERKBRINTJA6DUS",
                             TrabajadorId = 3,
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9365),
+                            UpdatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4726),
                             UpdatedById = 1,
                             UserName = "5163"
                         },
@@ -506,7 +504,7 @@ namespace SISST.Autenticacion.Migrations
                             Id = 4,
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "09cf4154-927f-4996-9504-51f6817fc4b9",
-                            CreatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9376),
+                            CreatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4736),
                             Email = "sr.camacho.ti@gmail.com",
                             EmailConfirmed = false,
                             IsActive = true,
@@ -518,7 +516,7 @@ namespace SISST.Autenticacion.Migrations
                             SecurityStamp = "B3PK7KVN5BLZN5JYONIMH7U5D7A72TTU",
                             TrabajadorId = 4,
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9379),
+                            UpdatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4740),
                             UpdatedById = 1,
                             UserName = "4867"
                         },
@@ -527,7 +525,7 @@ namespace SISST.Autenticacion.Migrations
                             Id = 5,
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "e5578642-b0c0-4a32-95cd-7998b08f1cf7",
-                            CreatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9389),
+                            CreatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4750),
                             Email = "honorato@ineel.mx",
                             EmailConfirmed = false,
                             IsActive = true,
@@ -539,7 +537,7 @@ namespace SISST.Autenticacion.Migrations
                             SecurityStamp = "NOR7AX6JT4F57SU5D4EX7XOQFVQT72LS",
                             TrabajadorId = 5,
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9392),
+                            UpdatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4754),
                             UpdatedById = 1,
                             UserName = "5071"
                         },
@@ -548,7 +546,7 @@ namespace SISST.Autenticacion.Migrations
                             Id = 6,
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "358b6d68-f770-48b3-8861-6d40f380129e",
-                            CreatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9406),
+                            CreatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4830),
                             Email = "pmendoza@ineel.mx",
                             EmailConfirmed = false,
                             IsActive = true,
@@ -560,7 +558,7 @@ namespace SISST.Autenticacion.Migrations
                             SecurityStamp = "UJIRHDBUCDLAHLSDMSB6H7C4G5L33OFY",
                             TrabajadorId = 6,
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9409),
+                            UpdatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4835),
                             UpdatedById = 1,
                             UserName = "3589"
                         },
@@ -569,7 +567,7 @@ namespace SISST.Autenticacion.Migrations
                             Id = 7,
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "358b6d68-f770-48b3-8861-6d40f380129e",
-                            CreatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9420),
+                            CreatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4847),
                             Email = "ohernandez@ineel.mx",
                             EmailConfirmed = false,
                             IsActive = true,
@@ -581,7 +579,7 @@ namespace SISST.Autenticacion.Migrations
                             SecurityStamp = "UJIRHDBUCDLAHLSDMSB6H7C4G5L33OFY",
                             TrabajadorId = 7,
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2022, 3, 4, 14, 2, 0, 51, DateTimeKind.Local).AddTicks(9424),
+                            UpdatedAt = new DateTime(2022, 5, 5, 13, 4, 24, 716, DateTimeKind.Local).AddTicks(4851),
                             UpdatedById = 1,
                             UserName = "50650"
                         });
@@ -13419,306 +13417,6 @@ namespace SISST.Autenticacion.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SISST.Autenticacion.Models.Trabajador", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("AfiliacionIMSS")
-                        .HasMaxLength(15)
-                        .HasColumnType("VARCHAR(15)");
-
-                    b.Property<string>("ApellidoMaterno")
-                        .IsRequired()
-                        .HasMaxLength(75)
-                        .HasColumnType("VARCHAR(75)");
-
-                    b.Property<string>("ApellidoPaterno")
-                        .IsRequired()
-                        .HasMaxLength(75)
-                        .HasColumnType("VARCHAR(75)");
-
-                    b.Property<string>("CorreoElectronico")
-                        .HasMaxLength(75)
-                        .HasColumnType("VARCHAR(75)");
-
-                    b.Property<string>("Domicilio")
-                        .HasMaxLength(500)
-                        .HasColumnType("VARCHAR(500)");
-
-                    b.Property<DateTime?>("FechaIngresoCFE")
-                        .HasColumnType("Date");
-
-                    b.Property<DateTime?>("FechaIngresoPuestoActual")
-                        .HasColumnType("Date");
-
-                    b.Property<DateTime?>("FechaNacimiento")
-                        .HasColumnType("Date");
-
-                    b.Property<int>("IdArea")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdContrato")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdDepartamento")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdSituacionLaboral")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(75)
-                        .HasColumnType("VARCHAR(75)");
-
-                    b.Property<string>("NombreCompleto")
-                        .HasMaxLength(300)
-                        .HasColumnType("VARCHAR(300)");
-
-                    b.Property<string>("RFC")
-                        .HasMaxLength(20)
-                        .HasColumnType("VARCHAR(20)");
-
-                    b.Property<string>("RPE")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("VARCHAR(5)");
-
-                    b.Property<double?>("SalarioDiarioActual")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Sexo")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("VARCHAR(10)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdArea");
-
-                    b.HasIndex("NombreCompleto", "RPE");
-
-                    b.ToTable("Trabajador");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Activo = true,
-                            AfiliacionIMSS = "PENDIENTE",
-                            ApellidoMaterno = "ADMIN",
-                            ApellidoPaterno = "ADMIN",
-                            CorreoElectronico = "sisstproyecto@gmail.com",
-                            Domicilio = "",
-                            FechaIngresoCFE = new DateTime(2022, 3, 4, 14, 2, 0, 37, DateTimeKind.Local).AddTicks(6331),
-                            FechaIngresoPuestoActual = new DateTime(2022, 3, 4, 14, 2, 0, 37, DateTimeKind.Local).AddTicks(6634),
-                            FechaNacimiento = new DateTime(2022, 3, 4, 14, 2, 0, 35, DateTimeKind.Local).AddTicks(5435),
-                            IdArea = 1,
-                            IdContrato = 443,
-                            IdSituacionLaboral = 556,
-                            Nombre = "ADMIN",
-                            RFC = "PENDIENTE",
-                            RPE = "00000",
-                            SalarioDiarioActual = 0.0,
-                            Sexo = "M"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Activo = true,
-                            AfiliacionIMSS = "PENDIENTE",
-                            ApellidoMaterno = "Grajales",
-                            ApellidoPaterno = "Jácome",
-                            CorreoElectronico = "nejacome@ineel.mx",
-                            Domicilio = "",
-                            FechaIngresoCFE = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9351),
-                            FechaIngresoPuestoActual = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9390),
-                            FechaNacimiento = new DateTime(1978, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdArea = 1,
-                            IdContrato = 443,
-                            IdSituacionLaboral = 556,
-                            Nombre = "Norma Elena",
-                            RFC = "JAGN780605",
-                            RPE = "4385",
-                            SalarioDiarioActual = 0.0,
-                            Sexo = "F"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Activo = true,
-                            AfiliacionIMSS = "PENDIENTE",
-                            ApellidoMaterno = "Briones",
-                            ApellidoPaterno = "Escobedo",
-                            CorreoElectronico = "gescobedo@ineel.mx",
-                            Domicilio = "",
-                            FechaIngresoCFE = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9448),
-                            FechaIngresoPuestoActual = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9453),
-                            FechaNacimiento = new DateTime(1980, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdArea = 1,
-                            IdContrato = 443,
-                            IdSituacionLaboral = 556,
-                            Nombre = "Guillermo Flavio",
-                            RFC = "ESBG800303",
-                            RPE = "5163",
-                            SalarioDiarioActual = 0.0,
-                            Sexo = "M"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Activo = true,
-                            AfiliacionIMSS = "PENDIENTE",
-                            ApellidoMaterno = "Camacho",
-                            ApellidoPaterno = "Rodríguez",
-                            CorreoElectronico = "srcamacho@ineel.mx",
-                            Domicilio = "",
-                            FechaIngresoCFE = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9477),
-                            FechaIngresoPuestoActual = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9482),
-                            FechaNacimiento = new DateTime(1978, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdArea = 1,
-                            IdContrato = 443,
-                            IdSituacionLaboral = 556,
-                            Nombre = "Salvador",
-                            RFC = "CARS780303",
-                            RPE = "4867",
-                            SalarioDiarioActual = 0.0,
-                            Sexo = "M"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Activo = true,
-                            AfiliacionIMSS = "PENDIENTE",
-                            ApellidoMaterno = "Mejia",
-                            ApellidoPaterno = "Honorato",
-                            CorreoElectronico = "honorato@ineel.mx",
-                            Domicilio = "",
-                            FechaIngresoCFE = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9498),
-                            FechaIngresoPuestoActual = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9502),
-                            FechaNacimiento = new DateTime(1982, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdArea = 1,
-                            IdContrato = 443,
-                            IdSituacionLaboral = 556,
-                            Nombre = "Alberto",
-                            RFC = "HOMA821031",
-                            RPE = "5071",
-                            SalarioDiarioActual = 0.0,
-                            Sexo = "M"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Activo = true,
-                            AfiliacionIMSS = "PENDIENTE",
-                            ApellidoMaterno = "Escobar",
-                            ApellidoPaterno = "Mendoza",
-                            CorreoElectronico = "pmendoza@ineel.mx",
-                            Domicilio = "",
-                            FechaIngresoCFE = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9526),
-                            FechaIngresoPuestoActual = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9531),
-                            FechaNacimiento = new DateTime(1964, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdArea = 1,
-                            IdContrato = 443,
-                            IdSituacionLaboral = 556,
-                            Nombre = "Pedro Rafael",
-                            RFC = "MEEP640111",
-                            RPE = "3589",
-                            SalarioDiarioActual = 0.0,
-                            Sexo = "M"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Activo = true,
-                            AfiliacionIMSS = "PENDIENTE",
-                            ApellidoMaterno = "López",
-                            ApellidoPaterno = "Hernández",
-                            CorreoElectronico = "ohernandez@ineel.mx",
-                            Domicilio = "",
-                            FechaIngresoCFE = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9546),
-                            FechaIngresoPuestoActual = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9550),
-                            FechaNacimiento = new DateTime(1980, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdArea = 1,
-                            IdContrato = 443,
-                            IdSituacionLaboral = 556,
-                            Nombre = "Omar",
-                            RFC = "HELO800503",
-                            RPE = "50650",
-                            SalarioDiarioActual = 0.0,
-                            Sexo = "M"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Activo = true,
-                            AfiliacionIMSS = "PENDIENTE",
-                            ApellidoMaterno = "Castro",
-                            ApellidoPaterno = "González",
-                            CorreoElectronico = "jmgc@ineel.mx",
-                            Domicilio = "",
-                            FechaIngresoCFE = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9568),
-                            FechaIngresoPuestoActual = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9573),
-                            FechaNacimiento = new DateTime(1976, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdArea = 1,
-                            IdContrato = 443,
-                            IdSituacionLaboral = 556,
-                            Nombre = "Juan Miguel",
-                            RFC = "JOCJ760823HX3",
-                            RPE = "04869",
-                            SalarioDiarioActual = 0.0,
-                            Sexo = "M"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Activo = true,
-                            AfiliacionIMSS = "PENDIENTE",
-                            ApellidoMaterno = "Rodríguez",
-                            ApellidoPaterno = "Figueroa",
-                            CorreoElectronico = "ivan@ineel.mx",
-                            Domicilio = "",
-                            FechaIngresoCFE = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9587),
-                            FechaIngresoPuestoActual = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9592),
-                            FechaNacimiento = new DateTime(1976, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdArea = 1,
-                            IdContrato = 443,
-                            IdSituacionLaboral = 556,
-                            Nombre = "Iván",
-                            RFC = "FIRI800808",
-                            RPE = "GTI01",
-                            SalarioDiarioActual = 0.0,
-                            Sexo = "M"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Activo = true,
-                            AfiliacionIMSS = "PENDIENTE",
-                            ApellidoMaterno = "Ramirez",
-                            ApellidoPaterno = "Martinez",
-                            CorreoElectronico = "remr@ineel.mx",
-                            Domicilio = "",
-                            FechaIngresoCFE = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9608),
-                            FechaIngresoPuestoActual = new DateTime(2022, 3, 4, 14, 2, 0, 48, DateTimeKind.Local).AddTicks(9613),
-                            FechaNacimiento = new DateTime(1976, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdArea = 1,
-                            IdContrato = 443,
-                            IdSituacionLaboral = 556,
-                            Nombre = "Rogelio",
-                            RFC = "MARR7609258X6",
-                            RPE = "4589",
-                            SalarioDiarioActual = 0.0,
-                            Sexo = "M"
-                        });
-                });
-
             modelBuilder.Entity("SISST.Autenticacion.Models.UsuarioPrivilegio", b =>
                 {
                     b.Property<int>("id")
@@ -13860,17 +13558,6 @@ namespace SISST.Autenticacion.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SISST.Autenticacion.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("SISST.Autenticacion.Models.Trabajador", "Trabajador")
-                        .WithMany()
-                        .HasForeignKey("TrabajadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Trabajador");
-                });
-
             modelBuilder.Entity("SISST.Autenticacion.Models.Area", b =>
                 {
                     b.HasOne("SISST.Autenticacion.Models.Area", "AreaSuperior")
@@ -13941,17 +13628,6 @@ namespace SISST.Autenticacion.Migrations
                     b.Navigation("privilegio");
 
                     b.Navigation("rol");
-                });
-
-            modelBuilder.Entity("SISST.Autenticacion.Models.Trabajador", b =>
-                {
-                    b.HasOne("SISST.Autenticacion.Models.Area", "Area")
-                        .WithMany()
-                        .HasForeignKey("IdArea")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Area");
                 });
 
             modelBuilder.Entity("SISST.Autenticacion.Models.UsuarioPrivilegio", b =>

@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Reuniones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string claseBotonCancelar = Context.Session.GetString("claseBotonCancelar");
+    // string claseBotonBuscar = Context.Session.GetString("claseBotonBuscar");
+    //falta saber defginir ese pedo de los botones en el style pero lo encontrare y valdra jajaj
+
+}
+
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/CreateReunion.css" rel="stylesheet" />
+</head>
+
+<div class="card w-100 tarjetaprincipal">
+    <div class="card-body">
+        <div class="card-title row">
+            <div class="col-4"><h5 style="color:white">Reunión o plática de difusión</h5></div>
+            <div class="col-8" align="right">
+                <label style="color:white">Año</label>
+                <input type="text" name="" value="" />
+                <input type="text" name="" value="" placeholder="Busca por fecha, depto, tema..." />
+                <button type="button" class="@claseBotonCancelar"><i class="fas fa-search"></i>Buscar</button>
+
+
+            </div>
+        </div>
+
+        <div class="card w-100">
+            <div class="card-body">
+                <div align="right">
+                    <button type="button" class="@claseBotonCancelar" onclick="location.href='@Url.Action("Create", "ReunionesDeDifusion", new {})'">
+                    <i class="fas fa-plus pr-2"></i>Nueva Reunion</button>
+
+                </div><br />
+                <table class="table">
+                    <thead style="background: #DCD379 ">
+                        <tr>
+                            <th scope="col" class="titulostable">Fecha</th>
+                            <th scope="col" class="titulostable">Departamento</th>
+                            <th scope="col" class="titulostable">Tema</th>
+                            <th scope="col" class="titulostable">Expositor</th>
+                            <th scope="col" class="titulostable">Documentos</th>
+                            <th scope="col" class="titulostable">Modificar</th>
+                            <th scope="col" class="titulostable">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Departamento</td>
+                                <td>@item.Fecha</td>
+                                <td>@item.Descripcion</td>
+                                <td>@item.Apoyo</td>
+                                <td align="center"><i class="fas fa-list"></i></td>
+                                <td align="center"><i class="fas fa-pencil-alt"></i></td>
+                                <td align="center"><i class="fas fa-trash"></i></td>
+                            </tr>
+                         }
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
